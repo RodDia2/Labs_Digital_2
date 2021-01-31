@@ -31,25 +31,25 @@
 #pragma config WRT = OFF        // Flash Program Memory Self Write Enable bits (Write protection off)
 
 
-#define _XTAL_FREQ 8000000
-
-#define LED_Rojo PORTEbits.RE0
-#define LED_Amarillo PORTEbits.RE1
-#define LED_Verde PORTEbits.RE2
 
 //******************************************************************************
 // Variables
 //******************************************************************************
+#define _XTAL_FREQ 8000000
+#define LED_Rojo PORTEbits.RE0
+#define LED_Amarillo PORTEbits.RE1
+#define LED_Verde PORTEbits.RE2
 
-char counter = 0;
+unsigned char check = 0;
+unsigned char j1 = 0;
+unsigned char j2 = 0;
 
 //******************************************************************************
 // Prototipos de funciones
 //******************************************************************************
 void setup(void);
-void Semaforo(void);
+void semaforo(void);
 void avance(void);
-void ganador(void);
 
 //******************************************************************************
 // Ciclo principal
@@ -70,7 +70,6 @@ void main(void) {
             if (PORTBbits.RB0 == 1) {
                 semaforo();
                 avance();
-                ganador();
             }
         }
     }
@@ -93,6 +92,8 @@ void setup(void) {
     PORTC = 0;
     TRISD = 0;
     PORTD = 0;
+    PORTA = 0;
+    TRISA = 0;
 }
 
 //******************************************************************************
@@ -102,17 +103,54 @@ void setup(void) {
 void semaforo(void) {
     PORTC = 0;
     PORTD = 0;
+    PORTA = 0;
     LED_Rojo = 1;
-    __delay_ms(500);
+    __delay_ms(150);
     LED_Rojo = 0;
     LED_Amarillo = 1;
-    __delay_ms(500);
+    __delay_ms(150);
     LED_Amarillo = 0;
     LED_Verde = 1;
-    __delay_ms(500);
+    __delay_ms(150);
     LED_Verde = 0;
+    check = 1;
 }
 
 void avance(void) {
-    
+    while (check == 1) {
+        if (PORTBbits.RB1 == 0) {
+            __delay_ms(50);
+            if (PORTBbits.RB1 == 1) {
+                if (PORTC == 0) {
+                    j1 = 0b00000001;
+                    PORTC = j1;
+                }
+                else if (PORTC != 0) {
+                    j1 = j1*2;
+                    PORTC = j1;
+                }
+                if (PORTCbits.RC7 == 1) {
+                    check = 0;
+                    PORTAbits.RA0 = 1;
+                }
+            }
+        }
+        if (PORTBbits.RB2 == 0) {
+            __delay_ms(50);
+            if (PORTBbits.RB2 == 1) {
+                if (PORTD == 0) {
+                    j2 = 0b00000001;
+                    PORTD = j2;
+                }
+                else if (PORTD != 0) {
+                    j2 = j2*2;
+                    PORTD = j2;
+                }
+                if (PORTDbits.RD7 == 1) {
+                    check = 0;
+                    PORTAbits.RA1 = 1;
+                }
+            }
+        }
+    }
 }
