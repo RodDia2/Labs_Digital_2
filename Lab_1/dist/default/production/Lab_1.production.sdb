@@ -11,13 +11,13 @@
 [v ___eecpymem __eecpymem `(v  1 e 1 0 ]
 "39
 [v ___memcpyee __memcpyee `(v  1 e 1 0 ]
-"58 D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_1\main.c
+"60 D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_1\main.c
 [v _main main `(v  1 e 1 0 ]
-"84
+"88
 [v _setup setup `(v  1 e 1 0 ]
-"103
+"110
 [v _semaforo semaforo `(v  1 e 1 0 ]
-"119
+"130
 [v _avance avance `(v  1 e 1 0 ]
 "166 D:/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
 [v _PORTA PORTA `VEuc  1 e 1 @5 ]
@@ -99,29 +99,29 @@
 [v _ANSEL ANSEL `VEuc  1 e 1 @392 ]
 "3449
 [v _ANSELH ANSELH `VEuc  1 e 1 @393 ]
-"43 D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_1\main.c
+"45 D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_1\main.c
 [v _check check `uc  1 e 1 0 ]
-"44
+"46
 [v _j1 j1 `uc  1 e 1 0 ]
-"45
+"47
 [v _j2 j2 `uc  1 e 1 0 ]
-"58
+"60
 [v _main main `(v  1 e 1 0 ]
 {
-"78
+"82
 } 0
-"84
+"88
 [v _setup setup `(v  1 e 1 0 ]
 {
-"97
+"104
 } 0
-"103
+"110
 [v _semaforo semaforo `(v  1 e 1 0 ]
 {
-"117
+"128
 } 0
-"119
+"130
 [v _avance avance `(v  1 e 1 0 ]
 {
-"156
+"176
 } 0

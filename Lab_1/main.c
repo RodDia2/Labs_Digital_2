@@ -35,11 +35,13 @@
 //******************************************************************************
 // Variables
 //******************************************************************************
+// la variable XTAL FREQ es necesaria para que funcionen los delays
 #define _XTAL_FREQ 8000000
+// Se asginan variables de Leds a los primeros 3 bits del puerto E
 #define LED_Rojo PORTEbits.RE0
 #define LED_Amarillo PORTEbits.RE1
 #define LED_Verde PORTEbits.RE2
-
+// se crean variables tipo char que se utilizaran en el programa
 unsigned char check = 0;
 unsigned char j1 = 0;
 unsigned char j2 = 0;
@@ -56,18 +58,20 @@ void avance(void);
 //******************************************************************************
 
 void main(void) {
-
+    // mando a llamar a la funcion de setup
     setup();
 
     //**************************************************************************
     // Loop principal
     //**************************************************************************
-
+    // como es un while(1) siempre se va a repetir este loop.
     while (1) {
-      
+      // se tiene un antirebote para el boton que activa el semáforo
         if (PORTBbits.RB0 == 0) {
             __delay_ms(50);
             if (PORTBbits.RB0 == 1) {
+                // se manda a llamar primero al semaforo y después a la funcion 
+                // de avance para que participen los jugadores
                 semaforo();
                 avance();
             }
@@ -82,6 +86,9 @@ void main(void) {
 //******************************************************************************
 
 void setup(void) {
+    // Todos los bits utilizados se configuran como salidas, menos los primeros
+    // 3 bits del puerto B, debido a que allí estan los push. Ansel y Anselh 
+    // se ponen en 0 porque no se utilizarán señales analógicas. 
     TRISE = 0;
     PORTE = 0;
     ANSEL = 0;
@@ -101,9 +108,12 @@ void setup(void) {
 //******************************************************************************
 
 void semaforo(void) {
+    // Al inicio del juego, todos los puertos que involucren los LEDs de los 
+    // jugadores se apagan. 
     PORTC = 0;
     PORTD = 0;
     PORTA = 0;
+    // Se encienden los colores del semáforo con un delay especificado
     LED_Rojo = 1;
     __delay_ms(150);
     LED_Rojo = 0;
@@ -113,14 +123,21 @@ void semaforo(void) {
     LED_Verde = 1;
     __delay_ms(150);
     LED_Verde = 0;
+    // la variables check se enciende para poder comenzar a contar el punteo
     check = 1;
 }
 
 void avance(void) {
+    // solamente si check es 1, se puede entrar al loop
     while (check == 1) {
+        // se tiene un antirebote para el botón del jugador 1
         if (PORTBbits.RB1 == 0) {
             __delay_ms(50);
             if (PORTBbits.RB1 == 1) {
+                // se revisa si es su primer botonazo para encender el primer
+                // LED, sino solo hace un corrimiento de bits. Una vez se llega
+                // al octavo LED, se apaga check para que no se pueda seguir 
+                //jugando y se enciente el LED que ganó el jugador 1.
                 if (PORTC == 0) {
                     j1 = 0b00000001;
                     PORTC = j1;
@@ -135,9 +152,12 @@ void avance(void) {
                 }
             }
         }
+        // antirebote para el jugador 2
         if (PORTBbits.RB2 == 0) {
             __delay_ms(50);
             if (PORTBbits.RB2 == 1) {
+                // tiene la misma estructura que para el jugador 1, pero con 
+                //los puertos y variables del jugador 2
                 if (PORTD == 0) {
                     j2 = 0b00000001;
                     PORTD = j2;

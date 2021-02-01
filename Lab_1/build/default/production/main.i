@@ -2510,7 +2510,7 @@ extern __bank0 __bit __timeout;
 
 #pragma config BOR4V = BOR40V
 #pragma config WRT = OFF
-# 43 "main.c"
+# 45 "main.c"
 unsigned char check = 0;
 unsigned char j1 = 0;
 unsigned char j2 = 0;
@@ -2539,6 +2539,8 @@ void main(void) {
         if (PORTBbits.RB0 == 0) {
             _delay((unsigned long)((50)*(8000000/4000.0)));
             if (PORTBbits.RB0 == 1) {
+
+
                 semaforo();
                 avance();
             }
@@ -2553,6 +2555,9 @@ void main(void) {
 
 
 void setup(void) {
+
+
+
     TRISE = 0;
     PORTE = 0;
     ANSEL = 0;
@@ -2572,9 +2577,12 @@ void setup(void) {
 
 
 void semaforo(void) {
+
+
     PORTC = 0;
     PORTD = 0;
     PORTA = 0;
+
     PORTEbits.RE0 = 1;
     _delay((unsigned long)((150)*(8000000/4000.0)));
     PORTEbits.RE0 = 0;
@@ -2584,14 +2592,21 @@ void semaforo(void) {
     PORTEbits.RE2 = 1;
     _delay((unsigned long)((150)*(8000000/4000.0)));
     PORTEbits.RE2 = 0;
+
     check = 1;
 }
 
 void avance(void) {
+
     while (check == 1) {
+
         if (PORTBbits.RB1 == 0) {
             _delay((unsigned long)((50)*(8000000/4000.0)));
             if (PORTBbits.RB1 == 1) {
+
+
+
+
                 if (PORTC == 0) {
                     j1 = 0b00000001;
                     PORTC = j1;
@@ -2606,9 +2621,12 @@ void avance(void) {
                 }
             }
         }
+
         if (PORTBbits.RB2 == 0) {
             _delay((unsigned long)((50)*(8000000/4000.0)));
             if (PORTBbits.RB2 == 1) {
+
+
                 if (PORTD == 0) {
                     j2 = 0b00000001;
                     PORTD = j2;
