@@ -2511,6 +2511,30 @@ extern __bank0 __bit __timeout;
 #pragma config BOR4V = BOR40V
 #pragma config WRT = OFF
 # 45 "main.c"
+void __attribute__((picinterrupt(("")))) ISR(void) {
+    if (INTCONbits.RBIF == 1) {
+
+        if (PORTBbits.RB0 == 0) {
+            _delay((unsigned long)((50)*(8000000/4000.0)));
+            if (PORTBbits.RB0 == 1) {
+                PORTC ++;
+                INTCONbits.RBIF == 0;
+            }
+        }
+        if (PORTBbits.RB1 == 0) {
+            _delay((unsigned long)((50)*(8000000/4000.0)));
+            if (PORTBbits.RB1 == 1) {
+                PORTC --;
+                INTCONbits.RBIF == 0;
+            }
+        }
+    }
+
+}
+
+
+
+
 void setup(void);
 
 
@@ -2545,12 +2569,19 @@ void setup(void) {
     PORTE = 0;
     ANSEL = 0;
     ANSELH = 0;
-    TRISB = 0b00000111;
+    TRISB = 0b00000011;
     PORTB = 0;
     TRISC = 0;
     PORTC = 0;
     TRISD = 0;
     PORTD = 0;
     PORTA = 0;
-    TRISA = 0;
+    TRISA = 0b00000001;
+
+    INTCONbits.GIE = 1;
+    INTCONbits.RBIE = 1;
+    INTCONbits.RBIF = 0;
+    IOCB = 0b00000011;
+
+    INTCONbits.PEIE = 1;
 }

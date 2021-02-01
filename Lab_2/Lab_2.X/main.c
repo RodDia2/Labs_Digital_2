@@ -38,6 +38,30 @@
 // la variable XTAL FREQ es necesaria para que funcionen los delays
 #define _XTAL_FREQ 8000000
 
+//******************************************************************************
+// Interrupción
+//******************************************************************************
+
+void __interrupt() ISR(void) {
+    if (INTCONbits.RBIF == 1) {
+        
+        if (PORTBbits.RB0 == 0) {
+            __delay_ms(50);
+            if (PORTBbits.RB0 == 1) {
+                PORTC ++;
+                INTCONbits.RBIF == 0;
+            }
+        }
+        if (PORTBbits.RB1 == 0) {
+            __delay_ms(50);
+            if (PORTBbits.RB1 == 1) {
+                PORTC --;
+                INTCONbits.RBIF == 0;
+            }
+        }
+    }
+        
+}
 
 //******************************************************************************
 // Prototipos de funciones
@@ -76,14 +100,21 @@ void setup(void) {
     PORTE = 0;
     ANSEL = 0;
     ANSELH = 0;
-    TRISB = 0b00000111;
+    TRISB = 0b00000011;
     PORTB = 0;
     TRISC = 0;
     PORTC = 0;
     TRISD = 0;
     PORTD = 0;
     PORTA = 0;
-    TRISA = 0;
+    TRISA = 0b00000001;
+    
+    INTCONbits.GIE = 1;
+    INTCONbits.RBIE = 1;
+    INTCONbits.RBIF = 0;
+    IOCB = 0b00000011;
+    
+    INTCONbits.PEIE = 1;
 }
 
 //******************************************************************************
