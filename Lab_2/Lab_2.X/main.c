@@ -13,6 +13,7 @@
 #include <pic16f887.h>
 
 #include "ADC.h"
+#include "TMR0.h"
 //******************************************************************************
 // Palabra de configuración
 //******************************************************************************
@@ -42,10 +43,12 @@
 #define _XTAL_FREQ 8000000
 
 uint8_t cambio = 0;
-uint8_t swap = 0;
+int8_t swap = 0;
 uint8_t valor_adc = 0;
-uint8_t adc_low = 0;
-uint8_t adc_high = 0;
+int8_t adc_low = 0;
+int8_t adc_high = 0;
+int8_t display_1 = 0;
+int8_t display_2 = 0;
 
 int8_t segmentos[16]={0b00111111,0b00000110,0b01011011,0b01001111,0b01100110,0b01101101,0b01111101,0b00000111,0b01111111,0b01101111,0b01110111,0b01111100,0b00111001,0b01011110,0b01111001,0b01110001};
 
@@ -81,6 +84,20 @@ void __interrupt() ISR(void) {
         
         PIR1bits.ADIF = 0;
     }
+    
+    if (INTCONbits.T0IF == 1) {
+        if (PORTEbits.RE0 == 1){
+            PORTEbits.RE0 = 0;
+            PORTEbits.RE1 = 1;
+            PORTD = display_2;
+        } else {
+            PORTEbits.RE0 = 1;
+            PORTEbits.RE1 = 0;
+            PORTD = display_1;
+        }
+        TMR0 = 176;
+        INTCONbits.T0IF = 0;
+    }
         
 }
 
@@ -98,6 +115,7 @@ void main(void) {
     // mando a llamar a la funcion de setup
     setup();
     initADC();
+    initTMR0();
 
     //**************************************************************************
     // Loop principal
@@ -105,7 +123,9 @@ void main(void) {
     // como es un while(1) siempre se va a repetir este loop.
     while (1) {
         adc();
-      
+        display_1 = segmentos[adc_high];
+        display_2 = segmentos[adc_low];
+       
     }
 
   

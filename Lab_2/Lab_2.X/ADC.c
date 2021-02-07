@@ -1,6 +1,7 @@
 # include "ADC.h"
 
 void initADC(void){
+    //INTCONbits.GIE = 1;
     INTCONbits.PEIE = 1;
     PIE1bits.ADIE = 1;
     PIR1bits.ADIF = 0;

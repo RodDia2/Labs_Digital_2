@@ -13,15 +13,19 @@
 [v ___eecpymem __eecpymem `(v  1 e 1 0 ]
 "39
 [v ___memcpyee __memcpyee `(v  1 e 1 0 ]
-"56 D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
+"59 D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
 [v _ISR ISR `II(v  1 e 1 0 ]
-"97
+"114
 [v _main main `(v  1 e 1 0 ]
-"118
+"138
 [v _setup setup `(v  1 e 1 0 ]
-"151
+"171
 [v _adc adc `(v  1 e 1 0 ]
-"166 D:/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
+"3 D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\TMR0.c
+[v _initTMR0 initTMR0 `(v  1 e 1 0 ]
+"59 D:/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
+[v _TMR0 TMR0 `VEuc  1 e 1 @1 ]
+"166
 [v _PORTA PORTA `VEuc  1 e 1 @5 ]
 "228
 [v _PORTB PORTB `VEuc  1 e 1 @6 ]
@@ -43,6 +47,14 @@
 [v _PORTD PORTD `VEuc  1 e 1 @8 ]
 "414
 [v _PORTE PORTE `VEuc  1 e 1 @9 ]
+[s S102 . 1 `uc 1 RE0 1 0 :1:0 
+`uc 1 RE1 1 0 :1:1 
+`uc 1 RE2 1 0 :1:2 
+`uc 1 RE3 1 0 :1:3 
+]
+"427
+[u S107 . 1 `S102 1 . 1 0 ]
+[v _PORTEbits PORTEbits `VES107  1 e 1 @9 ]
 [s S22 . 1 `uc 1 RBIF 1 0 :1:0 
 `uc 1 INTF 1 0 :1:1 
 `uc 1 T0IF 1 0 :1:2 
@@ -75,13 +87,13 @@
 [v _ADRESH ADRESH `VEuc  1 e 1 @30 ]
 "1245
 [v _ADCON0 ADCON0 `VEuc  1 e 1 @31 ]
-[s S126 . 1 `uc 1 ADON 1 0 :1:0 
+[s S144 . 1 `uc 1 ADON 1 0 :1:0 
 `uc 1 GO_nDONE 1 0 :1:1 
 `uc 1 CHS 1 0 :4:2 
 `uc 1 ADCS 1 0 :2:6 
 ]
 "1276
-[s S131 . 1 `uc 1 . 1 0 :1:0 
+[s S149 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 GO 1 0 :1:1 
 `uc 1 CHS0 1 0 :1:2 
 `uc 1 CHS1 1 0 :1:3 
@@ -90,14 +102,16 @@
 `uc 1 ADCS0 1 0 :1:6 
 `uc 1 ADCS1 1 0 :1:7 
 ]
-[s S140 . 1 `uc 1 . 1 0 :1:0 
+[s S158 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 nDONE 1 0 :1:1 
 ]
-[s S143 . 1 `uc 1 . 1 0 :1:0 
+[s S161 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 GO_DONE 1 0 :1:1 
 ]
-[u S146 . 1 `S126 1 . 1 0 `S131 1 . 1 0 `S140 1 . 1 0 `S143 1 . 1 0 ]
-[v _ADCON0bits ADCON0bits `VES146  1 e 1 @31 ]
+[u S164 . 1 `S144 1 . 1 0 `S149 1 . 1 0 `S158 1 . 1 0 `S161 1 . 1 0 ]
+[v _ADCON0bits ADCON0bits `VES164  1 e 1 @31 ]
+"1346
+[v _OPTION_REG OPTION_REG `VEuc  1 e 1 @129 ]
 "1416
 [v _TRISA TRISA `VEuc  1 e 1 @133 ]
 "1478
@@ -108,7 +122,7 @@
 [v _TRISD TRISD `VEuc  1 e 1 @136 ]
 "1664
 [v _TRISE TRISE `VEuc  1 e 1 @137 ]
-[s S233 . 1 `uc 1 TMR1IE 1 0 :1:0 
+[s S257 . 1 `uc 1 TMR1IE 1 0 :1:0 
 `uc 1 TMR2IE 1 0 :1:1 
 `uc 1 CCP1IE 1 0 :1:2 
 `uc 1 SSPIE 1 0 :1:3 
@@ -117,8 +131,8 @@
 `uc 1 ADIE 1 0 :1:6 
 ]
 "1718
-[u S241 . 1 `S233 1 . 1 0 ]
-[v _PIE1bits PIE1bits `VES241  1 e 1 @140 ]
+[u S265 . 1 `S257 1 . 1 0 ]
+[v _PIE1bits PIE1bits `VES265  1 e 1 @140 ]
 "2416
 [v _IOCB IOCB `VEuc  1 e 1 @150 ]
 "2977
@@ -127,36 +141,47 @@
 [v _ANSEL ANSEL `VEuc  1 e 1 @392 ]
 "3449
 [v _ANSELH ANSELH `VEuc  1 e 1 @393 ]
-"45 D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
-[v _swap swap `uc  1 e 1 0 ]
-"46
-[v _valor_adc valor_adc `uc  1 e 1 0 ]
+"46 D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
+[v _swap swap `c  1 e 1 0 ]
 "47
-[v _adc_low adc_low `uc  1 e 1 0 ]
+[v _valor_adc valor_adc `uc  1 e 1 0 ]
 "48
-[v _adc_high adc_high `uc  1 e 1 0 ]
-"97
+[v _adc_low adc_low `c  1 e 1 0 ]
+"49
+[v _adc_high adc_high `c  1 e 1 0 ]
+"50
+[v _display_1 display_1 `c  1 e 1 0 ]
+"51
+[v _display_2 display_2 `c  1 e 1 0 ]
+"53
+[v _segmentos segmentos `[16]c  1 e 16 0 ]
+"114
 [v _main main `(v  1 e 1 0 ]
 {
-"112
+"132
 } 0
-"118
+"138
 [v _setup setup `(v  1 e 1 0 ]
 {
-"145
+"165
+} 0
+"3 D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\TMR0.c
+[v _initTMR0 initTMR0 `(v  1 e 1 0 ]
+{
+"13
 } 0
 "3 D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\ADC.c
 [v _initADC initADC `(v  1 e 1 0 ]
 {
-"9
+"10
 } 0
-"151 D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
+"171 D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
 [v _adc adc `(v  1 e 1 0 ]
 {
-"154
+"174
 } 0
-"56
+"59
 [v _ISR ISR `II(v  1 e 1 0 ]
 {
-"85
+"102
 } 0

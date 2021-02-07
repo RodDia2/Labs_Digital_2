@@ -282,22 +282,22 @@ Version 4.0 HI-TECH Software Intermediate Code
 {
 [e :U _initADC ]
 [f ]
-"4
-[; ;ADC.c: 4:     INTCONbits.PEIE = 1;
-[e = . . _INTCONbits 0 6 -> -> 1 `i `uc ]
 "5
-[; ;ADC.c: 5:     PIE1bits.ADIE = 1;
-[e = . . _PIE1bits 0 6 -> -> 1 `i `uc ]
+[; ;ADC.c: 5:     INTCONbits.PEIE = 1;
+[e = . . _INTCONbits 0 6 -> -> 1 `i `uc ]
 "6
-[; ;ADC.c: 6:     PIR1bits.ADIF = 0;
-[e = . . _PIR1bits 0 6 -> -> 0 `i `uc ]
+[; ;ADC.c: 6:     PIE1bits.ADIE = 1;
+[e = . . _PIE1bits 0 6 -> -> 1 `i `uc ]
 "7
-[; ;ADC.c: 7:     ADCON0 = 0b01000001;
-[e = _ADCON0 -> -> 65 `i `uc ]
+[; ;ADC.c: 7:     PIR1bits.ADIF = 0;
+[e = . . _PIR1bits 0 6 -> -> 0 `i `uc ]
 "8
-[; ;ADC.c: 8:     ADCON1 = 0b00000000;
-[e = _ADCON1 -> -> 0 `i `uc ]
+[; ;ADC.c: 8:     ADCON0 = 0b01000001;
+[e = _ADCON0 -> -> 65 `i `uc ]
 "9
-[; ;ADC.c: 9: }
+[; ;ADC.c: 9:     ADCON1 = 0b00000000;
+[e = _ADCON1 -> -> 0 `i `uc ]
+"10
+[; ;ADC.c: 10: }
 [e :UE 138 ]
 }

@@ -2632,6 +2632,11 @@ typedef uint16_t uintptr_t;
 void initADC(void);
 # 15 "main.c" 2
 
+# 1 "./TMR0.h" 1
+# 16 "./TMR0.h"
+void initTMR0(void);
+# 16 "main.c" 2
+
 
 
 
@@ -2651,12 +2656,14 @@ void initADC(void);
 
 #pragma config BOR4V = BOR40V
 #pragma config WRT = OFF
-# 44 "main.c"
+# 45 "main.c"
 uint8_t cambio = 0;
-uint8_t swap = 0;
+int8_t swap = 0;
 uint8_t valor_adc = 0;
-uint8_t adc_low = 0;
-uint8_t adc_high = 0;
+int8_t adc_low = 0;
+int8_t adc_high = 0;
+int8_t display_1 = 0;
+int8_t display_2 = 0;
 
 int8_t segmentos[16]={0b00111111,0b00000110,0b01011011,0b01001111,0b01100110,0b01101101,0b01111101,0b00000111,0b01111111,0b01101111,0b01110111,0b01111100,0b00111001,0b01011110,0b01111001,0b01110001};
 
@@ -2693,6 +2700,20 @@ void __attribute__((picinterrupt(("")))) ISR(void) {
         PIR1bits.ADIF = 0;
     }
 
+    if (INTCONbits.T0IF == 1) {
+        if (PORTEbits.RE0 == 1){
+            PORTEbits.RE0 = 0;
+            PORTEbits.RE1 = 1;
+            PORTD = display_2;
+        } else {
+            PORTEbits.RE0 = 1;
+            PORTEbits.RE1 = 0;
+            PORTD = display_1;
+        }
+        TMR0 = 176;
+        INTCONbits.T0IF = 0;
+    }
+
 }
 
 
@@ -2709,6 +2730,7 @@ void main(void) {
 
     setup();
     initADC();
+    initTMR0();
 
 
 
@@ -2716,6 +2738,8 @@ void main(void) {
 
     while (1) {
         adc();
+        display_1 = segmentos[adc_high];
+        display_2 = segmentos[adc_low];
 
     }
 

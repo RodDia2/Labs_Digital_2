@@ -1,4 +1,4 @@
-# 1 "ADC.c"
+# 1 "TMR0.c"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 288 "<built-in>" 3
@@ -6,9 +6,9 @@
 # 1 "<built-in>" 2
 # 1 "D:/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
-# 1 "ADC.c" 2
-# 1 "./ADC.h" 1
-# 13 "./ADC.h"
+# 1 "TMR0.c" 2
+# 1 "./TMR0.h" 1
+# 14 "./TMR0.h"
 # 1 "D:/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\xc.h" 1 3
 # 18 "D:/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -2489,19 +2489,21 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 # 28 "D:/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\xc.h" 2 3
-# 13 "./ADC.h" 2
+# 14 "./TMR0.h" 2
 
 
+void initTMR0(void);
+# 1 "TMR0.c" 2
 
-void initADC(void);
-# 1 "ADC.c" 2
 
+void initTMR0(void){
 
-void initADC(void){
+  INTCONbits.GIE = 1;
+  INTCONbits.PEIE = 1;
+  INTCONbits.T0IE = 1;
+  INTCONbits.T0IF = 0;
 
-    INTCONbits.PEIE = 1;
-    PIE1bits.ADIE = 1;
-    PIR1bits.ADIF = 0;
-    ADCON0 = 0b01000001;
-    ADCON1 = 0b00000000;
+  OPTION_REG = 0b10000101;
+
+  TMR0 = 176;
 }
