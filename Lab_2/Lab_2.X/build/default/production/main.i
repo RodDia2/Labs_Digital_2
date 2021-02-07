@@ -2740,6 +2740,11 @@ void main(void) {
         adc();
         display_1 = segmentos[adc_high];
         display_2 = segmentos[adc_low];
+        if (valor_adc > PORTC) {
+            PORTEbits.RE2 = 1;
+        } else {
+            PORTEbits.RE2 = 0;
+        }
 
     }
 

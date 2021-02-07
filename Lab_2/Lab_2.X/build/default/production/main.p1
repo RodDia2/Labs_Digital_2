@@ -624,87 +624,107 @@ Version 4.0 HI-TECH Software Intermediate Code
 "127
 [; ;main.c: 127:         display_2 = segmentos[adc_low];
 [e = _display_2 *U + &U _segmentos * -> -> _adc_low `uc `ux -> -> # *U &U _segmentos `ui `ux ]
+"128
+[; ;main.c: 128:         if (valor_adc > PORTC) {
+[e $ ! > -> _valor_adc `i -> _PORTC `i 152  ]
+{
 "129
-[; ;main.c: 129:     }
+[; ;main.c: 129:             PORTEbits.RE2 = 1;
+[e = . . _PORTEbits 0 2 -> -> 1 `i `uc ]
+"130
+[; ;main.c: 130:         } else {
+}
+[e $U 153  ]
+[e :U 152 ]
+{
+"131
+[; ;main.c: 131:             PORTEbits.RE2 = 0;
+[e = . . _PORTEbits 0 2 -> -> 0 `i `uc ]
+"132
+[; ;main.c: 132:         }
+}
+[e :U 153 ]
+"134
+[; ;main.c: 134:     }
 }
 [e :U 149 ]
 [e $U 150  ]
 [e :U 151 ]
-"132
-[; ;main.c: 132: }
+"137
+[; ;main.c: 137: }
 [e :UE 148 ]
 }
-"138
-[; ;main.c: 138: void setup(void) {
+"143
+[; ;main.c: 143: void setup(void) {
 [v _setup `(v ~T0 @X0 1 ef ]
 {
 [e :U _setup ]
 [f ]
-"142
-[; ;main.c: 142:     TRISE = 0;
-[e = _TRISE -> -> 0 `i `uc ]
-"143
-[; ;main.c: 143:     PORTE = 0;
-[e = _PORTE -> -> 0 `i `uc ]
-"144
-[; ;main.c: 144:     ANSEL = 0b00000001;
-[e = _ANSEL -> -> 1 `i `uc ]
-"145
-[; ;main.c: 145:     ANSELH = 0;
-[e = _ANSELH -> -> 0 `i `uc ]
-"146
-[; ;main.c: 146:     TRISB = 0b00000011;
-[e = _TRISB -> -> 3 `i `uc ]
 "147
-[; ;main.c: 147:     PORTB = 0;
-[e = _PORTB -> -> 0 `i `uc ]
+[; ;main.c: 147:     TRISE = 0;
+[e = _TRISE -> -> 0 `i `uc ]
 "148
-[; ;main.c: 148:     TRISC = 0;
-[e = _TRISC -> -> 0 `i `uc ]
+[; ;main.c: 148:     PORTE = 0;
+[e = _PORTE -> -> 0 `i `uc ]
 "149
-[; ;main.c: 149:     PORTC = 0;
-[e = _PORTC -> -> 0 `i `uc ]
+[; ;main.c: 149:     ANSEL = 0b00000001;
+[e = _ANSEL -> -> 1 `i `uc ]
 "150
-[; ;main.c: 150:     TRISD = 0;
-[e = _TRISD -> -> 0 `i `uc ]
+[; ;main.c: 150:     ANSELH = 0;
+[e = _ANSELH -> -> 0 `i `uc ]
 "151
-[; ;main.c: 151:     PORTD = 0;
-[e = _PORTD -> -> 0 `i `uc ]
+[; ;main.c: 151:     TRISB = 0b00000011;
+[e = _TRISB -> -> 3 `i `uc ]
 "152
-[; ;main.c: 152:     PORTA = 0;
-[e = _PORTA -> -> 0 `i `uc ]
+[; ;main.c: 152:     PORTB = 0;
+[e = _PORTB -> -> 0 `i `uc ]
 "153
-[; ;main.c: 153:     TRISA = 0b00000001;
-[e = _TRISA -> -> 1 `i `uc ]
+[; ;main.c: 153:     TRISC = 0;
+[e = _TRISC -> -> 0 `i `uc ]
+"154
+[; ;main.c: 154:     PORTC = 0;
+[e = _PORTC -> -> 0 `i `uc ]
 "155
-[; ;main.c: 155:     INTCONbits.GIE = 1;
-[e = . . _INTCONbits 0 7 -> -> 1 `i `uc ]
+[; ;main.c: 155:     TRISD = 0;
+[e = _TRISD -> -> 0 `i `uc ]
 "156
-[; ;main.c: 156:     INTCONbits.RBIE = 1;
-[e = . . _INTCONbits 0 3 -> -> 1 `i `uc ]
+[; ;main.c: 156:     PORTD = 0;
+[e = _PORTD -> -> 0 `i `uc ]
 "157
-[; ;main.c: 157:     INTCONbits.RBIF = 0;
-[e = . . _INTCONbits 0 0 -> -> 0 `i `uc ]
+[; ;main.c: 157:     PORTA = 0;
+[e = _PORTA -> -> 0 `i `uc ]
 "158
-[; ;main.c: 158:     IOCB = 0b00000011;
+[; ;main.c: 158:     TRISA = 0b00000001;
+[e = _TRISA -> -> 1 `i `uc ]
+"160
+[; ;main.c: 160:     INTCONbits.GIE = 1;
+[e = . . _INTCONbits 0 7 -> -> 1 `i `uc ]
+"161
+[; ;main.c: 161:     INTCONbits.RBIE = 1;
+[e = . . _INTCONbits 0 3 -> -> 1 `i `uc ]
+"162
+[; ;main.c: 162:     INTCONbits.RBIF = 0;
+[e = . . _INTCONbits 0 0 -> -> 0 `i `uc ]
+"163
+[; ;main.c: 163:     IOCB = 0b00000011;
 [e = _IOCB -> -> 3 `i `uc ]
-"165
-[; ;main.c: 165: }
-[e :UE 152 ]
+"170
+[; ;main.c: 170: }
+[e :UE 154 ]
 }
-"171
-[; ;main.c: 171: void adc(void) {
+"176
+[; ;main.c: 176: void adc(void) {
 [v _adc `(v ~T0 @X0 1 ef ]
 {
 [e :U _adc ]
 [f ]
-"172
-[; ;main.c: 172:     _delay((unsigned long)((8)*(8000000/4000000.0)));
+"177
+[; ;main.c: 177:     _delay((unsigned long)((8)*(8000000/4000000.0)));
 [e ( __delay (1 -> * -> -> 8 `i `d / -> -> 8000000 `l `d .4000000.0 `ul ]
-"173
-[; ;main.c: 173:     ADCON0bits.GO_DONE = 1;
+"178
+[; ;main.c: 178:     ADCON0bits.GO_DONE = 1;
 [e = . . _ADCON0bits 3 1 -> -> 1 `i `uc ]
-"174
-[; ;main.c: 174: }
-[e :UE 153 ]
+"179
+[; ;main.c: 179: }
+[e :UE 155 ]
 }

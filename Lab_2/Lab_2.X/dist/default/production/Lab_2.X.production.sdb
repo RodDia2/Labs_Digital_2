@@ -17,9 +17,9 @@
 [v _ISR ISR `II(v  1 e 1 0 ]
 "114
 [v _main main `(v  1 e 1 0 ]
-"138
+"143
 [v _setup setup `(v  1 e 1 0 ]
-"171
+"176
 [v _adc adc `(v  1 e 1 0 ]
 "3 D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\TMR0.c
 [v _initTMR0 initTMR0 `(v  1 e 1 0 ]
@@ -158,12 +158,12 @@
 "114
 [v _main main `(v  1 e 1 0 ]
 {
-"132
+"137
 } 0
-"138
+"143
 [v _setup setup `(v  1 e 1 0 ]
 {
-"165
+"170
 } 0
 "3 D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\TMR0.c
 [v _initTMR0 initTMR0 `(v  1 e 1 0 ]
@@ -175,10 +175,10 @@
 {
 "10
 } 0
-"171 D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
+"176 D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
 [v _adc adc `(v  1 e 1 0 ]
 {
-"174
+"179
 } 0
 "59
 [v _ISR ISR `II(v  1 e 1 0 ]
