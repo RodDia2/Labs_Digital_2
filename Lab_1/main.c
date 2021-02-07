@@ -143,7 +143,8 @@ void avance(void) {
                     PORTC = j1;
                 }
                 else if (PORTC != 0) {
-                    j1 = j1*2;
+                    //j1 = j1*2;
+                    j1 = j1<<1;
                     PORTC = j1;
                 }
                 if (PORTCbits.RC7 == 1) {

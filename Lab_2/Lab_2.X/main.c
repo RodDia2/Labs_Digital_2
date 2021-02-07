@@ -9,7 +9,10 @@
 //******************************************************************************
 
 #include <xc.h>
+#include <stdint.h>
+#include <pic16f887.h>
 
+#include "ADC.h"
 //******************************************************************************
 // Palabra de configuración
 //******************************************************************************
@@ -38,6 +41,14 @@
 // la variable XTAL FREQ es necesaria para que funcionen los delays
 #define _XTAL_FREQ 8000000
 
+uint8_t cambio = 0;
+uint8_t swap = 0;
+uint8_t valor_adc = 0;
+uint8_t adc_low = 0;
+uint8_t adc_high = 0;
+
+int8_t segmentos[16]={0b00111111,0b00000110,0b01011011,0b01001111,0b01100110,0b01101101,0b01111101,0b00000111,0b01111111,0b01101111,0b01110111,0b01111100,0b00111001,0b01011110,0b01111001,0b01110001};
+
 //******************************************************************************
 // Interrupción
 //******************************************************************************
@@ -49,16 +60,26 @@ void __interrupt() ISR(void) {
             __delay_ms(50);
             if (PORTBbits.RB0 == 1) {
                 PORTC ++;
-                INTCONbits.RBIF == 0;
+                INTCONbits.RBIF = 0;
             }
         }
         if (PORTBbits.RB1 == 0) {
             __delay_ms(50);
             if (PORTBbits.RB1 == 1) {
                 PORTC --;
-                INTCONbits.RBIF == 0;
+                INTCONbits.RBIF = 0;
             }
         }
+    }
+    
+    if (PIR1bits.ADIF == 1) {
+        
+        valor_adc = ADRESH;
+        adc_low = valor_adc & 0b00001111;
+        swap = ((valor_adc & 0b00001111)<<4 | (valor_adc & 0b11110000)>>4);
+        adc_high = swap & 0b00001111;
+        
+        PIR1bits.ADIF = 0;
     }
         
 }
@@ -67,7 +88,7 @@ void __interrupt() ISR(void) {
 // Prototipos de funciones
 //******************************************************************************
 void setup(void);
-
+void adc(void);
 
 //******************************************************************************
 // Ciclo principal
@@ -76,12 +97,14 @@ void setup(void);
 void main(void) {
     // mando a llamar a la funcion de setup
     setup();
+    initADC();
 
     //**************************************************************************
     // Loop principal
     //**************************************************************************
     // como es un while(1) siempre se va a repetir este loop.
     while (1) {
+        adc();
       
     }
 
@@ -98,7 +121,7 @@ void setup(void) {
     // se ponen en 0 porque no se utilizarán señales analógicas. 
     TRISE = 0;
     PORTE = 0;
-    ANSEL = 0;
+    ANSEL = 0b00000001;
     ANSELH = 0;
     TRISB = 0b00000011;
     PORTB = 0;
@@ -114,12 +137,19 @@ void setup(void) {
     INTCONbits.RBIF = 0;
     IOCB = 0b00000011;
     
-    INTCONbits.PEIE = 1;
+    //INTCONbits.PEIE = 1;
+    //PIE1bits.ADIE = 1;
+    //PIR1bits.ADIF = 0;
+    //ADCON0 = 0b01000001;
+    //ADCON1 = 0b00000000;
 }
 
 //******************************************************************************
 // Funciones
 //******************************************************************************
 
-
+void adc(void) {
+    __delay_us(8);
+    ADCON0bits.GO_DONE = 1;
+}
 
