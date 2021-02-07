@@ -11,7 +11,7 @@
 # All addresses and the length are given in unqualified hexadecimal
 # in delta units.  Any other numeric values are decimal.
 %PSECTS
-$C:\Users\jrdia\AppData\Local\Temp\so4k.o
+$C:\Users\jrdia\AppData\Local\Temp\s730.o
 reset_vec CODE 0 0 0 3 2
 end_init CODE 0 C C 3 2
 config CONFIG 4 2007 2007 2 2
@@ -76,71 +76,71 @@ STRING 146-1FFF 2
 # All other numeric values are in decimal.
 %LINETAB
 $dist/default/production\Lab_2.X.production.o
-F cinit CODE >820:C:\Users\jrdia\AppData\Local\Temp\so4k.s
-F cinit CODE >823:C:\Users\jrdia\AppData\Local\Temp\so4k.s
-F cinit CODE >891:C:\Users\jrdia\AppData\Local\Temp\so4k.s
-10 cinit CODE >892:C:\Users\jrdia\AppData\Local\Temp\so4k.s
-11 cinit CODE >893:C:\Users\jrdia\AppData\Local\Temp\so4k.s
-12 cinit CODE >894:C:\Users\jrdia\AppData\Local\Temp\so4k.s
-13 cinit CODE >895:C:\Users\jrdia\AppData\Local\Temp\so4k.s
-14 cinit CODE >896:C:\Users\jrdia\AppData\Local\Temp\so4k.s
-15 cinit CODE >897:C:\Users\jrdia\AppData\Local\Temp\so4k.s
-16 cinit CODE >898:C:\Users\jrdia\AppData\Local\Temp\so4k.s
-17 cinit CODE >899:C:\Users\jrdia\AppData\Local\Temp\so4k.s
-18 cinit CODE >900:C:\Users\jrdia\AppData\Local\Temp\so4k.s
-1D cinit CODE >904:C:\Users\jrdia\AppData\Local\Temp\so4k.s
-1E cinit CODE >907:C:\Users\jrdia\AppData\Local\Temp\so4k.s
-1F cinit CODE >908:C:\Users\jrdia\AppData\Local\Temp\so4k.s
-20 cinit CODE >909:C:\Users\jrdia\AppData\Local\Temp\so4k.s
-21 cinit CODE >910:C:\Users\jrdia\AppData\Local\Temp\so4k.s
-22 cinit CODE >911:C:\Users\jrdia\AppData\Local\Temp\so4k.s
-23 cinit CODE >912:C:\Users\jrdia\AppData\Local\Temp\so4k.s
-24 cinit CODE >918:C:\Users\jrdia\AppData\Local\Temp\so4k.s
-24 cinit CODE >920:C:\Users\jrdia\AppData\Local\Temp\so4k.s
-25 cinit CODE >921:C:\Users\jrdia\AppData\Local\Temp\so4k.s
+F cinit CODE >820:C:\Users\jrdia\AppData\Local\Temp\s730.s
+F cinit CODE >823:C:\Users\jrdia\AppData\Local\Temp\s730.s
+F cinit CODE >891:C:\Users\jrdia\AppData\Local\Temp\s730.s
+10 cinit CODE >892:C:\Users\jrdia\AppData\Local\Temp\s730.s
+11 cinit CODE >893:C:\Users\jrdia\AppData\Local\Temp\s730.s
+12 cinit CODE >894:C:\Users\jrdia\AppData\Local\Temp\s730.s
+13 cinit CODE >895:C:\Users\jrdia\AppData\Local\Temp\s730.s
+14 cinit CODE >896:C:\Users\jrdia\AppData\Local\Temp\s730.s
+15 cinit CODE >897:C:\Users\jrdia\AppData\Local\Temp\s730.s
+16 cinit CODE >898:C:\Users\jrdia\AppData\Local\Temp\s730.s
+17 cinit CODE >899:C:\Users\jrdia\AppData\Local\Temp\s730.s
+18 cinit CODE >900:C:\Users\jrdia\AppData\Local\Temp\s730.s
+1D cinit CODE >904:C:\Users\jrdia\AppData\Local\Temp\s730.s
+1E cinit CODE >907:C:\Users\jrdia\AppData\Local\Temp\s730.s
+1F cinit CODE >908:C:\Users\jrdia\AppData\Local\Temp\s730.s
+20 cinit CODE >909:C:\Users\jrdia\AppData\Local\Temp\s730.s
+21 cinit CODE >910:C:\Users\jrdia\AppData\Local\Temp\s730.s
+22 cinit CODE >911:C:\Users\jrdia\AppData\Local\Temp\s730.s
+23 cinit CODE >912:C:\Users\jrdia\AppData\Local\Temp\s730.s
+24 cinit CODE >918:C:\Users\jrdia\AppData\Local\Temp\s730.s
+24 cinit CODE >920:C:\Users\jrdia\AppData\Local\Temp\s730.s
+25 cinit CODE >921:C:\Users\jrdia\AppData\Local\Temp\s730.s
 4 intentry CODE >59:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
 28 text5 CODE >59:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
-28 text5 CODE >60:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
-2C text5 CODE >62:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
-32 text5 CODE >63:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
-3B text5 CODE >64:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
-41 text5 CODE >65:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
-45 text5 CODE >66:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
-46 text5 CODE >69:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
-4A text5 CODE >70:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
-53 text5 CODE >71:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
-59 text5 CODE >72:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
-5B text5 CODE >73:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
-5C text5 CODE >78:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
-62 text5 CODE >80:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
-66 text5 CODE >81:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
-6B text5 CODE >82:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
-85 text5 CODE >83:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
-8A text5 CODE >85:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
-8B text5 CODE >88:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
-8F text5 CODE >89:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
-93 text5 CODE >90:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
-94 text5 CODE >91:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
-95 text5 CODE >92:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
-97 text5 CODE >93:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
-98 text5 CODE >94:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
-99 text5 CODE >95:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
-9A text5 CODE >96:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
-9C text5 CODE >97:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
-9C text5 CODE >98:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
-9E text5 CODE >99:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
-9F text5 CODE >102:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
-13E text4 CODE >176:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
-13E text4 CODE >177:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
-142 text4 CODE >178:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
-145 text4 CODE >179:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
+28 text5 CODE >61:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
+2C text5 CODE >63:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
+32 text5 CODE >64:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
+3B text5 CODE >65:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
+41 text5 CODE >67:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
+45 text5 CODE >68:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
+46 text5 CODE >72:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
+4A text5 CODE >73:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
+53 text5 CODE >74:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
+59 text5 CODE >76:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
+5B text5 CODE >77:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
+5C text5 CODE >82:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
+62 text5 CODE >84:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
+66 text5 CODE >87:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
+6B text5 CODE >88:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
+85 text5 CODE >89:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
+8A text5 CODE >91:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
+8B text5 CODE >94:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
+8F text5 CODE >97:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
+93 text5 CODE >98:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
+94 text5 CODE >99:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
+95 text5 CODE >100:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
+97 text5 CODE >101:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
+98 text5 CODE >102:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
+99 text5 CODE >103:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
+9A text5 CODE >104:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
+9C text5 CODE >105:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
+9C text5 CODE >107:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
+9E text5 CODE >108:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
+9F text5 CODE >111:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
+13E text4 CODE >191:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
+13E text4 CODE >192:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
+142 text4 CODE >193:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
+145 text4 CODE >194:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
 131 text3 CODE >3:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\ADC.c
-131 text3 CODE >5:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\ADC.c
-132 text3 CODE >6:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\ADC.c
-135 text3 CODE >7:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\ADC.c
-138 text3 CODE >8:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\ADC.c
-13A text3 CODE >9:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\ADC.c
-13D text3 CODE >10:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\ADC.c
+131 text3 CODE >9:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\ADC.c
+132 text3 CODE >10:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\ADC.c
+135 text3 CODE >11:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\ADC.c
+138 text3 CODE >12:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\ADC.c
+13A text3 CODE >13:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\ADC.c
+13D text3 CODE >14:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\ADC.c
 124 text2 CODE >3:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\TMR0.c
 124 text2 CODE >5:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\TMR0.c
 125 text2 CODE >6:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\TMR0.c
@@ -149,53 +149,53 @@ F cinit CODE >891:C:\Users\jrdia\AppData\Local\Temp\so4k.s
 128 text2 CODE >10:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\TMR0.c
 12C text2 CODE >12:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\TMR0.c
 130 text2 CODE >13:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\TMR0.c
-D8 text1 CODE >143:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
-D8 text1 CODE >147:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
-DB text1 CODE >148:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
-DE text1 CODE >149:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
-E2 text1 CODE >150:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
-E3 text1 CODE >151:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
-E7 text1 CODE >152:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
-EA text1 CODE >153:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
-ED text1 CODE >154:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
-F0 text1 CODE >155:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
-F3 text1 CODE >156:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
-F6 text1 CODE >157:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
-F7 text1 CODE >158:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
-FB text1 CODE >160:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
-FC text1 CODE >161:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
-FD text1 CODE >162:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
-FE text1 CODE >163:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
-100 text1 CODE >170:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
-A6 maintext CODE >114:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
-A6 maintext CODE >116:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
-AB maintext CODE >117:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
-B0 maintext CODE >118:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
-B5 maintext CODE >124:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
-B5 maintext CODE >125:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
-BA maintext CODE >126:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
-C2 maintext CODE >127:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
-C9 maintext CODE >128:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
-D1 maintext CODE >129:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
-D2 maintext CODE >130:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
-D3 maintext CODE >131:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
-101 inittext CODE >865:C:\Users\jrdia\AppData\Local\Temp\so4k.s
-101 inittext CODE >866:C:\Users\jrdia\AppData\Local\Temp\so4k.s
-102 inittext CODE >867:C:\Users\jrdia\AppData\Local\Temp\so4k.s
-103 inittext CODE >868:C:\Users\jrdia\AppData\Local\Temp\so4k.s
-104 inittext CODE >869:C:\Users\jrdia\AppData\Local\Temp\so4k.s
-105 inittext CODE >876:C:\Users\jrdia\AppData\Local\Temp\so4k.s
-105 inittext CODE >877:C:\Users\jrdia\AppData\Local\Temp\so4k.s
-10A inittext CODE >878:C:\Users\jrdia\AppData\Local\Temp\so4k.s
-10B inittext CODE >879:C:\Users\jrdia\AppData\Local\Temp\so4k.s
-10C inittext CODE >880:C:\Users\jrdia\AppData\Local\Temp\so4k.s
-10D inittext CODE >881:C:\Users\jrdia\AppData\Local\Temp\so4k.s
-10E inittext CODE >882:C:\Users\jrdia\AppData\Local\Temp\so4k.s
-10F inittext CODE >883:C:\Users\jrdia\AppData\Local\Temp\so4k.s
-110 inittext CODE >884:C:\Users\jrdia\AppData\Local\Temp\so4k.s
-111 inittext CODE >885:C:\Users\jrdia\AppData\Local\Temp\so4k.s
-112 inittext CODE >886:C:\Users\jrdia\AppData\Local\Temp\so4k.s
-113 inittext CODE >887:C:\Users\jrdia\AppData\Local\Temp\so4k.s
+D8 text1 CODE >157:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
+D8 text1 CODE >161:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
+DB text1 CODE >162:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
+DE text1 CODE >163:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
+E2 text1 CODE >164:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
+E3 text1 CODE >165:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
+E7 text1 CODE >166:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
+EA text1 CODE >167:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
+ED text1 CODE >168:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
+F0 text1 CODE >169:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
+F3 text1 CODE >170:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
+F6 text1 CODE >171:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
+F7 text1 CODE >172:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
+FB text1 CODE >174:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
+FC text1 CODE >175:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
+FD text1 CODE >176:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
+FE text1 CODE >177:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
+100 text1 CODE >184:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
+A6 maintext CODE >123:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
+A6 maintext CODE >126:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
+AB maintext CODE >127:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
+B0 maintext CODE >128:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
+B5 maintext CODE >134:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
+B5 maintext CODE >136:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
+BA maintext CODE >138:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
+C2 maintext CODE >139:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
+C9 maintext CODE >142:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
+D1 maintext CODE >143:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
+D2 maintext CODE >144:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
+D3 maintext CODE >145:D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
+101 inittext CODE >865:C:\Users\jrdia\AppData\Local\Temp\s730.s
+101 inittext CODE >866:C:\Users\jrdia\AppData\Local\Temp\s730.s
+102 inittext CODE >867:C:\Users\jrdia\AppData\Local\Temp\s730.s
+103 inittext CODE >868:C:\Users\jrdia\AppData\Local\Temp\s730.s
+104 inittext CODE >869:C:\Users\jrdia\AppData\Local\Temp\s730.s
+105 inittext CODE >876:C:\Users\jrdia\AppData\Local\Temp\s730.s
+105 inittext CODE >877:C:\Users\jrdia\AppData\Local\Temp\s730.s
+10A inittext CODE >878:C:\Users\jrdia\AppData\Local\Temp\s730.s
+10B inittext CODE >879:C:\Users\jrdia\AppData\Local\Temp\s730.s
+10C inittext CODE >880:C:\Users\jrdia\AppData\Local\Temp\s730.s
+10D inittext CODE >881:C:\Users\jrdia\AppData\Local\Temp\s730.s
+10E inittext CODE >882:C:\Users\jrdia\AppData\Local\Temp\s730.s
+10F inittext CODE >883:C:\Users\jrdia\AppData\Local\Temp\s730.s
+110 inittext CODE >884:C:\Users\jrdia\AppData\Local\Temp\s730.s
+111 inittext CODE >885:C:\Users\jrdia\AppData\Local\Temp\s730.s
+112 inittext CODE >886:C:\Users\jrdia\AppData\Local\Temp\s730.s
+113 inittext CODE >887:C:\Users\jrdia\AppData\Local\Temp\s730.s
 # %SYMTAB Section
 # An enumeration of all symbols in the program.
 # The beginning of the section is indicated by %SYMTAB.
@@ -221,21 +221,21 @@ __Heeprom_data 0 0 EEDATA 3 eeprom_data -
 __Hstrings 0 0 ABS 0 strings -
 _IOCB 96 0 ABS 0 - dist/default/production\Lab_2.X.production.o
 _TMR0 1 0 ABS 0 - dist/default/production\Lab_2.X.production.o
-___sp 0 0 STACK 2 stack C:\Users\jrdia\AppData\Local\Temp\so4k.o
+___sp 0 0 STACK 2 stack C:\Users\jrdia\AppData\Local\Temp\s730.o
 _main 14C 0 CODE 0 maintext dist/default/production\Lab_2.X.production.o
 _swap 7D 0 COMMON 1 bssCOMMON dist/default/production\Lab_2.X.production.o
 btemp 7E 0 ABS 0 - dist/default/production\Lab_2.X.production.o
-start 18 0 CODE 0 init C:\Users\jrdia\AppData\Local\Temp\so4k.o
+start 18 0 CODE 0 init C:\Users\jrdia\AppData\Local\Temp\s730.o
 __size_of_main 0 0 ABS 0 - dist/default/production\Lab_2.X.production.o
 __HbssCOMMON 0 0 ABS 0 bssCOMMON -
 __LidataBANK0 0 0 ABS 0 idataBANK0 -
 __Hpowerup 0 0 CODE 0 powerup -
-intlevel0 0 0 ENTRY 0 functab C:\Users\jrdia\AppData\Local\Temp\so4k.o
-intlevel1 0 0 ENTRY 0 functab C:\Users\jrdia\AppData\Local\Temp\so4k.o
-intlevel2 0 0 ENTRY 0 functab C:\Users\jrdia\AppData\Local\Temp\so4k.o
-intlevel3 0 0 ENTRY 0 functab C:\Users\jrdia\AppData\Local\Temp\so4k.o
-intlevel4 0 0 ENTRY 0 functab C:\Users\jrdia\AppData\Local\Temp\so4k.o
-intlevel5 0 0 ENTRY 0 functab C:\Users\jrdia\AppData\Local\Temp\so4k.o
+intlevel0 0 0 ENTRY 0 functab C:\Users\jrdia\AppData\Local\Temp\s730.o
+intlevel1 0 0 ENTRY 0 functab C:\Users\jrdia\AppData\Local\Temp\s730.o
+intlevel2 0 0 ENTRY 0 functab C:\Users\jrdia\AppData\Local\Temp\s730.o
+intlevel3 0 0 ENTRY 0 functab C:\Users\jrdia\AppData\Local\Temp\s730.o
+intlevel4 0 0 ENTRY 0 functab C:\Users\jrdia\AppData\Local\Temp\s730.o
+intlevel5 0 0 ENTRY 0 functab C:\Users\jrdia\AppData\Local\Temp\s730.o
 __LbssCOMMON 0 0 ABS 0 bssCOMMON -
 _initTMR0 248 0 CODE 0 text2 dist/default/production\Lab_2.X.production.o
 wtemp0 7E 0 ABS 0 - dist/default/production\Lab_2.X.production.o
@@ -251,12 +251,12 @@ __Lmaintext 0 0 ABS 0 maintext -
 _segmentos 20 0 BANK0 1 dataBANK0 dist/default/production\Lab_2.X.production.o
 _adc_low 7B 0 COMMON 1 bssCOMMON dist/default/production\Lab_2.X.production.o
 _OPTION_REG 81 0 ABS 0 - dist/default/production\Lab_2.X.production.o
-___stackhi 0 0 ABS 0 - C:\Users\jrdia\AppData\Local\Temp\so4k.o
-___stacklo 0 0 ABS 0 - C:\Users\jrdia\AppData\Local\Temp\so4k.o
+___stackhi 0 0 ABS 0 - C:\Users\jrdia\AppData\Local\Temp\s730.o
+___stacklo 0 0 ABS 0 - C:\Users\jrdia\AppData\Local\Temp\s730.o
 __size_of_setup 0 0 ABS 0 - dist/default/production\Lab_2.X.production.o
 start_initialization 1E 0 CODE 0 cinit dist/default/production\Lab_2.X.production.o
 __end_of_initADC 27C 0 CODE 0 text3 dist/default/production\Lab_2.X.production.o
-___int_sp 0 0 STACK 2 stack C:\Users\jrdia\AppData\Local\Temp\so4k.o
+___int_sp 0 0 STACK 2 stack C:\Users\jrdia\AppData\Local\Temp\s730.o
 __Hbank0 0 0 ABS 0 bank0 -
 __Hbank1 0 0 ABS 0 bank1 -
 __Hbank2 0 0 ABS 0 bank2 -
@@ -304,7 +304,7 @@ saved_w 7E 0 ABS 0 - dist/default/production\Lab_2.X.production.o
 __end_of_ISR 14C 0 CODE 0 text5 dist/default/production\Lab_2.X.production.o
 __end_of_adc 28C 0 CODE 0 text4 dist/default/production\Lab_2.X.production.o
 __Lintentry 8 0 CODE 0 intentry -
-reset_vec 0 0 CODE 0 reset_vec C:\Users\jrdia\AppData\Local\Temp\so4k.o
+reset_vec 0 0 CODE 0 reset_vec C:\Users\jrdia\AppData\Local\Temp\s730.o
 __pdataBANK0 20 0 BANK0 1 dataBANK0 dist/default/production\Lab_2.X.production.o
 __LbssBANK0 0 0 ABS 0 bssBANK0 -
 _PIE1bits 8C 0 ABS 0 - dist/default/production\Lab_2.X.production.o

@@ -2672,18 +2672,22 @@ int8_t segmentos[16]={0b00111111,0b00000110,0b01011011,0b01001111,0b01100110,0b0
 
 
 void __attribute__((picinterrupt(("")))) ISR(void) {
+
     if (INTCONbits.RBIF == 1) {
 
         if (PORTBbits.RB0 == 0) {
             _delay((unsigned long)((50)*(8000000/4000.0)));
             if (PORTBbits.RB0 == 1) {
+
                 PORTC ++;
                 INTCONbits.RBIF = 0;
             }
         }
+
         if (PORTBbits.RB1 == 0) {
             _delay((unsigned long)((50)*(8000000/4000.0)));
             if (PORTBbits.RB1 == 1) {
+
                 PORTC --;
                 INTCONbits.RBIF = 0;
             }
@@ -2693,6 +2697,8 @@ void __attribute__((picinterrupt(("")))) ISR(void) {
     if (PIR1bits.ADIF == 1) {
 
         valor_adc = ADRESH;
+
+
         adc_low = valor_adc & 0b00001111;
         swap = ((valor_adc & 0b00001111)<<4 | (valor_adc & 0b11110000)>>4);
         adc_high = swap & 0b00001111;
@@ -2701,6 +2707,8 @@ void __attribute__((picinterrupt(("")))) ISR(void) {
     }
 
     if (INTCONbits.T0IF == 1) {
+
+
         if (PORTEbits.RE0 == 1){
             PORTEbits.RE0 = 0;
             PORTEbits.RE1 = 1;
@@ -2710,6 +2718,7 @@ void __attribute__((picinterrupt(("")))) ISR(void) {
             PORTEbits.RE1 = 0;
             PORTD = display_1;
         }
+
         TMR0 = 176;
         INTCONbits.T0IF = 0;
     }
@@ -2728,6 +2737,7 @@ void adc(void);
 
 void main(void) {
 
+
     setup();
     initADC();
     initTMR0();
@@ -2737,9 +2747,13 @@ void main(void) {
 
 
     while (1) {
+
         adc();
+
         display_1 = segmentos[adc_high];
         display_2 = segmentos[adc_low];
+
+
         if (valor_adc > PORTC) {
             PORTEbits.RE2 = 1;
         } else {
@@ -2783,6 +2797,7 @@ void setup(void) {
 
 
 }
+
 
 
 

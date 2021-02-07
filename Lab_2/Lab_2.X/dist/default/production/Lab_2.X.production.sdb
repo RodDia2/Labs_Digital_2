@@ -15,11 +15,11 @@
 [v ___memcpyee __memcpyee `(v  1 e 1 0 ]
 "59 D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
 [v _ISR ISR `II(v  1 e 1 0 ]
-"114
+"123
 [v _main main `(v  1 e 1 0 ]
-"143
+"157
 [v _setup setup `(v  1 e 1 0 ]
-"176
+"191
 [v _adc adc `(v  1 e 1 0 ]
 "3 D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\TMR0.c
 [v _initTMR0 initTMR0 `(v  1 e 1 0 ]
@@ -155,15 +155,15 @@
 [v _display_2 display_2 `c  1 e 1 0 ]
 "53
 [v _segmentos segmentos `[16]c  1 e 16 0 ]
-"114
+"123
 [v _main main `(v  1 e 1 0 ]
 {
-"137
+"151
 } 0
-"143
+"157
 [v _setup setup `(v  1 e 1 0 ]
 {
-"170
+"184
 } 0
 "3 D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\TMR0.c
 [v _initTMR0 initTMR0 `(v  1 e 1 0 ]
@@ -173,15 +173,15 @@
 "3 D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\ADC.c
 [v _initADC initADC `(v  1 e 1 0 ]
 {
-"10
+"14
 } 0
-"176 D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
+"191 D:\Semestre_7\Digital_2\Labs_Digital_2\Lab_2\Lab_2.X\main.c
 [v _adc adc `(v  1 e 1 0 ]
 {
-"179
+"194
 } 0
 "59
 [v _ISR ISR `II(v  1 e 1 0 ]
 {
-"102
+"111
 } 0
