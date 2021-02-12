@@ -32,14 +32,14 @@ Version 4.0 HI-TECH Software Intermediate Code
 "82 lab3_main.c
 [; ;lab3_main.c: 82: float LeerADC(uint8_t x);
 [v _LeerADC `(f ~T0 @X0 0 ef1`uc ]
-"194 D:\Microchip\xc8\v2.31\pic\include\c90\stdio.h
-[v _sprintf `(i ~T0 @X0 0 e1v`*uc`*Cuc ]
 "25 ./USART.h
 [; ;./USART.h: 25: void USART_Write_String(char *a);
 [v _USART_Write_String `(v ~T0 @X0 0 ef1`*uc ]
 "23
 [; ;./USART.h: 23: void USART_Write(uint8_t a);
 [v _USART_Write `(v ~T0 @X0 0 ef1`uc ]
+"194 D:\Microchip\xc8\v2.31\pic\include\c90\stdio.h
+[v _sprintf `(i ~T0 @X0 0 e1v`*uc`*Cuc ]
 "62 ./LCD.h
 [; ;./LCD.h: 62: void LCD_Set_Cursor(char x,char y);
 [v _LCD_Set_Cursor `(v ~T0 @X0 0 ef2`uc`uc ]
@@ -530,129 +530,138 @@ Version 4.0 HI-TECH Software Intermediate Code
 "110
 [; ;lab3_main.c: 110:         V2 = LeerADC(1);
 [e = _V2 ( _LeerADC (1 -> -> 1 `i `uc ]
-"117
-[; ;lab3_main.c: 117:         sprintf(pantalla, "%1.2f   %1.2f   %d", V1,V2,contador);
-[e ( _sprintf (1 , , , (. , &U _pantalla :s 1C -> _V1 `d -> _V2 `d -> _contador `i ]
-"119
-[; ;lab3_main.c: 119:         USART_Write_String(pantalla);
-[e ( _USART_Write_String (1 &U _pantalla ]
-"122
-[; ;lab3_main.c: 122:         USART_Write(13);
+"115
+[; ;lab3_main.c: 115:         USART_Write_String("V1     V2     CONT \n");
+[e ( _USART_Write_String (1 :s 1C ]
+"116
+[; ;lab3_main.c: 116:         USART_Write(13);
 [e ( _USART_Write (1 -> -> 13 `i `uc ]
-"123
-[; ;lab3_main.c: 123:         USART_Write(10);
+"117
+[; ;lab3_main.c: 117:         USART_Write(10);
 [e ( _USART_Write (1 -> -> 10 `i `uc ]
-"125
-[; ;lab3_main.c: 125:         LCD_clear();
-[e ( _LCD_clear ..  ]
+"118
+[; ;lab3_main.c: 118:         sprintf(pantalla, "%1.2f   %1.2f   %d", V1,V2,contador);
+[e ( _sprintf (1 , , , (. , &U _pantalla :s 2C -> _V1 `d -> _V2 `d -> _contador `i ]
+"120
+[; ;lab3_main.c: 120:         USART_Write_String(pantalla);
+[e ( _USART_Write_String (1 &U _pantalla ]
+"123
+[; ;lab3_main.c: 123:         USART_Write(13);
+[e ( _USART_Write (1 -> -> 13 `i `uc ]
+"124
+[; ;lab3_main.c: 124:         USART_Write(10);
+[e ( _USART_Write (1 -> -> 10 `i `uc ]
 "126
-[; ;lab3_main.c: 126:         LCD_Set_Cursor(1,1);
-[e ( _LCD_Set_Cursor (2 , -> -> 1 `i `uc -> -> 1 `i `uc ]
+[; ;lab3_main.c: 126:         LCD_clear();
+[e ( _LCD_clear ..  ]
 "127
-[; ;lab3_main.c: 127:         LCD_Write_String("V1   V2   CONT");
-[e ( _LCD_Write_String (1 :s 2C ]
+[; ;lab3_main.c: 127:         LCD_Set_Cursor(1,1);
+[e ( _LCD_Set_Cursor (2 , -> -> 1 `i `uc -> -> 1 `i `uc ]
 "128
-[; ;lab3_main.c: 128:         LCD_Set_Cursor(2,1);
-[e ( _LCD_Set_Cursor (2 , -> -> 2 `i `uc -> -> 1 `i `uc ]
+[; ;lab3_main.c: 128:         LCD_Write_String("V1   V2   CONT");
+[e ( _LCD_Write_String (1 :s 3C ]
 "129
-[; ;lab3_main.c: 129:         LCD_Write_String(pantalla);
+[; ;lab3_main.c: 129:         LCD_Set_Cursor(2,1);
+[e ( _LCD_Set_Cursor (2 , -> -> 2 `i `uc -> -> 1 `i `uc ]
+"130
+[; ;lab3_main.c: 130:         LCD_Write_String(pantalla);
 [e ( _LCD_Write_String (1 &U _pantalla ]
-"131
-[; ;lab3_main.c: 131:         _delay((unsigned long)((500)*(8000000/4000.0)));
+"132
+[; ;lab3_main.c: 132:         _delay((unsigned long)((500)*(8000000/4000.0)));
 [e ( __delay (1 -> * -> -> 500 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-"134
-[; ;lab3_main.c: 134:     }
+"135
+[; ;lab3_main.c: 135:     }
 }
 [e :U 145 ]
 [e $U 146  ]
 [e :U 147 ]
-"137
-[; ;lab3_main.c: 137: }
+"138
+[; ;lab3_main.c: 138: }
 [e :UE 144 ]
 }
-"143
-[; ;lab3_main.c: 143: void setup(void) {
+"144
+[; ;lab3_main.c: 144: void setup(void) {
 [v _setup `(v ~T0 @X0 1 ef ]
 {
 [e :U _setup ]
 [f ]
-"147
-[; ;lab3_main.c: 147:     TRISE = 0;
-[e = _TRISE -> -> 0 `i `uc ]
 "148
-[; ;lab3_main.c: 148:     PORTE = 0;
-[e = _PORTE -> -> 0 `i `uc ]
+[; ;lab3_main.c: 148:     TRISE = 0;
+[e = _TRISE -> -> 0 `i `uc ]
 "149
-[; ;lab3_main.c: 149:     ANSEL = 0b00000011;
-[e = _ANSEL -> -> 3 `i `uc ]
+[; ;lab3_main.c: 149:     PORTE = 0;
+[e = _PORTE -> -> 0 `i `uc ]
 "150
-[; ;lab3_main.c: 150:     ANSELH = 0;
-[e = _ANSELH -> -> 0 `i `uc ]
+[; ;lab3_main.c: 150:     ANSEL = 0b00000011;
+[e = _ANSEL -> -> 3 `i `uc ]
 "151
-[; ;lab3_main.c: 151:     TRISB = 0;
-[e = _TRISB -> -> 0 `i `uc ]
+[; ;lab3_main.c: 151:     ANSELH = 0;
+[e = _ANSELH -> -> 0 `i `uc ]
 "152
-[; ;lab3_main.c: 152:     PORTB = 0;
-[e = _PORTB -> -> 0 `i `uc ]
+[; ;lab3_main.c: 152:     TRISB = 0;
+[e = _TRISB -> -> 0 `i `uc ]
 "153
-[; ;lab3_main.c: 153:     TRISC = 0b10000000;
-[e = _TRISC -> -> 128 `i `uc ]
+[; ;lab3_main.c: 153:     PORTB = 0;
+[e = _PORTB -> -> 0 `i `uc ]
 "154
-[; ;lab3_main.c: 154:     PORTC = 0;
-[e = _PORTC -> -> 0 `i `uc ]
+[; ;lab3_main.c: 154:     TRISC = 0b10000000;
+[e = _TRISC -> -> 128 `i `uc ]
 "155
-[; ;lab3_main.c: 155:     TRISD = 0;
-[e = _TRISD -> -> 0 `i `uc ]
+[; ;lab3_main.c: 155:     PORTC = 0;
+[e = _PORTC -> -> 0 `i `uc ]
 "156
-[; ;lab3_main.c: 156:     PORTD = 0;
-[e = _PORTD -> -> 0 `i `uc ]
+[; ;lab3_main.c: 156:     TRISD = 0;
+[e = _TRISD -> -> 0 `i `uc ]
 "157
-[; ;lab3_main.c: 157:     PORTA = 0;
-[e = _PORTA -> -> 0 `i `uc ]
+[; ;lab3_main.c: 157:     PORTD = 0;
+[e = _PORTD -> -> 0 `i `uc ]
 "158
-[; ;lab3_main.c: 158:     TRISA = 0b00000011;
+[; ;lab3_main.c: 158:     PORTA = 0;
+[e = _PORTA -> -> 0 `i `uc ]
+"159
+[; ;lab3_main.c: 159:     TRISA = 0b00000011;
 [e = _TRISA -> -> 3 `i `uc ]
-"160
-[; ;lab3_main.c: 160:     INTCONbits.PEIE=1;
-[e = . . _INTCONbits 0 6 -> -> 1 `i `uc ]
 "161
-[; ;lab3_main.c: 161:     PIE1bits.RCIE=1;
-[e = . . _PIE1bits 0 5 -> -> 1 `i `uc ]
+[; ;lab3_main.c: 161:     INTCONbits.PEIE=1;
+[e = . . _INTCONbits 0 6 -> -> 1 `i `uc ]
 "162
-[; ;lab3_main.c: 162:     PIR1bits.RCIF=0;
-[e = . . _PIR1bits 0 5 -> -> 0 `i `uc ]
+[; ;lab3_main.c: 162:     PIE1bits.RCIE=1;
+[e = . . _PIE1bits 0 5 -> -> 1 `i `uc ]
 "163
-[; ;lab3_main.c: 163:     INTCONbits.GIE=1;
+[; ;lab3_main.c: 163:     PIR1bits.RCIF=0;
+[e = . . _PIR1bits 0 5 -> -> 0 `i `uc ]
+"164
+[; ;lab3_main.c: 164:     INTCONbits.GIE=1;
 [e = . . _INTCONbits 0 7 -> -> 1 `i `uc ]
-"170
-[; ;lab3_main.c: 170: }
+"171
+[; ;lab3_main.c: 171: }
 [e :UE 148 ]
 }
-"176
-[; ;lab3_main.c: 176: float LeerADC(uint8_t x){
+"177
+[; ;lab3_main.c: 177: float LeerADC(uint8_t x){
 [v _LeerADC `(f ~T0 @X0 1 ef1`uc ]
 {
 [e :U _LeerADC ]
 [v _x `uc ~T0 @X0 1 r1 ]
 [f ]
-"177
-[; ;lab3_main.c: 177:     float a = 0.0;
+"178
+[; ;lab3_main.c: 178:     float a = 0.0;
 [v _a `f ~T0 @X0 1 a ]
 [e = _a -> .0.0 `f ]
-"178
-[; ;lab3_main.c: 178:     ADC_Select(x);
-[e ( _ADC_Select (1 _x ]
 "179
-[; ;lab3_main.c: 179:     ADCON0bits.ADON=1;
-[e = . . _ADCON0bits 0 0 -> -> 1 `i `uc ]
+[; ;lab3_main.c: 179:     ADC_Select(x);
+[e ( _ADC_Select (1 _x ]
 "180
-[; ;lab3_main.c: 180:     _delay((unsigned long)((20)*(8000000/4000000.0)));
-[e ( __delay (1 -> * -> -> 20 `i `d / -> -> 8000000 `l `d .4000000.0 `ul ]
+[; ;lab3_main.c: 180:     ADCON0bits.ADON=1;
+[e = . . _ADCON0bits 0 0 -> -> 1 `i `uc ]
 "181
-[; ;lab3_main.c: 181:     ADCON0bits.GO=1;
-[e = . . _ADCON0bits 1 1 -> -> 1 `i `uc ]
+[; ;lab3_main.c: 181:     _delay((unsigned long)((20)*(8000000/4000000.0)));
+[e ( __delay (1 -> * -> -> 20 `i `d / -> -> 8000000 `l `d .4000000.0 `ul ]
 "182
-[; ;lab3_main.c: 182:     while(ADCON0bits.GO_DONE==1){};
+[; ;lab3_main.c: 182:     ADCON0bits.GO=1;
+[e = . . _ADCON0bits 1 1 -> -> 1 `i `uc ]
+"183
+[; ;lab3_main.c: 183:     while(ADCON0bits.GO_DONE==1){};
 [e $U 150  ]
 [e :U 151 ]
 {
@@ -660,17 +669,18 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 150 ]
 [e $ == -> . . _ADCON0bits 3 1 `i -> 1 `i 151  ]
 [e :U 152 ]
-"184
-[; ;lab3_main.c: 184:     a = ADRESH * 0.0196;
-[e = _a -> * -> -> _ADRESH `i `d .0.0196 `f ]
 "185
-[; ;lab3_main.c: 185:     return a;
+[; ;lab3_main.c: 185:     a = ADRESH * 0.0196;
+[e = _a -> * -> -> _ADRESH `i `d .0.0196 `f ]
+"186
+[; ;lab3_main.c: 186:     return a;
 [e ) _a ]
 [e $UE 149  ]
-"186
-[; ;lab3_main.c: 186: }
+"187
+[; ;lab3_main.c: 187: }
 [e :UE 149 ]
 }
 [p f _sprintf 8495232 ]
-[a 1C 37 49 46 50 102 32 32 32 37 49 46 50 102 32 32 32 37 100 0 ]
-[a 2C 86 49 32 32 32 86 50 32 32 32 67 79 78 84 0 ]
+[a 2C 37 49 46 50 102 32 32 32 37 49 46 50 102 32 32 32 37 100 0 ]
+[a 3C 86 49 32 32 32 86 50 32 32 32 67 79 78 84 0 ]
+[a 1C 86 49 32 32 32 32 32 86 50 32 32 32 32 32 67 79 78 84 32 10 0 ]

@@ -112,8 +112,9 @@ void main(void) {
         
 
         
-        //USART_Write_String("a \n");
-        
+        USART_Write_String("V1     V2     CONT \n");
+        USART_Write(13);
+        USART_Write(10);
         sprintf(pantalla, "%1.2f   %1.2f   %d", V1,V2,contador);
         
         USART_Write_String(pantalla);
