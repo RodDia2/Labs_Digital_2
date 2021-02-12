@@ -2,7 +2,7 @@
  * File:   main.c
  * Author: Rodrigo Díaz
  * Digital 2
- * Lab2
+ * Lab3
  */
 
 //******************************************************************************
@@ -11,10 +11,13 @@
 // se incluyen las librerias que se utilizan y las creadas para el lab
 #include <xc.h>
 #include <stdint.h>
+#include <stdio.h>
 #include <pic16f887.h>
 
 #include "ADC.h"
-#include "TMR0.h"
+#include "LCD.h"
+
+
 //******************************************************************************
 // Palabra de configuración
 //******************************************************************************
@@ -26,7 +29,7 @@
 #pragma config MCLRE = OFF      // RE3/MCLR pin function select bit (RE3/MCLR pin function is digital input, MCLR internally tied to VDD)
 #pragma config CP = OFF         // Code Protection bit (Program memory code protection is disabled)
 #pragma config CPD = OFF        // Data Code Protection bit (Data memory code protection is disabled)
-#pragma config BOREN = OFF      // Brown Out Reset Selection bits (BOR disabled)
+#pragma config BOREN = ON      // Brown Out Reset Selection bits (BOR disabled)
 #pragma config IESO = OFF       // Internal External Switchover bit (Internal/External Switchover mode is disabled)
 #pragma config FCMEN = OFF      // Fail-Safe Clock Monitor Enabled bit (Fail-Safe Clock Monitor is disabled)
 #pragma config LVP = OFF        // Low Voltage Programming Enable bit (RB3 pin has digital I/O, HV on MCLR must be used for programming)
@@ -43,109 +46,62 @@
 // la variable XTAL FREQ es necesaria para que funcionen los delays
 #define _XTAL_FREQ 8000000
 // se crean las variables a utilizar con su tamano 
-uint8_t cambio = 0;
-int8_t swap = 0;
 uint8_t valor_adc = 0;
-int8_t adc_low = 0;
-int8_t adc_high = 0;
-int8_t display_1 = 0;
-int8_t display_2 = 0;
-// se crea un array con todos los valores para encender los pines del 7seg
-int8_t segmentos[16]={0b00111111,0b00000110,0b01011011,0b01001111,0b01100110,0b01101101,0b01111101,0b00000111,0b01111111,0b01101111,0b01110111,0b01111100,0b00111001,0b01011110,0b01111001,0b01110001};
+uint8_t contador = 0;
+float V1 = 0.00;
+float V2 = 0.00;
+char pantalla[20];
+
+
 
 //******************************************************************************
 // Interrupción
 //******************************************************************************
 
 void __interrupt() ISR(void) {
-    // primero se revisa la bandera de la interrupcion on change del PORTB
-    if (INTCONbits.RBIF == 1) {
-        // se realiza un antirebote
-        if (PORTBbits.RB0 == 0) {
-            __delay_ms(50);
-            if (PORTBbits.RB0 == 1) {
-                // se incrementa el PORTC con un boton y se apaga la bandera
-                PORTC ++;
-                INTCONbits.RBIF = 0;
-            }
-        }
-        // se realiza antirebote para el boton de decremento
-        if (PORTBbits.RB1 == 0) {
-            __delay_ms(50);
-            if (PORTBbits.RB1 == 1) {
-                // se decrementa el PORTC y se apaga la bandera
-                PORTC --;
-                INTCONbits.RBIF = 0;
-            }
-        }
-    }
-    // luego se revisa la bandera el interrupt del ADC
-    if (PIR1bits.ADIF == 1) {
+    /*if (PIR1bits.ADIF == 1) {
         // se pasa el valor del ADRESH a la variable
         valor_adc = ADRESH;
-        // se separan los nibbles, basandose en el codigo de 
-        //https://www.geeksforgeeks.org/swap-two-nibbles-byte/#:~:text=To%20swap%20the%20nibbles%2C%20we,in%20a%20typical%20C%20compiler.
-        adc_low = valor_adc & 0b00001111;
-        swap = ((valor_adc & 0b00001111)<<4 | (valor_adc & 0b11110000)>>4);
-        adc_high = swap & 0b00001111;
         // se apaga la bandera
         PIR1bits.ADIF = 0;
     }
-    // por ultimo, se revisa la bandera de interrupcion del TMR0
-    if (INTCONbits.T0IF == 1) {
-        // se realiza un cambio en los bits de los transistores y se 
-        // despliega el valor respectivo en el PORTD
-        if (PORTEbits.RE0 == 1){
-            PORTEbits.RE0 = 0;
-            PORTEbits.RE1 = 1;
-            PORTD = display_2;
-        } else {
-            PORTEbits.RE0 = 1;
-            PORTEbits.RE1 = 0;
-            PORTD = display_1;
-        }
-        // se vuelve a asignar el valor del TMR0 y se apaga la bandera
-        TMR0 = 176;
-        INTCONbits.T0IF = 0;
-    }
-        
+     */   
 }
 
 //******************************************************************************
 // Prototipos de funciones
 //******************************************************************************
 void setup(void);
-void adc(void);
-
+float LeerADC(uint8_t x);
 //******************************************************************************
 // Ciclo principal
 //******************************************************************************
 
 void main(void) {
-    // mando a llamar a la funcion de setup, y a las initadc y initmr0 de las 
+    // 
     //librerias creadas
     setup();
     initADC();
-    initTMR0();
-
+    LCD_Init();
+    LCD_clear();
+   
     //**************************************************************************
     // Loop principal
     //**************************************************************************
     // como es un while(1) siempre se va a repetir este loop.
     while (1) {
-        // se manda a llamar la funcion del adc 
-        adc();
-        // se asigna un valor del array para los valores del disp 7seg
-        display_1 = segmentos[adc_high];
-        display_2 = segmentos[adc_low];
-        // se tiene una alarma visual cuando el valor analogico sobrepasa al 
-        // valor del contador
-        if (valor_adc > PORTC) {
-            PORTEbits.RE2 = 1;
-        } else {
-            PORTEbits.RE2 = 0;
-        }
-       
+        
+        V1 = LeerADC(0);
+        V2 = LeerADC(1);
+        
+        sprintf(pantalla, "%1.2f   %1.2f   %d", V1,V2,contador);
+        
+        LCD_clear();
+        LCD_Set_Cursor(1,1);
+        LCD_Write_String("V1   V2   CONT");
+        LCD_Set_Cursor(2,1);
+        LCD_Write_String(pantalla);
+        __delay_ms(500);
     }
 
   
@@ -161,21 +117,16 @@ void setup(void) {
     // se ponen en 1 solamente donde hayan entradas digitales. 
     TRISE = 0;
     PORTE = 0;
-    ANSEL = 0b00000001;
+    ANSEL = 0b00000011;
     ANSELH = 0;
-    TRISB = 0b00000011;
+    TRISB = 0;
     PORTB = 0;
     TRISC = 0;
     PORTC = 0;
     TRISD = 0;
     PORTD = 0;
     PORTA = 0;
-    TRISA = 0b00000001;
-    // se configuran las interrupciones on change del puerto B
-    INTCONbits.GIE = 1;
-    INTCONbits.RBIE = 1;
-    INTCONbits.RBIF = 0;
-    IOCB = 0b00000011;
+    TRISA = 0b00000011;
     
     //INTCONbits.PEIE = 1;
     //PIE1bits.ADIE = 1;
@@ -187,10 +138,15 @@ void setup(void) {
 //******************************************************************************
 // Funciones
 //******************************************************************************
-// esta funcion incluye el delay para antes de la conversion del ADC y encender
-// el bit de GO
-void adc(void) {
-    __delay_us(8);
-    ADCON0bits.GO_DONE = 1;
-}
 
+float LeerADC(uint8_t x){
+    float a = 0.0;
+    ADC_Select(x); // se selecciona el bit analogico
+    ADCON0bits.ADON=1;//se enciende el enable del ADC
+    __delay_us(20);
+    ADCON0bits.GO=1;//se comienza la conversion
+    while(ADCON0bits.GO_DONE==1){};
+    //a = (ADRESH * 5)/255;
+    a = ADRESH * 0.0196;
+    return a;
+}
