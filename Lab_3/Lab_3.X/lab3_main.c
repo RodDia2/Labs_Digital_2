@@ -12,10 +12,11 @@
 #include <xc.h>
 #include <stdint.h>
 #include <stdio.h>
-#include <pic16f887.h>
+//#include <pic16f887.h>
 
 #include "ADC.h"
 #include "LCD.h"
+#include "USART.h"
 
 
 //******************************************************************************
@@ -29,7 +30,7 @@
 #pragma config MCLRE = OFF      // RE3/MCLR pin function select bit (RE3/MCLR pin function is digital input, MCLR internally tied to VDD)
 #pragma config CP = OFF         // Code Protection bit (Program memory code protection is disabled)
 #pragma config CPD = OFF        // Data Code Protection bit (Data memory code protection is disabled)
-#pragma config BOREN = ON      // Brown Out Reset Selection bits (BOR disabled)
+#pragma config BOREN = OFF      // Brown Out Reset Selection bits (BOR disabled)
 #pragma config IESO = OFF       // Internal External Switchover bit (Internal/External Switchover mode is disabled)
 #pragma config FCMEN = OFF      // Fail-Safe Clock Monitor Enabled bit (Fail-Safe Clock Monitor is disabled)
 #pragma config LVP = OFF        // Low Voltage Programming Enable bit (RB3 pin has digital I/O, HV on MCLR must be used for programming)
@@ -48,24 +49,30 @@
 // se crean las variables a utilizar con su tamano 
 uint8_t valor_adc = 0;
 uint8_t contador = 0;
-float V1 = 0.00;
-float V2 = 0.00;
+char recibido = 0;
+float V1 = 0.0;
+float V2 = 0.0;
 char pantalla[20];
 
-
+//char char_array[];
 
 //******************************************************************************
 // Interrupción
 //******************************************************************************
 
 void __interrupt() ISR(void) {
-    /*if (PIR1bits.ADIF == 1) {
-        // se pasa el valor del ADRESH a la variable
-        valor_adc = ADRESH;
-        // se apaga la bandera
-        PIR1bits.ADIF = 0;
-    }
-     */   
+    
+    if(RCIF==1){
+        RCIF=0;
+        recibido = USART_Read();  
+        if(recibido == '+'){
+            contador++;
+        } 
+        else if(recibido == '-'){
+            contador--;
+        }
+    }   
+     
 }
 
 //******************************************************************************
@@ -84,6 +91,14 @@ void main(void) {
     initADC();
     LCD_Init();
     LCD_clear();
+    
+    Set_Baud_Rate();
+
+    Init_Transmit();
+    
+    Init_Receive();
+    
+    
    
     //**************************************************************************
     // Loop principal
@@ -94,17 +109,31 @@ void main(void) {
         V1 = LeerADC(0);
         V2 = LeerADC(1);
         
+        
+
+        
+        //USART_Write_String("a \n");
+        
         sprintf(pantalla, "%1.2f   %1.2f   %d", V1,V2,contador);
+        
+        USART_Write_String(pantalla);
+       
+        
+        USART_Write(13);
+        USART_Write(10);
         
         LCD_clear();
         LCD_Set_Cursor(1,1);
         LCD_Write_String("V1   V2   CONT");
         LCD_Set_Cursor(2,1);
         LCD_Write_String(pantalla);
+        
         __delay_ms(500);
+       
+        
     }
 
-  
+
 }
 
 //******************************************************************************
@@ -121,12 +150,17 @@ void setup(void) {
     ANSELH = 0;
     TRISB = 0;
     PORTB = 0;
-    TRISC = 0;
+    TRISC = 0b10000000;
     PORTC = 0;
     TRISD = 0;
     PORTD = 0;
     PORTA = 0;
     TRISA = 0b00000011;
+    
+    INTCONbits.PEIE=1;
+    PIE1bits.RCIE=1;
+    PIR1bits.RCIF=0;
+    INTCONbits.GIE=1;
     
     //INTCONbits.PEIE = 1;
     //PIE1bits.ADIE = 1;
