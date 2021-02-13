@@ -2641,8 +2641,6 @@ void USART_Write(uint8_t a);
 void USART_Write_String(char *a);
 
 uint8_t USART_Read(void);
-
-char USART_Init(const long int baudrate);
 # 4 "USART.c" 2
 
 
@@ -2694,26 +2692,4 @@ void USART_Write_String(char *a){
 uint8_t USART_Read(){
   while(!RCIF);
   return RCREG;
-}
-
-char USART_Init(const long int baudrate){
-  unsigned int x;
-  x = (8000000 - baudrate*64)/(baudrate*64);
-  if(x>255)
-  {
-    x = (8000000 - baudrate*16)/(baudrate*16);
-    BRGH = 1;
-  }
-  if(x<256)
-  {
-    SPBRG = x;
-    SYNC = 0;
-    SPEN = 1;
-    TRISC7 = 1;
-    TRISC6 = 0;
-    CREN = 1;
-    TXEN = 1;
-    return 1;
-  }
-  return 0;
 }

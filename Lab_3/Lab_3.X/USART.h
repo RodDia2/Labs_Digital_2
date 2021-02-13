@@ -26,6 +26,6 @@ void USART_Write_String(char *a);
 
 uint8_t USART_Read(void);
 
-char USART_Init(const long int baudrate);
+//char USART_Init(const long int baudrate);
 #endif	/* USART_H */
 

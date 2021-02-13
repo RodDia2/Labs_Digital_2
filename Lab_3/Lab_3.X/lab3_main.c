@@ -60,19 +60,24 @@ char pantalla[20];
 // Interrupción
 //******************************************************************************
 
-void __interrupt() ISR(void) {
+void __interrupt() ISR(){
     
-    if(RCIF==1){
-        RCIF=0;
-        recibido = USART_Read();  
-        if(recibido == '+'){
-            contador++;
-        } 
-        else if(recibido == '-'){
-            contador--;
-        }
-    }   
-     
+//    if(RCIF==1){
+//        
+//        //while (!RCIF);
+//        recibido = RCREG;  
+//        if(recibido == '+'){
+//            contador++;
+//        } 
+//        if(recibido == '-'){
+//            contador--;
+//        }
+//        else {
+//            contador = 255;
+//        }
+//        //contador++;
+//    }   
+//    contador++;
 }
 
 //******************************************************************************
@@ -109,26 +114,36 @@ void main(void) {
         V1 = LeerADC(0);
         V2 = LeerADC(1);
         
-        
-
-        
-        USART_Write_String("V1     V2     CONT \n");
+        USART_Write_String("V1     V2   CONT \n");
         USART_Write(13);
         USART_Write(10);
-        sprintf(pantalla, "%1.2f   %1.2f   %d", V1,V2,contador);
+        sprintf(pantalla, "%1.2f   %1.2f %3d", V1,V2,contador);
         
         USART_Write_String(pantalla);
        
-        
         USART_Write(13);
         USART_Write(10);
         
         LCD_clear();
         LCD_Set_Cursor(1,1);
-        LCD_Write_String("V1   V2   CONT");
+        LCD_Write_String("V1   V2    CONT");
         LCD_Set_Cursor(2,1);
-        LCD_Write_String(pantalla);
+        LCD_Write_String(pantalla);    
         
+        if(RCIF==1){
+        
+            //while (!RCIF);
+            recibido = RCREG;  
+            if(recibido == '+'){
+                contador++;
+            } 
+            if(recibido == '-'){
+                contador--;
+            }
+            
+            //contador++;
+        }   
+            
         __delay_ms(500);
        
         
@@ -142,6 +157,10 @@ void main(void) {
 //******************************************************************************
 
 void setup(void) {
+    INTCONbits.PEIE=1;
+    PIE1bits.RCIE=1;
+    PIR1bits.RCIF=0;
+    INTCONbits.GIE=1;
     // Todos los bits utilizados se configuran como salidas, menos los primeros
     // 2 bits del puerto B y el primero del A, debido a que allí estan los push/POT. Ansel y Anselh 
     // se ponen en 1 solamente donde hayan entradas digitales. 
@@ -157,17 +176,7 @@ void setup(void) {
     PORTD = 0;
     PORTA = 0;
     TRISA = 0b00000011;
-    
-    INTCONbits.PEIE=1;
-    PIE1bits.RCIE=1;
-    PIR1bits.RCIF=0;
-    INTCONbits.GIE=1;
-    
-    //INTCONbits.PEIE = 1;
-    //PIE1bits.ADIE = 1;
-    //PIR1bits.ADIF = 0;
-    //ADCON0 = 0b01000001;
-    //ADCON1 = 0b00000000;
+ 
 }
 
 //******************************************************************************

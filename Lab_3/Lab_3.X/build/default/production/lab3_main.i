@@ -2769,8 +2769,6 @@ void USART_Write(uint8_t a);
 void USART_Write_String(char *a);
 
 uint8_t USART_Read(void);
-
-char USART_Init(const long int baudrate);
 # 19 "lab3_main.c" 2
 
 
@@ -2808,19 +2806,8 @@ char pantalla[20];
 
 
 
-void __attribute__((picinterrupt(("")))) ISR(void) {
-
-    if(RCIF==1){
-        RCIF=0;
-        recibido = USART_Read();
-        if(recibido == '+'){
-            contador++;
-        }
-        else if(recibido == '-'){
-            contador--;
-        }
-    }
-
+void __attribute__((picinterrupt(("")))) ISR(){
+# 81 "lab3_main.c"
 }
 
 
@@ -2857,25 +2844,35 @@ void main(void) {
         V1 = LeerADC(0);
         V2 = LeerADC(1);
 
-
-
-
-        USART_Write_String("V1     V2     CONT \n");
+        USART_Write_String("V1     V2   CONT \n");
         USART_Write(13);
         USART_Write(10);
-        sprintf(pantalla, "%1.2f   %1.2f   %d", V1,V2,contador);
+        sprintf(pantalla, "%1.2f   %1.2f %3d", V1,V2,contador);
 
         USART_Write_String(pantalla);
-
 
         USART_Write(13);
         USART_Write(10);
 
         LCD_clear();
         LCD_Set_Cursor(1,1);
-        LCD_Write_String("V1   V2   CONT");
+        LCD_Write_String("V1   V2    CONT");
         LCD_Set_Cursor(2,1);
         LCD_Write_String(pantalla);
+
+        if(RCIF==1){
+
+
+            recibido = RCREG;
+            if(recibido == '+'){
+                contador++;
+            }
+            if(recibido == '-'){
+                contador--;
+            }
+
+
+        }
 
         _delay((unsigned long)((500)*(8000000/4000.0)));
 
@@ -2890,6 +2887,10 @@ void main(void) {
 
 
 void setup(void) {
+    INTCONbits.PEIE=1;
+    PIE1bits.RCIE=1;
+    PIR1bits.RCIF=0;
+    INTCONbits.GIE=1;
 
 
 
@@ -2905,16 +2906,6 @@ void setup(void) {
     PORTD = 0;
     PORTA = 0;
     TRISA = 0b00000011;
-
-    INTCONbits.PEIE=1;
-    PIE1bits.RCIE=1;
-    PIR1bits.RCIF=0;
-    INTCONbits.GIE=1;
-
-
-
-
-
 
 }
 

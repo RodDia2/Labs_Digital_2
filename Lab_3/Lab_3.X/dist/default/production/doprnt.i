@@ -484,7 +484,7 @@ sprintf(char * sp, const char * f, ...)
    }
    eexp = 0;
    if( fval!=0) {
-    (void)(*(&eexp) = (unsigned char)((*(unsigned long *)&fval >> 23) & 255) - 126);
+    (void)(*(&eexp) = ((*(unsigned long *)&fval >> 15) & 255) - 126);
     eexp--;
     eexp *= 3;
     eexp /= 10;
