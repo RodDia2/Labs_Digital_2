@@ -324,94 +324,94 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;ADC.c: 17: }
 [e :UE 138 ]
 }
-"19
-[; ;ADC.c: 19: void ADC_Select (uint8_t a) {
+"21
+[; ;ADC.c: 21: void ADC_Select (uint8_t a) {
 [v _ADC_Select `(v ~T0 @X0 1 ef1`uc ]
 {
 [e :U _ADC_Select ]
 [v _a `uc ~T0 @X0 1 r1 ]
 [f ]
-"20
-[; ;ADC.c: 20:     switch(a){
+"22
+[; ;ADC.c: 22:     switch(a){
 [e $U 141  ]
 {
-"21
-[; ;ADC.c: 21:         case 0: ADCON0bits.CHS=0; break;
+"23
+[; ;ADC.c: 23:         case 0: ADCON0bits.CHS=0; break;
 [e :U 142 ]
 [e = . . _ADCON0bits 0 2 -> -> 0 `i `uc ]
 [e $U 140  ]
-"22
-[; ;ADC.c: 22:         case 1: ADCON0bits.CHS=1; break;
+"24
+[; ;ADC.c: 24:         case 1: ADCON0bits.CHS=1; break;
 [e :U 143 ]
 [e = . . _ADCON0bits 0 2 -> -> 1 `i `uc ]
 [e $U 140  ]
-"23
-[; ;ADC.c: 23:         case 2: ADCON0bits.CHS=2; break;
+"25
+[; ;ADC.c: 25:         case 2: ADCON0bits.CHS=2; break;
 [e :U 144 ]
 [e = . . _ADCON0bits 0 2 -> -> 2 `i `uc ]
 [e $U 140  ]
-"24
-[; ;ADC.c: 24:         case 3: ADCON0bits.CHS=3; break;
+"26
+[; ;ADC.c: 26:         case 3: ADCON0bits.CHS=3; break;
 [e :U 145 ]
 [e = . . _ADCON0bits 0 2 -> -> 3 `i `uc ]
 [e $U 140  ]
-"25
-[; ;ADC.c: 25:         case 4: ADCON0bits.CHS=4; break;
+"27
+[; ;ADC.c: 27:         case 4: ADCON0bits.CHS=4; break;
 [e :U 146 ]
 [e = . . _ADCON0bits 0 2 -> -> 4 `i `uc ]
 [e $U 140  ]
-"26
-[; ;ADC.c: 26:         case 5: ADCON0bits.CHS=5; break;
+"28
+[; ;ADC.c: 28:         case 5: ADCON0bits.CHS=5; break;
 [e :U 147 ]
 [e = . . _ADCON0bits 0 2 -> -> 5 `i `uc ]
 [e $U 140  ]
-"27
-[; ;ADC.c: 27:         case 6: ADCON0bits.CHS=6; break;
+"29
+[; ;ADC.c: 29:         case 6: ADCON0bits.CHS=6; break;
 [e :U 148 ]
 [e = . . _ADCON0bits 0 2 -> -> 6 `i `uc ]
 [e $U 140  ]
-"28
-[; ;ADC.c: 28:         case 7: ADCON0bits.CHS=7; break;
+"30
+[; ;ADC.c: 30:         case 7: ADCON0bits.CHS=7; break;
 [e :U 149 ]
 [e = . . _ADCON0bits 0 2 -> -> 7 `i `uc ]
 [e $U 140  ]
-"29
-[; ;ADC.c: 29:         case 8: ADCON0bits.CHS=8; break;
+"31
+[; ;ADC.c: 31:         case 8: ADCON0bits.CHS=8; break;
 [e :U 150 ]
 [e = . . _ADCON0bits 0 2 -> -> 8 `i `uc ]
 [e $U 140  ]
-"30
-[; ;ADC.c: 30:         case 9: ADCON0bits.CHS=9; break;
+"32
+[; ;ADC.c: 32:         case 9: ADCON0bits.CHS=9; break;
 [e :U 151 ]
 [e = . . _ADCON0bits 0 2 -> -> 9 `i `uc ]
 [e $U 140  ]
-"31
-[; ;ADC.c: 31:         case 10: ADCON0bits.CHS=10; break;
+"33
+[; ;ADC.c: 33:         case 10: ADCON0bits.CHS=10; break;
 [e :U 152 ]
 [e = . . _ADCON0bits 0 2 -> -> 10 `i `uc ]
 [e $U 140  ]
-"32
-[; ;ADC.c: 32:         case 11: ADCON0bits.CHS=11; break;
+"34
+[; ;ADC.c: 34:         case 11: ADCON0bits.CHS=11; break;
 [e :U 153 ]
 [e = . . _ADCON0bits 0 2 -> -> 11 `i `uc ]
 [e $U 140  ]
-"33
-[; ;ADC.c: 33:         case 12: ADCON0bits.CHS=12; break;
+"35
+[; ;ADC.c: 35:         case 12: ADCON0bits.CHS=12; break;
 [e :U 154 ]
 [e = . . _ADCON0bits 0 2 -> -> 12 `i `uc ]
 [e $U 140  ]
-"34
-[; ;ADC.c: 34:         case 13: ADCON0bits.CHS=13; break;
+"36
+[; ;ADC.c: 36:         case 13: ADCON0bits.CHS=13; break;
 [e :U 155 ]
 [e = . . _ADCON0bits 0 2 -> -> 13 `i `uc ]
 [e $U 140  ]
-"35
-[; ;ADC.c: 35:         default: ADCON0bits.CHS=0; break;
+"37
+[; ;ADC.c: 37:         default: ADCON0bits.CHS=0; break;
 [e :U 156 ]
 [e = . . _ADCON0bits 0 2 -> -> 0 `i `uc ]
 [e $U 140  ]
-"36
-[; ;ADC.c: 36:     }
+"38
+[; ;ADC.c: 38:     }
 }
 [e $U 140  ]
 [e :U 141 ]
@@ -431,7 +431,7 @@ Version 4.0 HI-TECH Software Intermediate Code
  , $ -> 13 `i 155
  156 ]
 [e :U 140 ]
-"37
-[; ;ADC.c: 37: }
+"39
+[; ;ADC.c: 39: }
 [e :UE 139 ]
 }

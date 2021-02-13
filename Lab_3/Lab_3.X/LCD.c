@@ -14,7 +14,7 @@ void LCD_Write_Char(char a){
     EN = 0;
     __delay_us(10);
 }
-
+// desplegar el valor en el puerto
 void LCD_Port(char a){
     PORTD = a;
     //if(x & 1){D0=1;}else{D0=0;}
@@ -28,6 +28,7 @@ void LCD_Port(char a){
 
 }
 //funcion para enviar datos a la LCD
+// los comandos se pueden encontrar en el datasheet
 void LCD_Command(char a){
     RS=0;
     LCD_Port(a);
@@ -36,12 +37,12 @@ void LCD_Command(char a){
     EN=0;
     __delay_ms(2);
 }
-//limpiar LCD
+//limpiar LCD 
 void LCD_clear(void){
     LCD_Command(0);
     LCD_Command(1);
 }
-//funcion para iniciar la LCD
+//funcion para iniciar la LCD, basandose en el diagrama de flujo del datasheet
 void LCD_Init(){
     RS=0;
     EN=0;
@@ -58,7 +59,7 @@ void LCD_Init(){
     LCD_Command(0x06);
    
 }
-//Funcion para configurar el cursor
+//Funcion para configurar el cursor con fila y columna (x,y))
 void LCD_Set_Cursor(char x,char y){
 	char a;
 	if(x == 1)
@@ -72,17 +73,11 @@ void LCD_Set_Cursor(char x,char y){
 		LCD_Command(a);
 	}
 }
-//funcion para enviar un string
+//funcion para enviar un string, compuesto de multiples char
 void LCD_Write_String(char *a){
 	int i;
 	for(i=0;a[i]!='\0';i++)
 	   LCD_Write_Char(a[i]);
 }
 
-//void Lcd_Shift_Left(){
-//	LCD_Command(24);
-//}
-//void Lcd_Shift_Left(){
-//	LCD_Command(24);
-//}
 

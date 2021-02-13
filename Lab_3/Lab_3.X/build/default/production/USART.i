@@ -2650,6 +2650,7 @@ uint8_t USART_Read(void);
 
 
 
+
 void Set_Baud_Rate(void){
     SPBRG = 12;
 }
@@ -2662,6 +2663,7 @@ void Init_Transmit(void){
     PIE1bits.TXIE = 0;
     INTCONbits.GIE = 0;
     INTCONbits.PEIE = 0;
+
     TRISCbits.TRISC7 = 1;
     TRISCbits.TRISC6 = 0;
 
@@ -2679,16 +2681,21 @@ void Init_Receive(void){
 
 }
 
+
+
 void USART_Write(uint8_t a){
     while(!TRMT);
     TXREG=a;
 }
+
 void USART_Write_String(char *a){
     uint8_t i;
     for(i=0;a[i]!='\0';i++){
         USART_Write(a[i]);
     }
 }
+
+
 uint8_t USART_Read(){
   while(!RCIF);
   return RCREG;

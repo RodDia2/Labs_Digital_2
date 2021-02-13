@@ -91,14 +91,14 @@ float LeerADC(uint8_t x);
 
 void main(void) {
     // 
-    //librerias creadas
+    //funciones de las librerias creadas para inicializacion 
     setup();
     initADC();
     LCD_Init();
     LCD_clear();
-    
+    // el baud rate se pone en 9600
     Set_Baud_Rate();
-
+    // se encienden los bits para USART tanto transmicion como recepcion 
     Init_Transmit();
     
     Init_Receive();
@@ -110,28 +110,34 @@ void main(void) {
     //**************************************************************************
     // como es un while(1) siempre se va a repetir este loop.
     while (1) {
-        
+        // se manda a llamar a la funcion que mapea los datos del potenciometro
+        // a los 5V
         V1 = LeerADC(0);
         V2 = LeerADC(1);
-        
+        // Primero se mandan los strings a la terminal
         USART_Write_String("V1     V2   CONT \n");
+        // se salta a la siguiente linea
         USART_Write(13);
         USART_Write(10);
+        // la variable char de pantalla se le asignan los valores de voltaje
+        // y del contador
         sprintf(pantalla, "%1.2f   %1.2f %3d", V1,V2,contador);
-        
+        // se muestran los datos, bajo a su nombre en string
         USART_Write_String(pantalla);
-       
+       // se vuelve a saltar una linea
         USART_Write(13);
         USART_Write(10);
-        
+        // se realiza un clear de la pantalla por seguridad
         LCD_clear();
+        // en la primera fila, se despligan los titulos y en la segunda los valores
         LCD_Set_Cursor(1,1);
         LCD_Write_String("V1   V2    CONT");
         LCD_Set_Cursor(2,1);
         LCD_Write_String(pantalla);    
-        
+        // la bandera RCIF se activa aunque no hayan interrupciones
         if(RCIF==1){
-        
+            // se tranfiere el dato recibido en USART a la variable recibido
+            // despues se revisa si es + o - para modificar el contador
             //while (!RCIF);
             recibido = RCREG;  
             if(recibido == '+'){
@@ -141,9 +147,9 @@ void main(void) {
                 contador--;
             }
             
-            //contador++;
         }   
-            
+        // finalmente hay un delay para que se logren distinguir los datos 
+        // desplegados en la terminal
         __delay_ms(500);
        
         
@@ -157,10 +163,11 @@ void main(void) {
 //******************************************************************************
 
 void setup(void) {
-    INTCONbits.PEIE=1;
-    PIE1bits.RCIE=1;
-    PIR1bits.RCIF=0;
-    INTCONbits.GIE=1;
+    // al final no se utilizaron las interrupciones
+//    INTCONbits.PEIE=1;
+//    PIE1bits.RCIE=1;
+//    PIR1bits.RCIF=0;
+//    INTCONbits.GIE=1;
     // Todos los bits utilizados se configuran como salidas, menos los primeros
     // 2 bits del puerto B y el primero del A, debido a que allí estan los push/POT. Ansel y Anselh 
     // se ponen en 1 solamente donde hayan entradas digitales. 
@@ -183,6 +190,8 @@ void setup(void) {
 // Funciones
 //******************************************************************************
 
+// esta funcion selecciona un puerto para leer una entrada ADC y recibe el dato
+// despues, mapea el valor de 0-255 a un valor de 0-5V de tipo float. 
 float LeerADC(uint8_t x){
     float a = 0.0;
     ADC_Select(x); // se selecciona el bit analogico
@@ -191,6 +200,7 @@ float LeerADC(uint8_t x){
     ADCON0bits.GO=1;//se comienza la conversion
     while(ADCON0bits.GO_DONE==1){};
     //a = (ADRESH * 5)/255;
+    // poner el el valor de 0.0196 mostro tener mas decimales 
     a = ADRESH * 0.0196;
     return a;
 }

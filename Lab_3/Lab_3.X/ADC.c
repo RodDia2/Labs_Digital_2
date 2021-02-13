@@ -16,6 +16,8 @@ void initADC(void){
     ADCON1 = 0b00000000;
 }
 
+// se tiene una funcion para seleccioner el canal analogico, el tris debe ser 
+// activado por separado
 void ADC_Select (uint8_t a) {
     switch(a){
         case 0: ADCON0bits.CHS=0; break;

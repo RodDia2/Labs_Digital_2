@@ -2658,6 +2658,7 @@ void LCD_Port(char a){
 # 29 "LCD.c"
 }
 
+
 void LCD_Command(char a){
     RE0=0;
     LCD_Port(a);

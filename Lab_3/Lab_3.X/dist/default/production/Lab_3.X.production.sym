@@ -9,8 +9,7 @@ ___lltoft@c 20 0 BANK0 1
 _V1 BF 0 BANK1 1
 _V2 BC 0 BANK1 1
 ___awtoft@c 20 0 BANK0 1
-_sprintf$1172 A0 0 BANK1 1
-__end_of___ftneg 1D86 0 CODE 0
+__end_of___ftneg 1D8E 0 CODE 0
 _RE0 48 0 ABS 0
 _RE1 49 0 ABS 0
 __S0 2000 0 ABS 0
@@ -18,7 +17,7 @@ __S1 D6 0 ABS 0
 __S2 0 0 ABS 0
 __S3 0 0 ABS 0
 _LCD_Write_Char 10C4 0 CODE 0
-_ISR 1D6D 0 CODE 0
+_ISR 1D75 0 CODE 0
 __Hintentry C 0 CODE 0
 __Lintentry 4 0 CODE 0
 __pintentry 4 0 CODE 0
@@ -26,7 +25,7 @@ ___ftadd@f1 4B 0 BANK0 1
 __end_of___awdiv 12F4 0 CODE 0
 __size_of___ftsub 0 0 ABS 0
 _RCIF 65 0 ABS 0
-_USART_Write 1D86 0 CODE 0
+_USART_Write 1D8E 0 CODE 0
 ___ftneg@f1 72 0 COMMON 1
 __end_of_LCD_Init 1174 0 CODE 0
 _TRMT 4C1 0 ABS 0
@@ -40,7 +39,7 @@ start C 0 CODE 0
 ___fttol@f1 44 0 BANK0 1
 ___ftsub@f2 58 0 BANK0 1
 ___ftmul@f1 2B 0 BANK0 1
-__end_of_LCD_clear 1D9F 0 CODE 0
+__end_of_LCD_clear 1DA7 0 CODE 0
 ___fttol@lval 4D 0 BANK0 1
 _pantalla C2 0 BANK1 1
 _RCREG 1A 0 ABS 0
@@ -72,21 +71,21 @@ ___ftpack 12F4 0 CODE 0
 ?___awmod 72 0 COMMON 1
 __end_of__stringtab 1010 0 STRING 0
 ?___lwmod 72 0 COMMON 1
-__end_of_USART_Write_String 1EA3 0 CODE 0
+__end_of_USART_Write_String 1ECF 0 CODE 0
 _scale A5D 0 CODE 0
 __Hram 0 0 ABS 0
 ?___ftsub 58 0 BANK0 1
 __Lram 0 0 ABS 0
 _recibido 6D 0 BANK0 1
-__end_of_LCD_Command 1DE1 0 CODE 0
+__end_of_LCD_Command 1DE9 0 CODE 0
 ___ftge@ff1 72 0 COMMON 1
-_setup 1EA3 0 CODE 0
+_setup 1E0D 0 CODE 0
 ?_sprintf 5E 0 BANK0 1
-_Init_Receive 1D74 0 CODE 0
+_Init_Receive 1D7C 0 CODE 0
 ___ftmul@cntr 39 0 BANK0 1
 __size_of___ftadd 0 0 ABS 0
 _LCD_Init 1125 0 CODE 0
-__end_of_ISR 1D74 0 CODE 0
+__end_of_ISR 1D7C 0 CODE 0
 __Hfunctab 0 0 ENTRY 0
 __Lfunctab 0 0 ENTRY 0
 _ADCON0 1F 0 ABS 0
@@ -102,16 +101,17 @@ __Leeprom_data 0 0 EEDATA 3
 _PIR1bits C 0 ABS 0
 USART_Write_String@a 73 0 COMMON 1
 USART_Write_String@i 76 0 COMMON 1
+_scale$1131 40 0 BANK0 1
 ?___ftmul 2B 0 BANK0 1
 _contador 6E 0 BANK0 1
 sprintf@ap A3 0 BANK1 1
 ___int_sp 0 0 STACK 2
 __size_of_Init_Transmit 0 0 ABS 0
-_LCD_Port 1D67 0 CODE 0
+_LCD_Port 1D6F 0 CODE 0
 ?___lldiv 72 0 COMMON 1
 ?___awdiv 20 0 BANK0 1
 ___lltoft 1ECF 0 CODE 0
-___awtoft 1E4F 0 CODE 0
+___awtoft 1E7B 0 CODE 0
 _ANSELH 189 0 ABS 0
 ?___lwdiv 20 0 BANK0 1
 _ADRESH 1E 0 ABS 0
@@ -129,7 +129,6 @@ __Lsfr3 0 0 ABS 0
 __size_of_LCD_clear 0 0 ABS 0
 ___ftmul@f3_as_product 36 0 BANK0 1
 ?__tdiv_to_l_ 72 0 COMMON 1
-_scale$1171 40 0 BANK0 1
 __npowers_ 1037 0 STRING 0
 __end_of___ftpack 1370 0 CODE 0
 ?___ftpack 72 0 COMMON 1
@@ -152,7 +151,7 @@ sprintf@sp B5 0 BANK1 1
 _fround 8B4 0 CODE 0
 __HcstackBANK0 0 0 ABS 0
 __LcstackBANK0 0 0 ABS 0
-_LCD_clear 1D92 0 CODE 0
+_LCD_clear 1D9A 0 CODE 0
 __pcstackBANK0 20 0 BANK0 1
 ___awmod@sign 78 0 COMMON 1
 saved_w 7E 0 ABS 0
@@ -160,7 +159,7 @@ ___bmul 801 0 CODE 0
 __size_of_Set_Baud_Rate 0 0 ABS 0
 __Hinit C 0 CODE 0
 __Linit C 0 CODE 0
-___wmul 1E2A 0 CODE 0
+___wmul 1E56 0 CODE 0
 __end_of_main 7F0 0 CODE 0
 __Htext 0 0 ABS 0
 __Ltext 0 0 ABS 0
@@ -176,6 +175,7 @@ ___awdiv@sign 25 0 BANK0 1
 __size_of__div_to_l_ 0 0 ABS 0
 psplit$0 C0036 0 ABS 0
 __size_of_ISR 0 0 ABS 0
+_fround$1130 44 0 BANK0 1
 ___bmul@multiplicand 28 0 BANK0 1
 ___stacklo 0 0 ABS 0
 ___wmul@multiplicand 74 0 COMMON 1
@@ -191,12 +191,12 @@ __Hstrings 0 0 ABS 0
 __Lstrings 0 0 ABS 0
 __pstrings 1000 0 STRING 0
 _LeerADC 10DD 0 CODE 0
-_initADC 1D9F 0 CODE 0
+_initADC 1DA7 0 CODE 0
 ?___lltoft 20 0 BANK0 1
 ?___awtoft 20 0 BANK0 1
-_Set_Baud_Rate 1D62 0 CODE 0
+_Set_Baud_Rate 1D6A 0 CODE 0
 _Init_Transmit 7F0 0 CODE 0
-_LCD_Set_Cursor 1DE1 0 CODE 0
+_LCD_Set_Cursor 1DE9 0 CODE 0
 __size_of___lltoft 0 0 ABS 0
 __Hbank0 0 0 ABS 0
 __Lbank0 0 0 ABS 0
@@ -204,7 +204,6 @@ __Hbank1 0 0 ABS 0
 __Lbank1 0 0 ABS 0
 __Hbank2 0 0 ABS 0
 __Lbank2 0 0 ABS 0
-_fround$1170 44 0 BANK0 1
 __Hbank3 0 0 ABS 0
 __Lbank3 0 0 ABS 0
 ___latbits 2 0 ABS 0
@@ -216,7 +215,7 @@ __ptext1 D18 0 CODE 0
 __ptext2 A5D 0 CODE 0
 __ptext3 11CA 0 CODE 0
 __ptext4 128B 0 CODE 0
-__ptext5 1DAC 0 CODE 0
+__ptext5 1DB4 0 CODE 0
 LCD_Set_Cursor@a 79 0 COMMON 1
 __ptext6 8B4 0 CODE 0
 __ptext7 1F3A 0 CODE 0
@@ -243,12 +242,12 @@ __end_of__div_to_l_ 16CA 0 CODE 0
 __size_of_scale 0 0 ABS 0
 ___ftadd 16CA 0 CODE 0
 __size_of_fround 0 0 ABS 0
-__end_of_LCD_Set_Cursor 1E05 0 CODE 0
+__end_of_LCD_Set_Cursor 1E0D 0 CODE 0
 __size_of_USART_Write 0 0 ABS 0
 __size_of_LeerADC 0 0 ABS 0
 __Hstack 0 0 STACK 2
 __Lstack 0 0 STACK 2
-___ftneg 1D7C 0 CODE 0
+___ftneg 1D84 0 CODE 0
 ___llmod 1174 0 CODE 0
 __end_of___lldiv 128B 0 CODE 0
 ___awmod 11CA 0 CODE 0
@@ -256,7 +255,7 @@ ___lwmod 1F3A 0 CODE 0
 __Hspace_0 2000 0 ABS 0
 ?_fround 3B 0 BANK0 1
 __Lspace_0 0 0 ABS 0
-___ftsub 1E05 0 CODE 0
+___ftsub 1E31 0 CODE 0
 ___ftpack@sign 76 0 COMMON 1
 __size_of_USART_Write_String 0 0 ABS 0
 _sprintf D18 0 CODE 0
@@ -268,7 +267,7 @@ __Hspace_2 0 0 ABS 0
 __Lspace_2 0 0 ABS 0
 ___fttol 1370 0 CODE 0
 ?___wmul 72 0 COMMON 1
-_isdigit 1DAC 0 CODE 0
+_isdigit 1DB4 0 CODE 0
 __Hcinit 21 0 CODE 0
 ___ftmul 14B9 0 CODE 0
 __Lcinit F 0 CODE 0
@@ -286,11 +285,11 @@ __tdiv_to_l_ 13FC 0 CODE 0
 __end_of_ADC_Select 8B4 0 CODE 0
 USART_Write@a 72 0 COMMON 1
 __div_to_l_@exp1 2D 0 BANK0 1
-__end_of_USART_Write 1D92 0 CODE 0
+__end_of_USART_Write 1D9A 0 CODE 0
 ___fttol@exp1 51 0 BANK0 1
 __size_of_ADC_Select 0 0 ABS 0
-__end_of_Set_Baud_Rate 1D67 0 CODE 0
-__end_of_isdigit 1DBE 0 CODE 0
+__end_of_Set_Baud_Rate 1D6F 0 CODE 0
+__end_of_isdigit 1DC6 0 CODE 0
 _ADC_Select 818 0 CODE 0
 __size_of_LCD_Init 0 0 ABS 0
 __end_of_sprintf 6D5 0 CODE 0
@@ -309,35 +308,36 @@ sprintf@flag A4 0 BANK1 1
 __HbssBANK1 0 0 ABS 0
 __LbssBANK1 0 0 ABS 0
 __pbssBANK1 BC 0 BANK1 1
+_fround$1129 47 0 BANK0 1
 __ptext10 13FC 0 CODE 0
 __ptext20 1F02 0 CODE 0
 __ptext11 159E 0 CODE 0
 __ptext30 818 0 CODE 0
-__ptext21 1EA3 0 CODE 0
-__ptext40 1D6D 0 CODE 0
-__ptext12 1E2A 0 CODE 0
-__ptext31 1D92 0 CODE 0
-__ptext22 1D9F 0 CODE 0
+__ptext21 1E0D 0 CODE 0
+__ptext40 1D75 0 CODE 0
+__ptext12 1E56 0 CODE 0
+__ptext31 1D9A 0 CODE 0
+__ptext22 1DA7 0 CODE 0
 __ptext13 1ECF 0 CODE 0
 __ptext32 1F74 0 CODE 0
 _ADCON0bits 1F 0 ABS 0
-__ptext23 1E78 0 CODE 0
+__ptext23 1EA4 0 CODE 0
 sprintf@prec B6 0 BANK1 1
 __size_of___awdiv 0 0 ABS 0
-__end_of_initADC 1DAC 0 CODE 0
+__end_of_initADC 1DB4 0 CODE 0
 __ptext14 1174 0 CODE 0
 __ptext33 10C4 0 CODE 0
-__ptext24 1D86 0 CODE 0
+__ptext24 1D8E 0 CODE 0
 __end_of__tdiv_to_l_ 14B9 0 CODE 0
 __ptext15 1223 0 CODE 0
-__ptext34 1DE1 0 CODE 0
-__ptext25 1D62 0 CODE 0
+__ptext34 1DE9 0 CODE 0
+__ptext25 1D6A 0 CODE 0
 __ptext16 1370 0 CODE 0
 __ptext35 1125 0 CODE 0
 __ptext26 10DD 0 CODE 0
 ___llmod@divisor 25 0 BANK0 1
-__ptext17 1E05 0 CODE 0
-__ptext36 1DBE 0 CODE 0
+__ptext17 1E31 0 CODE 0
+__ptext36 1DC6 0 CODE 0
 __size_of_LCD_Port 0 0 ABS 0
 pnum$text1 C 0 ABS 0
 ___awmod@divisor 72 0 COMMON 1
@@ -345,16 +345,16 @@ __end_of___lwmod 1F74 0 CODE 0
 __ptext27 14B9 0 CODE 0
 ___lwmod@divisor 72 0 COMMON 1
 __ptext18 16CA 0 CODE 0
-__ptext37 1D67 0 CODE 0
-__ptext28 1E4F 0 CODE 0
+__ptext37 1D6F 0 CODE 0
+__ptext28 1E7B 0 CODE 0
 __HbssCOMMON 0 0 ABS 0
 __LbssCOMMON 0 0 ABS 0
 ___fttol@sign1 4C 0 BANK0 1
-__ptext19 1D7C 0 CODE 0
+__ptext19 1D84 0 CODE 0
 __ptext38 7F0 0 CODE 0
 __pbssCOMMON 7B 0 COMMON 1
 __ptext29 12F4 0 CODE 0
-__ptext39 1D74 0 CODE 0
+__ptext39 1D7C 0 CODE 0
 _INTCONbits B 0 ABS 0
 __Hend_init F 0 CODE 0
 __Lend_init C 0 CODE 0
@@ -367,25 +367,25 @@ __size_of___lldiv 0 0 ABS 0
 ___awdiv@divisor 20 0 BANK0 1
 ?_LeerADC 3B 0 BANK0 1
 ___lwdiv@divisor 20 0 BANK0 1
-_fround$1169 47 0 BANK0 1
-__end_of_setup 1ECF 0 CODE 0
+__end_of_setup 1E31 0 CODE 0
 __end_of___ftmul 159E 0 CODE 0
 __end_of___llmod 11CA 0 CODE 0
 __tdiv_to_l_@cntr 28 0 BANK0 1
-__end_of_LCD_Port 1D6D 0 CODE 0
+__end_of_LCD_Port 1D75 0 CODE 0
 __size_of___wmul 0 0 ABS 0
 __Hreset_vec 3 0 CODE 0
 __Lreset_vec 0 0 CODE 0
-__end_of_Init_Receive 1D7C 0 CODE 0
+__end_of_Init_Receive 1D84 0 CODE 0
 __tdiv_to_l_@exp1 29 0 BANK0 1
 __div_to_l_@cntr 2C 0 BANK0 1
 intlevel0 0 0 ENTRY 0
-_LCD_Command 1DBE 0 CODE 0
+_LCD_Command 1DC6 0 CODE 0
 intlevel1 0 0 ENTRY 0
-_USART_Write_String 1E78 0 CODE 0
+_sprintf$1132 A0 0 BANK1 1
+_USART_Write_String 1EA4 0 CODE 0
 __size_of__tdiv_to_l_ 0 0 ABS 0
 intlevel2 0 0 ENTRY 0
-__end_of___awtoft 1E78 0 CODE 0
+__end_of___awtoft 1EA4 0 CODE 0
 ___lltoft@exp 24 0 BANK0 1
 intlevel3 0 0 ENTRY 0
 intlevel4 0 0 ENTRY 0
@@ -400,9 +400,10 @@ __div_to_l_@quot 28 0 BANK0 1
 __HcstackCOMMON 0 0 ABS 0
 __LcstackCOMMON 0 0 ABS 0
 __pcstackCOMMON 70 0 COMMON 1
-__end_of___wmul 1E4F 0 CODE 0
+__end_of___wmul 1E7B 0 CODE 0
 start_initialization F 0 CODE 0
 ___lldiv@quotient 20 0 BANK0 1
+_isdigit$938 72 0 COMMON 1
 ___awdiv@quotient 26 0 BANK0 1
 ___lwdiv@quotient 25 0 BANK0 1
 __size_of___ftge 0 0 ABS 0
@@ -412,7 +413,7 @@ __pmaintext 6D5 0 CODE 0
 __end_of___fttol 13FC 0 CODE 0
 __size_of_sprintf 0 0 ABS 0
 __size_of___awmod 0 0 ABS 0
-__end_of___ftsub 1E2A 0 CODE 0
+__end_of___ftsub 1E56 0 CODE 0
 __initialization F 0 CODE 0
 __end_of___ftge 1F3A 0 CODE 0
 __stringbase 100F 0 STRING 0
@@ -428,7 +429,6 @@ ___wmul@product 76 0 COMMON 1
 ___lwmod@counter 77 0 COMMON 1
 LCD_Port@a 72 0 COMMON 1
 __size_of___ftmul 0 0 ABS 0
-_isdigit$978 72 0 COMMON 1
 __size_of___bmul 0 0 ABS 0
 __end_of___bmul 818 0 CODE 0
 sprintf@c B8 0 BANK1 1
@@ -464,28 +464,28 @@ text32 3EE8 3F73 CODE 3EE8 0
 text7 3E74 3EE7 CODE 3E74 0
 text20 3E04 3E73 CODE 3E04 0
 text13 3D9E 3E03 CODE 3D9E 0
-text21 3D46 3D9D CODE 3D46 0
-text23 3CF0 3D45 CODE 3CF0 0
-text28 3C9E 3CEF CODE 3C9E 0
-text12 3C54 3C9D CODE 3C54 0
-text17 3C0A 3C53 CODE 3C0A 0
-text34 3BC2 3C09 CODE 3BC2 0
-text36 3B7C 3BC1 CODE 3B7C 0
+text23 3D48 3D9D CODE 3D48 0
+text28 3CF6 3D47 CODE 3CF6 0
+text12 3CAC 3CF5 CODE 3CAC 0
+text17 3C62 3CAB CODE 3C62 0
+text21 3C1A 3C61 CODE 3C1A 0
+text34 3BD2 3C19 CODE 3BD2 0
+text36 3B8C 3BD1 CODE 3B8C 0
 text33 2188 21B9 CODE 2188 0
 text9 1002 102F CODE 1002 0
-text5 3B58 3B7B CODE 3B58 0
-text22 3B3E 3B57 CODE 3B3E 0
-text31 3B24 3B3D CODE 3B24 0
-text24 3B0C 3B23 CODE 3B0C 0
-text19 3AF8 3B0B CODE 3AF8 0
+text5 3B68 3B8B CODE 3B68 0
+text22 3B4E 3B67 CODE 3B4E 0
+text31 3B34 3B4D CODE 3B34 0
+text24 3B1C 3B33 CODE 3B1C 0
+text19 3B08 3B1B CODE 3B08 0
 clrtext 2178 2187 CODE 2178 0
-text39 3AE8 3AF7 CODE 3AE8 0
-text40 3ADA 3AE7 CODE 3ADA 0
-text37 3ACE 3AD9 CODE 3ACE 0
-text25 3AC4 3ACD CODE 3AC4 0
+text39 3AF8 3B07 CODE 3AF8 0
+text40 3AEA 3AF7 CODE 3AEA 0
+text37 3ADE 3AE9 CODE 3ADE 0
+text25 3AD4 3ADD CODE 3AD4 0
 %locals
 dist/default/production\Lab_3.X.production.o
-C:\Users\jrdia\AppData\Local\Temp\sge0.s
+C:\Users\jrdia\AppData\Local\Temp\sgmc.s
 1278 F 0 CODE 0
 1281 F 0 CODE 0
 1328 F 0 CODE 0
@@ -520,28 +520,28 @@ lab3_main.c
 100 6E9 0 CODE 0
 102 6EE 0 CODE 0
 104 6F3 0 CODE 0
-114 6F8 0 CODE 0
-115 710 0 CODE 0
-117 728 0 CODE 0
-118 731 0 CODE 0
-119 737 0 CODE 0
-120 73D 0 CODE 0
-122 77E 0 CODE 0
-124 787 0 CODE 0
-125 78D 0 CODE 0
-127 793 0 CODE 0
-128 798 0 CODE 0
-129 7A0 0 CODE 0
-130 7A9 0 CODE 0
-131 7B1 0 CODE 0
-133 7BA 0 CODE 0
-136 7C0 0 CODE 0
-137 7C8 0 CODE 0
-138 7CE 0 CODE 0
-139 7D6 0 CODE 0
-140 7D6 0 CODE 0
-141 7DC 0 CODE 0
-147 7DE 0 CODE 0
+115 6F8 0 CODE 0
+116 710 0 CODE 0
+118 728 0 CODE 0
+120 731 0 CODE 0
+121 737 0 CODE 0
+124 73D 0 CODE 0
+126 77E 0 CODE 0
+128 787 0 CODE 0
+129 78D 0 CODE 0
+131 793 0 CODE 0
+133 798 0 CODE 0
+134 7A0 0 CODE 0
+135 7A9 0 CODE 0
+136 7B1 0 CODE 0
+138 7BA 0 CODE 0
+142 7C0 0 CODE 0
+143 7C8 0 CODE 0
+144 7CE 0 CODE 0
+145 7D6 0 CODE 0
+146 7D6 0 CODE 0
+147 7DC 0 CODE 0
+153 7DE 0 CODE 0
 D:\Microchip\xc8\v2.31\pic\sources\c90\common\doprnt.c
 505 D18 0 CODE 0
 550 D1B 0 CODE 0
@@ -657,9 +657,9 @@ D:\Microchip\xc8\v2.31\pic\sources\c90\common\awdiv.c
 40 12EF 0 CODE 0
 41 12F3 0 CODE 0
 D:\Microchip\xc8\v2.31\pic\sources\c90\common\isdigit.c
-8 1DAC 0 CODE 0
-14 1DAD 0 CODE 0
-15 1DBD 0 CODE 0
+8 1DB4 0 CODE 0
+14 1DB5 0 CODE 0
+15 1DC5 0 CODE 0
 D:\Microchip\xc8\v2.31\pic\sources\c90\common\doprnt.c
 417 8B4 0 CODE 0
 421 8B7 0 CODE 0
@@ -772,15 +772,15 @@ D:\Microchip\xc8\v2.31\pic\sources\c90\common\fldivl.c
 100 16C1 0 CODE 0
 101 16C9 0 CODE 0
 D:\Microchip\xc8\v2.31\pic\sources\c90\common\Umul16.c
-15 1E2A 0 CODE 0
-43 1E2A 0 CODE 0
-45 1E2C 0 CODE 0
-46 1E30 0 CODE 0
-47 1E36 0 CODE 0
-48 1E3D 0 CODE 0
-49 1E44 0 CODE 0
-52 1E4A 0 CODE 0
-53 1E4E 0 CODE 0
+15 1E56 0 CODE 0
+43 1E56 0 CODE 0
+45 1E58 0 CODE 0
+46 1E5C 0 CODE 0
+47 1E62 0 CODE 0
+48 1E69 0 CODE 0
+49 1E70 0 CODE 0
+52 1E76 0 CODE 0
+53 1E7A 0 CODE 0
 D:\Microchip\xc8\v2.31\pic\sources\c90\common\lltoft.c
 35 1ECF 0 CODE 0
 38 1ECF 0 CODE 0
@@ -844,11 +844,11 @@ D:\Microchip\xc8\v2.31\pic\sources\c90\common\fttol.c
 72 13F3 0 CODE 0
 73 13FB 0 CODE 0
 D:\Microchip\xc8\v2.31\pic\sources\c90\common\ftsub.c
-17 1E05 0 CODE 0
-22 1E05 0 CODE 0
-23 1E0E 0 CODE 0
-25 1E10 0 CODE 0
-26 1E29 0 CODE 0
+17 1E31 0 CODE 0
+22 1E31 0 CODE 0
+23 1E3A 0 CODE 0
+25 1E3C 0 CODE 0
+26 1E55 0 CODE 0
 D:\Microchip\xc8\v2.31\pic\sources\c90\common\ftadd.c
 86 16CA 0 CODE 0
 90 16CA 0 CODE 0
@@ -895,11 +895,11 @@ D:\Microchip\xc8\v2.31\pic\sources\c90\common\ftadd.c
 146 17E4 0 CODE 0
 148 17FF 0 CODE 0
 D:\Microchip\xc8\v2.31\pic\sources\c90\common\ftneg.c
-15 1D7C 0 CODE 0
-17 1D7C 0 CODE 0
-18 1D83 0 CODE 0
-19 1D85 0 CODE 0
-20 1D85 0 CODE 0
+15 1D84 0 CODE 0
+17 1D84 0 CODE 0
+18 1D8B 0 CODE 0
+19 1D8D 0 CODE 0
+20 1D8D 0 CODE 0
 D:\Microchip\xc8\v2.31\pic\sources\c90\common\ftge.c
 4 1F02 0 CODE 0
 6 1F02 0 CODE 0
@@ -911,56 +911,52 @@ D:\Microchip\xc8\v2.31\pic\sources\c90\common\ftge.c
 12 1F28 0 CODE 0
 13 1F39 0 CODE 0
 lab3_main.c
-159 1EA3 0 CODE 0
-160 1EA3 0 CODE 0
-161 1EA4 0 CODE 0
-162 1EA7 0 CODE 0
-163 1EAA 0 CODE 0
-167 1EAB 0 CODE 0
-168 1EAE 0 CODE 0
-169 1EB1 0 CODE 0
-170 1EB5 0 CODE 0
-171 1EB6 0 CODE 0
-172 1EB9 0 CODE 0
-173 1EBC 0 CODE 0
-174 1EC0 0 CODE 0
-175 1EC3 0 CODE 0
-176 1EC6 0 CODE 0
-177 1EC9 0 CODE 0
-178 1ECA 0 CODE 0
-180 1ECE 0 CODE 0
+165 1E0D 0 CODE 0
+174 1E0D 0 CODE 0
+175 1E10 0 CODE 0
+176 1E13 0 CODE 0
+177 1E17 0 CODE 0
+178 1E18 0 CODE 0
+179 1E1B 0 CODE 0
+180 1E1E 0 CODE 0
+181 1E22 0 CODE 0
+182 1E25 0 CODE 0
+183 1E28 0 CODE 0
+184 1E2B 0 CODE 0
+185 1E2C 0 CODE 0
+187 1E30 0 CODE 0
 ADC.c
-6 1D9F 0 CODE 0
-12 1D9F 0 CODE 0
-13 1DA0 0 CODE 0
-14 1DA3 0 CODE 0
-15 1DA6 0 CODE 0
-16 1DA8 0 CODE 0
-17 1DAB 0 CODE 0
+6 1DA7 0 CODE 0
+12 1DA7 0 CODE 0
+13 1DA8 0 CODE 0
+14 1DAB 0 CODE 0
+15 1DAE 0 CODE 0
+16 1DB0 0 CODE 0
+17 1DB3 0 CODE 0
 USART.c
-43 1E78 0 CODE 0
-45 1E78 0 CODE 0
-46 1E7A 0 CODE 0
-47 1E8B 0 CODE 0
-48 1EA2 0 CODE 0
-39 1D86 0 CODE 0
-40 1D87 0 CODE 0
-41 1D8D 0 CODE 0
-42 1D91 0 CODE 0
-10 1D62 0 CODE 0
-11 1D62 0 CODE 0
-12 1D66 0 CODE 0
+48 1EA4 0 CODE 0
+50 1EA4 0 CODE 0
+51 1EA6 0 CODE 0
+52 1EB7 0 CODE 0
+53 1ECE 0 CODE 0
+43 1D8E 0 CODE 0
+44 1D8F 0 CODE 0
+45 1D95 0 CODE 0
+46 1D99 0 CODE 0
+11 1D6A 0 CODE 0
+12 1D6A 0 CODE 0
+13 1D6E 0 CODE 0
 lab3_main.c
-186 10DD 0 CODE 0
-187 10E0 0 CODE 0
-188 10E0 0 CODE 0
-189 10E6 0 CODE 0
-190 10E9 0 CODE 0
-191 10F0 0 CODE 0
-192 10F3 0 CODE 0
-194 10F7 0 CODE 0
-195 111E 0 CODE 0
-196 1124 0 CODE 0
+195 10DD 0 CODE 0
+196 10E0 0 CODE 0
+197 10E0 0 CODE 0
+198 10E6 0 CODE 0
+199 10E9 0 CODE 0
+200 10F0 0 CODE 0
+201 10F3 0 CODE 0
+204 10F7 0 CODE 0
+205 111E 0 CODE 0
+206 1124 0 CODE 0
 D:\Microchip\xc8\v2.31\pic\sources\c90\common\ftmul.c
 62 14B9 0 CODE 0
 67 14B9 0 CODE 0
@@ -990,13 +986,13 @@ D:\Microchip\xc8\v2.31\pic\sources\c90\common\ftmul.c
 156 1582 0 CODE 0
 157 159D 0 CODE 0
 D:\Microchip\xc8\v2.31\pic\sources\c90\common\awtoft.c
-32 1E4F 0 CODE 0
-36 1E4F 0 CODE 0
-37 1E50 0 CODE 0
-38 1E56 0 CODE 0
-39 1E5B 0 CODE 0
-41 1E5D 0 CODE 0
-42 1E77 0 CODE 0
+32 1E7B 0 CODE 0
+36 1E7B 0 CODE 0
+37 1E7C 0 CODE 0
+38 1E82 0 CODE 0
+39 1E87 0 CODE 0
+41 1E89 0 CODE 0
+42 1EA3 0 CODE 0
 D:\Microchip\xc8\v2.31\pic\sources\c90\common\float.c
 62 12F4 0 CODE 0
 64 12F4 0 CODE 0
@@ -1020,34 +1016,34 @@ D:\Microchip\xc8\v2.31\pic\sources\c90\common\float.c
 84 136E 0 CODE 0
 86 136F 0 CODE 0
 ADC.c
-19 818 0 CODE 0
-20 819 0 CODE 0
-21 81A 0 CODE 0
-22 81F 0 CODE 0
-23 826 0 CODE 0
-24 82D 0 CODE 0
-25 834 0 CODE 0
-26 83B 0 CODE 0
-27 842 0 CODE 0
-28 849 0 CODE 0
-29 850 0 CODE 0
-30 857 0 CODE 0
-31 85E 0 CODE 0
-32 865 0 CODE 0
-33 86C 0 CODE 0
-34 873 0 CODE 0
-35 87A 0 CODE 0
-36 87F 0 CODE 0
-37 8B3 0 CODE 0
+21 818 0 CODE 0
+22 819 0 CODE 0
+23 81A 0 CODE 0
+24 81F 0 CODE 0
+25 826 0 CODE 0
+26 82D 0 CODE 0
+27 834 0 CODE 0
+28 83B 0 CODE 0
+29 842 0 CODE 0
+30 849 0 CODE 0
+31 850 0 CODE 0
+32 857 0 CODE 0
+33 85E 0 CODE 0
+34 865 0 CODE 0
+35 86C 0 CODE 0
+36 873 0 CODE 0
+37 87A 0 CODE 0
+38 87F 0 CODE 0
+39 8B3 0 CODE 0
 LCD.c
-40 1D92 0 CODE 0
-41 1D92 0 CODE 0
-42 1D98 0 CODE 0
-43 1D9E 0 CODE 0
-76 1F74 0 CODE 0
-78 1F74 0 CODE 0
-79 1F79 0 CODE 0
-80 1FB9 0 CODE 0
+41 1D9A 0 CODE 0
+42 1D9A 0 CODE 0
+43 1DA0 0 CODE 0
+44 1DA6 0 CODE 0
+77 1F74 0 CODE 0
+79 1F74 0 CODE 0
+80 1F79 0 CODE 0
+81 1FB9 0 CODE 0
 9 10C4 0 CODE 0
 10 10C5 0 CODE 0
 11 10C8 0 CODE 0
@@ -1056,59 +1052,59 @@ LCD.c
 14 10D5 0 CODE 0
 15 10D8 0 CODE 0
 16 10DC 0 CODE 0
-62 1DE1 0 CODE 0
-64 1DE2 0 CODE 0
-66 1DE7 0 CODE 0
-67 1DEC 0 CODE 0
-68 1DF2 0 CODE 0
-69 1DF3 0 CODE 0
-71 1DF9 0 CODE 0
-72 1DFE 0 CODE 0
-74 1E04 0 CODE 0
-45 1125 0 CODE 0
+63 1DE9 0 CODE 0
+65 1DEA 0 CODE 0
+67 1DEF 0 CODE 0
+68 1DF4 0 CODE 0
+69 1DFA 0 CODE 0
+70 1DFB 0 CODE 0
+72 1E01 0 CODE 0
+73 1E06 0 CODE 0
+75 1E0C 0 CODE 0
 46 1125 0 CODE 0
-47 1128 0 CODE 0
-48 1129 0 CODE 0
-49 112F 0 CODE 0
-50 1138 0 CODE 0
-51 113E 0 CODE 0
-52 1146 0 CODE 0
-53 114C 0 CODE 0
-54 1155 0 CODE 0
-55 115B 0 CODE 0
-56 1161 0 CODE 0
-57 1167 0 CODE 0
-58 116D 0 CODE 0
-60 1173 0 CODE 0
-31 1DBE 0 CODE 0
-32 1DBF 0 CODE 0
-33 1DC2 0 CODE 0
-34 1DC8 0 CODE 0
-35 1DCB 0 CODE 0
-36 1DD4 0 CODE 0
-37 1DD7 0 CODE 0
-38 1DE0 0 CODE 0
-18 1D67 0 CODE 0
-19 1D68 0 CODE 0
-29 1D6C 0 CODE 0
-USART.c
-14 7F0 0 CODE 0
-15 7F0 0 CODE 0
-18 7F3 0 CODE 0
-19 7F6 0 CODE 0
-20 7F9 0 CODE 0
-21 7FA 0 CODE 0
-22 7FB 0 CODE 0
-23 7FC 0 CODE 0
-25 7FD 0 CODE 0
-28 1D74 0 CODE 0
+47 1125 0 CODE 0
+48 1128 0 CODE 0
+49 1129 0 CODE 0
+50 112F 0 CODE 0
+51 1138 0 CODE 0
+52 113E 0 CODE 0
+53 1146 0 CODE 0
+54 114C 0 CODE 0
+55 1155 0 CODE 0
+56 115B 0 CODE 0
+57 1161 0 CODE 0
+58 1167 0 CODE 0
+59 116D 0 CODE 0
+61 1173 0 CODE 0
+32 1DC6 0 CODE 0
+33 1DC7 0 CODE 0
+34 1DCA 0 CODE 0
+35 1DD0 0 CODE 0
+36 1DD3 0 CODE 0
+37 1DDC 0 CODE 0
+38 1DDF 0 CODE 0
+39 1DE8 0 CODE 0
+18 1D6F 0 CODE 0
+19 1D70 0 CODE 0
 29 1D74 0 CODE 0
-30 1D77 0 CODE 0
-35 1D7A 0 CODE 0
-37 1D7B 0 CODE 0
+USART.c
+15 7F0 0 CODE 0
+16 7F0 0 CODE 0
+19 7F3 0 CODE 0
+20 7F6 0 CODE 0
+21 7F9 0 CODE 0
+22 7FA 0 CODE 0
+24 7FB 0 CODE 0
+25 7FC 0 CODE 0
+27 7FD 0 CODE 0
+30 1D7C 0 CODE 0
+31 1D7C 0 CODE 0
+32 1D7F 0 CODE 0
+37 1D82 0 CODE 0
+39 1D83 0 CODE 0
 lab3_main.c
-63 1D6D 0 CODE 0
-81 1D6D 0 CODE 0
+63 1D75 0 CODE 0
+81 1D75 0 CODE 0
 63 4 0 CODE 0
 D:\Microchip\xc8\v2.31\pic\sources\c90\common\doprnt.c
 1142 21 0 CODE 0

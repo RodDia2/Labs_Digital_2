@@ -2650,6 +2650,8 @@ void initADC(void){
     ADCON1 = 0b00000000;
 }
 
+
+
 void ADC_Select (uint8_t a) {
     switch(a){
         case 0: ADCON0bits.CHS=0; break;

@@ -2841,12 +2841,16 @@ void main(void) {
 
     while (1) {
 
+
         V1 = LeerADC(0);
         V2 = LeerADC(1);
 
         USART_Write_String("V1     V2   CONT \n");
+
         USART_Write(13);
         USART_Write(10);
+
+
         sprintf(pantalla, "%1.2f   %1.2f %3d", V1,V2,contador);
 
         USART_Write_String(pantalla);
@@ -2855,12 +2859,14 @@ void main(void) {
         USART_Write(10);
 
         LCD_clear();
+
         LCD_Set_Cursor(1,1);
         LCD_Write_String("V1   V2    CONT");
         LCD_Set_Cursor(2,1);
         LCD_Write_String(pantalla);
 
         if(RCIF==1){
+
 
 
             recibido = RCREG;
@@ -2871,8 +2877,8 @@ void main(void) {
                 contador--;
             }
 
-
         }
+
 
         _delay((unsigned long)((500)*(8000000/4000.0)));
 
@@ -2887,13 +2893,7 @@ void main(void) {
 
 
 void setup(void) {
-    INTCONbits.PEIE=1;
-    PIE1bits.RCIE=1;
-    PIR1bits.RCIF=0;
-    INTCONbits.GIE=1;
-
-
-
+# 174 "lab3_main.c"
     TRISE = 0;
     PORTE = 0;
     ANSEL = 0b00000011;
@@ -2913,6 +2913,8 @@ void setup(void) {
 
 
 
+
+
 float LeerADC(uint8_t x){
     float a = 0.0;
     ADC_Select(x);
@@ -2920,6 +2922,7 @@ float LeerADC(uint8_t x){
     _delay((unsigned long)((20)*(8000000/4000000.0)));
     ADCON0bits.GO=1;
     while(ADCON0bits.GO_DONE==1){};
+
 
     a = ADRESH * 0.0196;
     return a;
