@@ -1,4 +1,5 @@
-
+//Funciones de Read y Write basadas en: Using UART of PIC Microcontroller BY LIGO GEORGE
+//extraido de https://electrosome.com/uart-pic-microcontroller-mplab-xc8/
 #include <xc.h>
 #include <stdint.h>
 
