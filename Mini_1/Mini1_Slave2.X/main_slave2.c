@@ -36,14 +36,14 @@
 #include <stdint.h>
 #include <pic16f887.h>
 
-#include "ADC.h"
+
 #include "SPI.h"
+#include "INT_B.h"
 //*****************************************************************************
 // Definición de variables
 //*****************************************************************************
 #define _XTAL_FREQ 8000000
-//uint8_t contador = 0;
-uint8_t valor_adc = 0;
+uint8_t contador = 0;
 //*****************************************************************************
 // Definición de funciones para que se puedan colocar después del main de lo 
 // contrario hay que colocarlos todas las funciones antes del main
@@ -55,28 +55,45 @@ void setup(void);
 void __interrupt() isr(void){
    if(SSPIF == 1){
         //PORTD = spiRead();
-        spiWrite(valor_adc);
+        spiWrite(contador);
         SSPIF = 0;
     }
-   if (PIR1bits.ADIF == 1) {
-        // se pasa el valor del ADRESH a la variable
-        valor_adc = ADRESH;
-        // se apaga la bandera
-        PIR1bits.ADIF = 0;
+   if (INTCONbits.RBIF == 1) {
+        // se realiza un antirebote
+        if (PORTBbits.RB0 == 0) {
+            __delay_ms(50);
+            if (PORTBbits.RB0 == 1) {
+                // se incrementa el PORTC con un boton y se apaga la bandera
+                contador ++;
+                INTCONbits.RBIF = 0;
+            }
+        }
+        // se realiza antirebote para el boton de decremento
+        if (PORTBbits.RB1 == 0) {
+            __delay_ms(50);
+            if (PORTBbits.RB1 == 1) {
+                // se decrementa el PORTC y se apaga la bandera
+                contador --;
+                INTCONbits.RBIF = 0;
+            }
+        }
     }
+   
 }
 //*****************************************************************************
 // Código Principal
 //*****************************************************************************
 void main(void) {
     setup();
-    initADC();
+    initIntB(0);
+    initIntB(1);
+    
     //*************************************************************************
     // Loop infinito
     //*************************************************************************
     while(1){
-        adc();
-        PORTD = valor_adc;
+        
+        PORTD = contador;
 //       if (PORTDbits.RD0 == 0){
 //            __delay_ms(100);
 //            if(PORTDbits.RD0==1){
@@ -94,11 +111,11 @@ void main(void) {
 // Función de Inicialización
 //*****************************************************************************
 void setup(void){
-    ANSEL = 0b00000001;
+    ANSEL = 0b00000000;
     ANSELH = 0;
     
-    TRISA = 0b00000001;
-    TRISB = 0;
+    TRISA = 0b00000000;
+    TRISB = 0b00000011;
     TRISD = 0;
     
     PORTA = 0;
