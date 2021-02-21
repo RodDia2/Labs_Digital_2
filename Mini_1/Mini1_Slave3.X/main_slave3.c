@@ -36,13 +36,14 @@
 #include <stdint.h>
 #include <pic16f887.h>
 
-#include "ADC.h"
+
 #include "SPI.h"
+#include "ADC.h"
 //*****************************************************************************
 // Definición de variables
 //*****************************************************************************
 #define _XTAL_FREQ 8000000
-//uint8_t contador = 0;
+uint8_t contador = 0;
 uint8_t valor_adc = 0;
 //*****************************************************************************
 // Definición de funciones para que se puedan colocar después del main de lo 
@@ -55,15 +56,18 @@ void setup(void);
 void __interrupt() isr(void){
    if(SSPIF == 1){
         //PORTD = spiRead();
-        spiWrite(valor_adc);
+        spiWrite(contador);
         SSPIF = 0;
     }
    if (PIR1bits.ADIF == 1) {
         // se pasa el valor del ADRESH a la variable
-        valor_adc = ADRESH;
+        valor_adc = ((ADRESH * 150)/255);
         // se apaga la bandera
         PIR1bits.ADIF = 0;
     }
+   
+    
+   
 }
 //*****************************************************************************
 // Código Principal
@@ -71,23 +75,28 @@ void __interrupt() isr(void){
 void main(void) {
     setup();
     initADC();
-    ADC_Select(0);
+    //ADC_Select(0);
+    ADCON1bits.VCFG0 = 1;
     //*************************************************************************
     // Loop infinito
     //*************************************************************************
     while(1){
         adc();
-        PORTD = valor_adc;
-//       if (PORTDbits.RD0 == 0){
-//            __delay_ms(100);
-//            if(PORTDbits.RD0==1){
-//            contador ++;
-//            PORTB = contador;
-//            //spiWrite(PORTB);
-//            }            
-//        }
-        
-        //__delay_ms(250);
+        if (valor_adc < 25) {
+            PORTDbits.RD2 = 1;
+            PORTDbits.RD1 = 0;
+            PORTDbits.RD0 = 0;
+                  
+        } else if (25 <= valor_adc && valor_adc < 36) {
+            PORTDbits.RD2 = 0;
+            PORTDbits.RD1 = 1;
+            PORTDbits.RD0 = 0;
+        } else if (valor_adc >= 36) {
+            PORTDbits.RD2 = 0;
+            PORTDbits.RD1 = 0;
+            PORTDbits.RD0 = 1;
+        }
+
     }
     return;
 }
@@ -99,12 +108,16 @@ void setup(void){
     ANSELH = 0;
     
     TRISA = 0b00000001;
-    TRISB = 0;
+    TRISB = 0b00000000;
+    TRISC = 0;
     TRISD = 0;
     
     PORTA = 0;
     PORTB = 0;
+    PORTC = 0;
     PORTD = 0;
+    
+    //ADCON1bits.VCFG0 = 1;
     
     INTCONbits.GIE = 1;         // Habilitamos interrupciones
     INTCONbits.PEIE = 1;        // Habilitamos interrupciones PEIE
@@ -115,3 +128,4 @@ void setup(void){
     spiInit(SPI_SLAVE_SS_EN, SPI_DATA_SAMPLE_MIDDLE, SPI_CLOCK_IDLE_LOW, SPI_IDLE_2_ACTIVE);
 
 }
+

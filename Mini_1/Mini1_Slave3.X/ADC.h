@@ -10,7 +10,7 @@
 #ifndef ADC_H
 #define	ADC_H
 
-#include <xc.h> // include processor files - each processor file is guarded.
+#include <xc.h> // include processor files - each processor file is guarded.  
 #include <stdint.h>
 #include <pic16f887.h>
 
