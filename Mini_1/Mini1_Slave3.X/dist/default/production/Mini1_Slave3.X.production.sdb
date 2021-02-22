@@ -24,7 +24,7 @@ SPI_CLOCK_IDLE_LOW 0
 SPI_IDLE_2_ACTIVE 0
 SPI_ACTIVE_2_IDLE 64
 ]
-"128 D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\main_slave3.c
+"129 D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\main_slave3.c
 [e E1292 . `uc
 SPI_MASTER_OSC_DIV4 32
 SPI_MASTER_OSC_DIV16 33
@@ -49,6 +49,8 @@ SPI_ACTIVE_2_IDLE 64
 [v _initADC initADC `(v  1 e 1 0 ]
 "20
 [v _adc adc `(v  1 e 1 0 ]
+"27
+[v _ADC_Select ADC_Select `(v  1 e 1 0 ]
 "5 D:\Microchip\xc8\v2.31\pic\sources\c90\common\awdiv.c
 [v ___awdiv __awdiv `(i  1 e 2 0 ]
 "10 D:\Microchip\xc8\v2.31\pic\sources\c90\common\sprcadd.c
@@ -65,7 +67,7 @@ SPI_ACTIVE_2_IDLE 64
 [v _isr isr `II(v  1 e 1 0 ]
 "75
 [v _main main `(v  1 e 1 0 ]
-"106
+"107
 [v _setup setup `(v  1 e 1 0 ]
 "12 D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\SPI.c
 [v _spiInit spiInit `(v  1 e 1 0 ]
@@ -81,7 +83,7 @@ SPI_ACTIVE_2_IDLE 64
 [v _PORTC PORTC `VEuc  1 e 1 @7 ]
 "352
 [v _PORTD PORTD `VEuc  1 e 1 @8 ]
-[s S200 . 1 `uc 1 RD0 1 0 :1:0 
+[s S206 . 1 `uc 1 RD0 1 0 :1:0 
 `uc 1 RD1 1 0 :1:1 
 `uc 1 RD2 1 0 :1:2 
 `uc 1 RD3 1 0 :1:3 
@@ -91,9 +93,9 @@ SPI_ACTIVE_2_IDLE 64
 `uc 1 RD7 1 0 :1:7 
 ]
 "369
-[u S209 . 1 `S200 1 . 1 0 ]
-[v _PORTDbits PORTDbits `VES209  1 e 1 @8 ]
-[s S231 . 1 `uc 1 RBIF 1 0 :1:0 
+[u S215 . 1 `S206 1 . 1 0 ]
+[v _PORTDbits PORTDbits `VES215  1 e 1 @8 ]
+[s S236 . 1 `uc 1 RBIF 1 0 :1:0 
 `uc 1 INTF 1 0 :1:1 
 `uc 1 T0IF 1 0 :1:2 
 `uc 1 RBIE 1 0 :1:3 
@@ -103,13 +105,13 @@ SPI_ACTIVE_2_IDLE 64
 `uc 1 GIE 1 0 :1:7 
 ]
 "482
-[s S240 . 1 `uc 1 . 1 0 :2:0 
+[s S245 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 TMR0IF 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 TMR0IE 1 0 :1:5 
 ]
-[u S245 . 1 `S231 1 . 1 0 `S240 1 . 1 0 ]
-[v _INTCONbits INTCONbits `VES245  1 e 1 @11 ]
+[u S250 . 1 `S236 1 . 1 0 `S245 1 . 1 0 ]
+[v _INTCONbits INTCONbits `VES250  1 e 1 @11 ]
 [s S153 . 1 `uc 1 TMR1IF 1 0 :1:0 
 `uc 1 TMR2IF 1 0 :1:1 
 `uc 1 CCP1IF 1 0 :1:2 
@@ -129,13 +131,13 @@ SPI_ACTIVE_2_IDLE 64
 [v _ADRESH ADRESH `VEuc  1 e 1 @30 ]
 "1245
 [v _ADCON0 ADCON0 `VEuc  1 e 1 @31 ]
-[s S426 . 1 `uc 1 ADON 1 0 :1:0 
+[s S431 . 1 `uc 1 ADON 1 0 :1:0 
 `uc 1 GO_nDONE 1 0 :1:1 
 `uc 1 CHS 1 0 :4:2 
 `uc 1 ADCS 1 0 :2:6 
 ]
 "1276
-[s S431 . 1 `uc 1 . 1 0 :1:0 
+[s S436 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 GO 1 0 :1:1 
 `uc 1 CHS0 1 0 :1:2 
 `uc 1 CHS1 1 0 :1:3 
@@ -144,17 +146,17 @@ SPI_ACTIVE_2_IDLE 64
 `uc 1 ADCS0 1 0 :1:6 
 `uc 1 ADCS1 1 0 :1:7 
 ]
-[s S440 . 1 `uc 1 . 1 0 :1:0 
+[s S445 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 nDONE 1 0 :1:1 
 ]
-[s S443 . 1 `uc 1 . 1 0 :1:0 
+[s S448 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 GO_DONE 1 0 :1:1 
 ]
-[u S446 . 1 `S426 1 . 1 0 `S431 1 . 1 0 `S440 1 . 1 0 `S443 1 . 1 0 ]
-[v _ADCON0bits ADCON0bits `VES446  1 e 1 @31 ]
+[u S451 . 1 `S431 1 . 1 0 `S436 1 . 1 0 `S445 1 . 1 0 `S448 1 . 1 0 ]
+[v _ADCON0bits ADCON0bits `VES451  1 e 1 @31 ]
 "1416
 [v _TRISA TRISA `VEuc  1 e 1 @133 ]
-[s S282 . 1 `uc 1 TRISA0 1 0 :1:0 
+[s S287 . 1 `uc 1 TRISA0 1 0 :1:0 
 `uc 1 TRISA1 1 0 :1:1 
 `uc 1 TRISA2 1 0 :1:2 
 `uc 1 TRISA3 1 0 :1:3 
@@ -164,15 +166,15 @@ SPI_ACTIVE_2_IDLE 64
 `uc 1 TRISA7 1 0 :1:7 
 ]
 "1433
-[u S291 . 1 `S282 1 . 1 0 ]
-[v _TRISAbits TRISAbits `VES291  1 e 1 @133 ]
+[u S296 . 1 `S287 1 . 1 0 ]
+[v _TRISAbits TRISAbits `VES296  1 e 1 @133 ]
 "1478
 [v _TRISB TRISB `VEuc  1 e 1 @134 ]
 "1540
 [v _TRISC TRISC `VEuc  1 e 1 @135 ]
 "1602
 [v _TRISD TRISD `VEuc  1 e 1 @136 ]
-[s S263 . 1 `uc 1 TMR1IE 1 0 :1:0 
+[s S268 . 1 `uc 1 TMR1IE 1 0 :1:0 
 `uc 1 TMR2IE 1 0 :1:1 
 `uc 1 CCP1IE 1 0 :1:2 
 `uc 1 SSPIE 1 0 :1:3 
@@ -181,8 +183,8 @@ SPI_ACTIVE_2_IDLE 64
 `uc 1 ADIE 1 0 :1:6 
 ]
 "1718
-[u S271 . 1 `S263 1 . 1 0 ]
-[v _PIE1bits PIE1bits `VES271  1 e 1 @140 ]
+[u S276 . 1 `S268 1 . 1 0 ]
+[v _PIE1bits PIE1bits `VES276  1 e 1 @140 ]
 "2177
 [v _SSPSTAT SSPSTAT `VEuc  1 e 1 @148 ]
 [s S42 . 1 `uc 1 BF 1 0 :1:0 
@@ -230,15 +232,15 @@ SPI_ACTIVE_2_IDLE 64
 [v _SSPSTATbits SSPSTATbits `VES82  1 e 1 @148 ]
 "2977
 [v _ADCON1 ADCON1 `VEuc  1 e 1 @159 ]
-[s S181 . 1 `uc 1 . 1 0 :4:0 
+[s S186 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 VCFG0 1 0 :1:4 
 `uc 1 VCFG1 1 0 :1:5 
 `uc 1 . 1 0 :1:6 
 `uc 1 ADFM 1 0 :1:7 
 ]
 "2991
-[u S187 . 1 `S181 1 . 1 0 ]
-[v _ADCON1bits ADCON1bits `VES187  1 e 1 @159 ]
+[u S192 . 1 `S186 1 . 1 0 ]
+[v _ADCON1bits ADCON1bits `VES192  1 e 1 @159 ]
 "3387
 [v _ANSEL ANSEL `VEuc  1 e 1 @392 ]
 "3449
@@ -249,19 +251,17 @@ SPI_ACTIVE_2_IDLE 64
 [v _TRISC3 TRISC3 `VEb  1 e 0 @1083 ]
 "4463
 [v _TRISC5 TRISC5 `VEb  1 e 0 @1085 ]
-"46 D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\main_slave3.c
-[v _contador contador `uc  1 e 1 0 ]
-"47
+"47 D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\main_slave3.c
 [v _valor_adc valor_adc `uc  1 e 1 0 ]
 "75
 [v _main main `(v  1 e 1 0 ]
 {
-"102
+"103
 } 0
-"106
+"107
 [v _setup setup `(v  1 e 1 0 ]
 {
-"130
+"131
 } 0
 "12 D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\SPI.c
 [v _spiInit spiInit `(v  1 e 1 0 ]
@@ -284,6 +284,14 @@ SPI_ACTIVE_2_IDLE 64
 [v _adc adc `(v  1 e 1 0 ]
 {
 "23
+} 0
+"27
+[v _ADC_Select ADC_Select `(v  1 e 1 0 ]
+{
+[v ADC_Select@a a `uc  1 a 1 wreg ]
+[v ADC_Select@a a `uc  1 a 1 wreg ]
+[v ADC_Select@a a `uc  1 a 1 11 ]
+"45
 } 0
 "56 D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\main_slave3.c
 [v _isr isr `II(v  1 e 1 0 ]

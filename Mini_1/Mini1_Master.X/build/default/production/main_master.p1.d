@@ -1,3 +1,5 @@
 build/default/production/main_master.p1:  \
 main_master.c  \
-SPI.h 
+SPI.h  \
+LCD.h  \
+USART.h 

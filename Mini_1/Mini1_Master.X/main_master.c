@@ -34,13 +34,20 @@
 //*****************************************************************************
 #include <xc.h>
 #include <stdint.h>
+#include <stdio.h>
 #include "SPI.h"
+#include "LCD.h"
+#include "USART.h"
 //*****************************************************************************
 // Definición de variables
 //*****************************************************************************
 #define _XTAL_FREQ 8000000
 
-uint8_t temperatura = 0;
+uint8_t TEMP = 5;
+uint8_t ADC = 0;
+uint8_t CONT = 0;
+char pantalla[20];
+char recibido = 0;
 //*****************************************************************************
 // Definición de funciones para que se puedan colocar después del main de lo 
 // contrario hay que colocarlos todas las funciones antes del main
@@ -52,37 +59,72 @@ void setup(void);
 //*****************************************************************************
 void main(void) {
     setup();
+    LCD_Init();
+    LCD_clear();
+    // el baud rate se pone en 9600
+    Set_Baud_Rate();
+    
+    Init_Transmit();
+    Init_Receive();
     //*************************************************************************
     // Loop infinito
     //*************************************************************************
     while(1){
+        // Primero se mandan los strings a la terminal
+        USART_Write_String("ADC CONT TEMP \n");
+        // se salta a la siguiente linea
+        USART_Write(13);
+        USART_Write(10);
+        // la variable char de pantalla se le asignan los valores de voltaje
+        // y del contador
+        sprintf(pantalla, "%2d  %2d  %2d", ADC,CONT,TEMP);
+        // se muestran los datos, bajo a su nombre en string
+        USART_Write_String(pantalla);
+       // se vuelve a saltar una linea
+        USART_Write(13);
+        USART_Write(10);
+        // se realiza un clear de la pantalla por seguridad
+        LCD_clear();
+        // en la primera fila, se despligan los titulos y en la segunda los valores
+        LCD_Set_Cursor(1,1);
+        LCD_Write_String("ADC  CONT  TEMP");
+        LCD_Set_Cursor(2,1);
+        LCD_Write_String(pantalla);
+        
+        __delay_ms(500);
+        
+       //****************************************************************
        PORTCbits.RC2 = 0;       //Slave Select
        __delay_ms(1);
        
        spiWrite(1);
-       PORTB = spiRead();
+       CONT = spiRead();
+       //PORTB = CONT;
        
        __delay_ms(1);
        PORTCbits.RC2 = 1;       //Slave Deselect 
       
        __delay_ms(1);
+       //***************************************************************
        PORTCbits.RC1 = 0;
        __delay_ms(1);
        
        spiWrite(1);
-       PORTD = spiRead();
+       ADC = spiRead();
+       //PORTD = ADC;
        
        __delay_ms(1);
        PORTCbits.RC1 = 1; 
        __delay_ms(1);
        
-       
+       //********************************************************************
        
        PORTCbits.RC0 = 0;       //Slave Select
        __delay_ms(1);
        
        spiWrite(1);
-       temperatura = spiRead();
+       TEMP = spiRead();
+       //PORTB = TEMP;
        
        __delay_ms(1);
        PORTCbits.RC0 = 1;       //Slave Deselect 
@@ -97,9 +139,11 @@ void main(void) {
 void setup(void){
     ANSEL = 0;
     ANSELH = 0;
+    //TRISC = 0b10000000;
     TRISC0 = 0;
     TRISC1 = 0;
     TRISC2 = 0;
+    TRISC7 = 1;
     TRISB = 0;
     TRISD = 0;
     PORTB = 0;

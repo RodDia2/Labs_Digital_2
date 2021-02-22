@@ -82,6 +82,7 @@ void main(void) {
     //*************************************************************************
     while(1){
         adc();
+        PORTD = valor_adc;
         if (valor_adc < 25) {
             PORTDbits.RD2 = 1;
             PORTDbits.RD1 = 0;
