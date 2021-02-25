@@ -2650,10 +2650,18 @@ typedef uint16_t uintptr_t;
 
 
 # 1 "./ADC.h" 1
-# 16 "./ADC.h"
+# 14 "./ADC.h"
+# 1 "D:\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 1 3
+# 14 "./ADC.h" 2
+
+
+
+
 void initADC(void);
 
 void adc(void);
+
+void ADC_Select (uint8_t a);
 # 39 "main_slave1.c" 2
 
 # 1 "./SPI.h" 1
@@ -2697,7 +2705,7 @@ char spiRead();
 
 
 
-uint8_t contador = 0;
+
 uint8_t valor_adc = 0;
 
 
@@ -2707,12 +2715,19 @@ void setup(void);
 
 
 
+
+
 void __attribute__((picinterrupt(("")))) isr(void){
+
    if(SSPIF == 1){
 
+
+
         spiWrite(valor_adc);
+
         SSPIF = 0;
     }
+
    if (PIR1bits.ADIF == 1) {
 
         valor_adc = ADRESH;
@@ -2724,15 +2739,23 @@ void __attribute__((picinterrupt(("")))) isr(void){
 
 
 void main(void) {
+
     setup();
+
     initADC();
+
+    ADC_Select(0);
 
 
 
     while(1){
+
+
         adc();
+
+
         PORTD = valor_adc;
-# 90 "main_slave1.c"
+
     }
     return;
 }
@@ -2740,6 +2763,9 @@ void main(void) {
 
 
 void setup(void){
+
+
+
     ANSEL = 0b00000001;
     ANSELH = 0;
 

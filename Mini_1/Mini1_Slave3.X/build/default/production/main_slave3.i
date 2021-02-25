@@ -2716,13 +2716,20 @@ void setup(void);
 
 
 
+
 void __attribute__((picinterrupt(("")))) isr(void){
+
    if(SSPIF == 1){
 
+
         spiWrite(valor_adc);
+
         SSPIF = 0;
     }
+
    if (PIR1bits.ADIF == 1) {
+
+
 
         valor_adc = ((ADRESH * 150)/255);
 
@@ -2736,16 +2743,28 @@ void __attribute__((picinterrupt(("")))) isr(void){
 
 
 void main(void) {
+
     setup();
+
     initADC();
+
     ADC_Select(0);
+
+
     ADCON1bits.VCFG0 = 1;
 
 
 
+
     while(1){
+
         adc();
-        PORTD = valor_adc;
+
+
+
+
+
+
         if (valor_adc < 25) {
             PORTDbits.RD2 = 1;
             PORTDbits.RD1 = 0;
@@ -2768,6 +2787,9 @@ void main(void) {
 
 
 void setup(void){
+
+
+
     ANSEL = 0b00000001;
     ANSELH = 0;
 

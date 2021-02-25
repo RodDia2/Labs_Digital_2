@@ -1,10 +1,10 @@
 //*****************************************************************************
 /*
  * File:   main.c
- * Author: Pablo
- * Ejemplo de implementación de la comunicación SPI 
- * Código Esclavo
- * Created on 10 de febrero de 2020, 03:32 PM
+ * Author: Rodrigo Díaz, basándose en el código ejemplo de Pablo Mazariegos
+ 
+ * Código Esclavo 1
+
  */
 //*****************************************************************************
 //*****************************************************************************
@@ -52,16 +52,23 @@ void setup(void);
 //*****************************************************************************
 // Código de Interrupción 
 //*****************************************************************************
+// en las interrupciones se revisa la bandera SSPIF para la comunicación SPI y 
+// la bandera ADIF para la conversión ADC.
 void __interrupt() isr(void){
+    // se revisa la bandera SSPIF
    if(SSPIF == 1){
         //PORTD = spiRead();
+       // se escribe un valor al buffer por medio de la función para que se 
+       //comience la transmición de datos. 
         spiWrite(valor_adc);
+        // la bandera debe apagarse manualmente
         SSPIF = 0;
     }
+   // ahora se revisa la bandera de ADIF
    if (PIR1bits.ADIF == 1) {
-        // se pasa el valor del ADRESH a la variable
+        // se recibe el valor del ADRESH a la variable
         valor_adc = ADRESH;
-        // se apaga la bandera
+        // se apaga la bandera manualmente
         PIR1bits.ADIF = 0;
     }
 }
@@ -69,25 +76,23 @@ void __interrupt() isr(void){
 // Código Principal
 //*****************************************************************************
 void main(void) {
+    // primero se llama al setup para setear los pines
     setup();
+    // se inicializa la conversión ADC corrimiento a la izquierda con interrupts
     initADC();
+    // solamente se va a utilizar el canal 0 analógico
     ADC_Select(0);
     //*************************************************************************
     // Loop infinito
     //*************************************************************************
     while(1){
+        // este loop siempre se repite 
+        // primero se llama a la función adc para iniciar conversiones
         adc();
+        // la variable recibida del adc se despliega en el puerto C para 
+        // verificar un buen funcionamiento
         PORTD = valor_adc;
-//       if (PORTDbits.RD0 == 0){
-//            __delay_ms(100);
-//            if(PORTDbits.RD0==1){
-//            contador ++;
-//            PORTB = contador;
-//            //spiWrite(PORTB);
-//            }            
-//        }
-        
-        //__delay_ms(250);
+
     }
     return;
 }
@@ -95,6 +100,9 @@ void main(void) {
 // Función de Inicialización
 //*****************************************************************************
 void setup(void){
+    // Todos los bits utilizados se configuran como salidas, menos 
+    // el primero del A, debido a que allí esta el POT. Ansel y Anselh 
+    // se ponen en 1 solamente donde hayan entradas analogicas. 
     ANSEL = 0b00000001;
     ANSELH = 0;
     
@@ -110,8 +118,8 @@ void setup(void){
     INTCONbits.PEIE = 1;        // Habilitamos interrupciones PEIE
     PIR1bits.SSPIF = 0;         // Borramos bandera interrupción MSSP
     PIE1bits.SSPIE = 1;         // Habilitamos interrupción MSSP
-    TRISAbits.TRISA5 = 1;       // Slave Select
-   
+    TRISAbits.TRISA5 = 1;       // Slave Select, como entrada
+    // se configura como un slave
     spiInit(SPI_SLAVE_SS_EN, SPI_DATA_SAMPLE_MIDDLE, SPI_CLOCK_IDLE_LOW, SPI_IDLE_2_ACTIVE);
 
 }

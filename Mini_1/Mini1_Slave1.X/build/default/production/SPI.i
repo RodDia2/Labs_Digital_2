@@ -2529,6 +2529,7 @@ char spiRead();
 # 10 "SPI.c" 2
 
 
+
 void spiInit(Spi_Type sType, Spi_Data_Sample sDataSample, Spi_Clock_Idle sClockIdle, Spi_Transmit_Edge sTransmitEdge)
 {
     TRISC5 = 0;
@@ -2545,6 +2546,7 @@ void spiInit(Spi_Type sType, Spi_Data_Sample sDataSample, Spi_Clock_Idle sClockI
 
     SSPCON = sType | sClockIdle;
 }
+
 
 static void spiReceiveWait()
 {

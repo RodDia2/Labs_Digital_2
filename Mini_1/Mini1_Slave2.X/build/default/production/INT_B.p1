@@ -263,60 +263,64 @@ Version 4.0 HI-TECH Software Intermediate Code
 "3546
 [; ;D:/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 3546: __asm("EECON2 equ 018Dh");
 [; <" EECON2 equ 018Dh ;# ">
-"6 INT_B.c
-[; ;INT_B.c: 6: void initIntB(uint8_t select) {
+"8 INT_B.c
+[; ;INT_B.c: 8: void initIntB(uint8_t select) {
 [v _initIntB `(v ~T0 @X0 1 ef1`uc ]
 {
 [e :U _initIntB ]
 [v _select `uc ~T0 @X0 1 r1 ]
 [f ]
-"7
-[; ;INT_B.c: 7:     INTCONbits.GIE = 1;
-[e = . . _INTCONbits 0 7 -> -> 1 `i `uc ]
-"8
-[; ;INT_B.c: 8:     INTCONbits.RBIE = 1;
-[e = . . _INTCONbits 0 3 -> -> 1 `i `uc ]
 "9
-[; ;INT_B.c: 9:     INTCONbits.RBIF = 0;
-[e = . . _INTCONbits 0 0 -> -> 0 `i `uc ]
+[; ;INT_B.c: 9:     INTCONbits.GIE = 1;
+[e = . . _INTCONbits 0 7 -> -> 1 `i `uc ]
 "10
-[; ;INT_B.c: 10:     switch (select) {
+[; ;INT_B.c: 10:     INTCONbits.RBIE = 1;
+[e = . . _INTCONbits 0 3 -> -> 1 `i `uc ]
+"11
+[; ;INT_B.c: 11:     INTCONbits.RBIF = 0;
+[e = . . _INTCONbits 0 0 -> -> 0 `i `uc ]
+"12
+[; ;INT_B.c: 12:     switch (select) {
 [e $U 140  ]
 {
-"11
-[; ;INT_B.c: 11:         case 0: IOCBbits.IOCB0 = 1;
+"13
+[; ;INT_B.c: 13:         case 0: IOCBbits.IOCB0 = 1;
 [e :U 141 ]
 [e = . . _IOCBbits 1 0 -> -> 1 `i `uc ]
-"12
-[; ;INT_B.c: 12:         case 1: IOCBbits.IOCB1 = 1;
+"14
+[; ;INT_B.c: 14:         case 1: IOCBbits.IOCB1 = 1;
 [e :U 142 ]
 [e = . . _IOCBbits 1 1 -> -> 1 `i `uc ]
-"13
-[; ;INT_B.c: 13:         case 2: IOCBbits.IOCB2 = 1;
+"15
+[; ;INT_B.c: 15:         case 2: IOCBbits.IOCB2 = 1;
 [e :U 143 ]
 [e = . . _IOCBbits 1 2 -> -> 1 `i `uc ]
-"14
-[; ;INT_B.c: 14:         case 3: IOCBbits.IOCB3 = 1;
+"16
+[; ;INT_B.c: 16:         case 3: IOCBbits.IOCB3 = 1;
 [e :U 144 ]
 [e = . . _IOCBbits 1 3 -> -> 1 `i `uc ]
-"15
-[; ;INT_B.c: 15:         case 4: IOCBbits.IOCB4 = 1;
+"17
+[; ;INT_B.c: 17:         case 4: IOCBbits.IOCB4 = 1;
 [e :U 145 ]
 [e = . . _IOCBbits 1 4 -> -> 1 `i `uc ]
-"16
-[; ;INT_B.c: 16:         case 5: IOCBbits.IOCB5 = 1;
+"18
+[; ;INT_B.c: 18:         case 5: IOCBbits.IOCB5 = 1;
 [e :U 146 ]
 [e = . . _IOCBbits 1 5 -> -> 1 `i `uc ]
-"17
-[; ;INT_B.c: 17:         case 6: IOCBbits.IOCB6 = 1;
+"19
+[; ;INT_B.c: 19:         case 6: IOCBbits.IOCB6 = 1;
 [e :U 147 ]
 [e = . . _IOCBbits 1 6 -> -> 1 `i `uc ]
-"18
-[; ;INT_B.c: 18:         case 7: IOCBbits.IOCB7 = 1;
+"20
+[; ;INT_B.c: 20:         case 7: IOCBbits.IOCB7 = 1;
 [e :U 148 ]
 [e = . . _IOCBbits 1 7 -> -> 1 `i `uc ]
-"19
-[; ;INT_B.c: 19:     }
+"21
+[; ;INT_B.c: 21:         default: IOCBbits.IOCB0 = 1;
+[e :U 149 ]
+[e = . . _IOCBbits 1 0 -> -> 1 `i `uc ]
+"22
+[; ;INT_B.c: 22:     }
 }
 [e $U 139  ]
 [e :U 140 ]
@@ -328,9 +332,9 @@ Version 4.0 HI-TECH Software Intermediate Code
  , $ -> 5 `i 146
  , $ -> 6 `i 147
  , $ -> 7 `i 148
- 139 ]
+ 149 ]
 [e :U 139 ]
-"20
-[; ;INT_B.c: 20: }
+"23
+[; ;INT_B.c: 23: }
 [e :UE 138 ]
 }

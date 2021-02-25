@@ -8,7 +8,8 @@
  */
 
 #include "SPI.h"
-
+// esta función sirve para inicializar como maestro o esclavo, determinar la 
+// frecuencia utilizada, el clock idle y cuando se transmiten los valores.
 void spiInit(Spi_Type sType, Spi_Data_Sample sDataSample, Spi_Clock_Idle sClockIdle, Spi_Transmit_Edge sTransmitEdge)
 {
     TRISC5 = 0;
@@ -25,17 +26,18 @@ void spiInit(Spi_Type sType, Spi_Data_Sample sDataSample, Spi_Clock_Idle sClockI
     
     SSPCON = sType | sClockIdle;
 }
-
+// Una vez el bit de BF está en encendido significa que ya se puede leer el 
+// valor recibido en el buffer del SPI
 static void spiReceiveWait()
 {
     while ( !SSPSTATbits.BF ); // Wait for Data Receive complete
 }
-
+// se escribe en el buffer para enviar
 void spiWrite(char dat)  //Write data to SPI bus
 {
     SSPBUF = dat;
 }
-
+// operación que regresa 1 si esta listo para leer y 0 si no.
 unsigned spiDataReady() //Check whether the data is ready to read
 {
     if(SSPSTATbits.BF)
@@ -43,7 +45,7 @@ unsigned spiDataReady() //Check whether the data is ready to read
     else
         return 0;
 }
-
+// se lee el buffer de recepción y se regresa este valor.
 char spiRead() //REad the received data
 {
     spiReceiveWait();        // wait until the all bits receive

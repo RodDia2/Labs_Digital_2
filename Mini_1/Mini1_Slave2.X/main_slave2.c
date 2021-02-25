@@ -1,10 +1,10 @@
 //*****************************************************************************
 /*
  * File:   main.c
- * Author: Pablo
- * Ejemplo de implementación de la comunicación SPI 
- * Código Esclavo
- * Created on 10 de febrero de 2020, 03:32 PM
+ * Author: Rodrigo Díaz, basado en el ejemplo de Pablo Mazariegos
+
+ * Código Esclavo 2
+
  */
 //*****************************************************************************
 //*****************************************************************************
@@ -52,18 +52,25 @@ void setup(void);
 //*****************************************************************************
 // Código de Interrupción 
 //*****************************************************************************
+// se utilizaron las interrupciones de SPI y de on-change en el puerto B
 void __interrupt() isr(void){
+    // primero se revisa la bandera SSPIF
    if(SSPIF == 1){
         //PORTD = spiRead();
+       // se escribe en el buffer para mandar el dato
         spiWrite(contador);
+        // se apaga la bandera manualmente
         SSPIF = 0;
     }
+   // luego, se revisa la bandera RBIF
    if (INTCONbits.RBIF == 1) {
-        // se realiza un antirebote
+        // se realiza un antirebote, se sabe que los delays no son recomendables
+       // pero se sabe que este slave solo debe ser un contador, entonces 
+       // por el momento no debería haber problema. 
         if (PORTBbits.RB0 == 0) {
             __delay_ms(50);
             if (PORTBbits.RB0 == 1) {
-                // se incrementa el PORTC con un boton y se apaga la bandera
+                // se incrementa contador con un boton y se apaga la bandera
                 contador ++;
                 INTCONbits.RBIF = 0;
             }
@@ -72,7 +79,7 @@ void __interrupt() isr(void){
         if (PORTBbits.RB1 == 0) {
             __delay_ms(50);
             if (PORTBbits.RB1 == 1) {
-                // se decrementa el PORTC y se apaga la bandera
+                // se decrementa el contador y se apaga la bandera
                 contador --;
                 INTCONbits.RBIF = 0;
             }
@@ -84,7 +91,10 @@ void __interrupt() isr(void){
 // Código Principal
 //*****************************************************************************
 void main(void) {
+    // se realiza el seteo de bits en el setup
     setup();
+    // se inicializan los primeros dos bits del puerto B para las interrupciones
+    // al cambio.
     initIntB(0);
     initIntB(1);
     
@@ -92,7 +102,7 @@ void main(void) {
     // Loop infinito
     //*************************************************************************
     while(1){
-        
+        // se manda el valor del contador al puerto D donde están los LEDS
         PORTD = contador;
 //       if (PORTDbits.RD0 == 0){
 //            __delay_ms(100);
@@ -111,6 +121,9 @@ void main(void) {
 // Función de Inicialización
 //*****************************************************************************
 void setup(void){
+    // Todos los bits utilizados se configuran como salidas, menos los primeros
+    // 2 bits del puerto B, debido a que allí estan los push. Ansel y Anselh 
+    // se ponen en 1 solamente donde hayan entradas digitales. 
     ANSEL = 0b00000000;
     ANSELH = 0;
     
@@ -126,8 +139,8 @@ void setup(void){
     INTCONbits.PEIE = 1;        // Habilitamos interrupciones PEIE
     PIR1bits.SSPIF = 0;         // Borramos bandera interrupción MSSP
     PIE1bits.SSPIE = 1;         // Habilitamos interrupción MSSP
-    TRISAbits.TRISA5 = 1;       // Slave Select
-   
+    TRISAbits.TRISA5 = 1;       // Slave Select, como entrada
+   // se configura como slave
     spiInit(SPI_SLAVE_SS_EN, SPI_DATA_SAMPLE_MIDDLE, SPI_CLOCK_IDLE_LOW, SPI_IDLE_2_ACTIVE);
 
 }

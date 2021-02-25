@@ -5,7 +5,7 @@ Linker command line:
 -W-3 --edf=D:\Microchip\xc8\v2.31\pic\dat\en_msgs.txt -cn \
   -h+dist/default/production\Mini1_Slave3.X.production.sym \
   --cmf=dist/default/production\Mini1_Slave3.X.production.cmf -z -Q16F887 \
-  -oC:\Users\jrdia\AppData\Local\Temp\srms.2 --defsym=__MPLAB_BUILD=1 \
+  -oC:\Users\jrdia\AppData\Local\Temp\s14s0.2 --defsym=__MPLAB_BUILD=1 \
   -Mdist/default/production/Mini1_Slave3.X.production.map -E1 \
   -ver=XC8 Compiler --acfsm=1493 -ASTACK=0110h-016Fh -pstack=STACK \
   -ACODE=00h-07FFhx4 -ASTRCODE=00h-01FFFh -ASTRING=00h-0FFhx32 \
@@ -18,7 +18,7 @@ Linker command line:
   -AEEDATA=00h-0FFh/02100h -peeprom_data=EEDATA -DEEDATA=2 -DCODE=2 \
   -DSTRCODE=2 -DSTRING=2 -DCONST=2 -DENTRY=2 \
   -preset_vec=00h,intentry=04h,init,end_init -ppowerup=CODE -pcinit=CODE \
-  -pfunctab=ENTRY -k C:\Users\jrdia\AppData\Local\Temp\srms.o \
+  -pfunctab=ENTRY -k C:\Users\jrdia\AppData\Local\Temp\s14s0.o \
   dist/default/production\Mini1_Slave3.X.production.o 
 
 Object code version is 3.11
@@ -28,7 +28,7 @@ Machine type is 16F887
 
 
                 Name                               Link     Load   Length Selector   Space Scale
-C:\Users\jrdia\AppData\Local\Temp\srms.o
+C:\Users\jrdia\AppData\Local\Temp\s14s0.o
                 end_init                              E        E        3        8       0
                 reset_vec                             0        0        3        0       0
                 config                             2007     2007        2        0       4
@@ -37,15 +37,15 @@ dist/default/production\Mini1_Slave3.X.production.o
                 intentry                              4        4        A        8       0
                 config                             2007     2007        2        0       4
                 text9                                97       97       69        8       0
-                text8                               1A5      1A5       25        8       0
-                text7                               200      200        6        8       0
-                text6                               144      144       3C        8       0
+                text8                               1A7      1A7       25        8       0
+                text7                               202      202        6        8       0
+                text6                               146      146       3C        8       0
                 text5                                17       17       80        8       0
-                text4                               1F5      1F5        B        8       0
-                text3                               1E8      1E8        D        8       0
-                text2                               1CA      1CA       1E        8       0
-                text1                               180      180       25        8       0
-                maintext                            100      100       44        8       0
+                text4                               1F7      1F7        B        8       0
+                text3                               1EA      1EA        D        8       0
+                text2                               1CC      1CC       1E        8       0
+                text1                               182      182       25        8       0
+                maintext                            100      100       46        8       0
                 cstackBANK0                          20       20        D       20       1
                 cstackCOMMON                         70       70        B       70       1
                 bssCOMMON                            7B       7B        2       70       1
@@ -59,15 +59,15 @@ TOTAL           Name                               Link     Load   Length     Sp
                 intentry                              4        4        A         0
                 reset_vec                             0        0        3         0
                 text9                                97       97       69         0
-                text8                               1A5      1A5       25         0
-                text7                               200      200        6         0
-                text6                               144      144       3C         0
+                text8                               1A7      1A7       25         0
+                text7                               202      202        6         0
+                text6                               146      146       3C         0
                 text5                                17       17       80         0
-                text4                               1F5      1F5        B         0
-                text3                               1E8      1E8        D         0
-                text2                               1CA      1CA       1E         0
-                text1                               180      180       25         0
-                maintext                            100      100       44         0
+                text4                               1F7      1F7        B         0
+                text3                               1EA      1EA        D         0
+                text2                               1CC      1CC       1E         0
+                text1                               182      182       25         0
+                maintext                            100      100       46         0
 
         CLASS   STRCODE        
 
@@ -115,7 +115,7 @@ TOTAL           Name                               Link     Load   Length     Sp
 SEGMENTS        Name                           Load    Length   Top    Selector   Space  Class     Delta
 
                 reset_vec                      000000  000003  000003         0       0  CODE        2
-                intentry                       000004  000202  000206         8       0  CODE        2
+                intentry                       000004  000204  000208         8       0  CODE        2
                 cstackBANK0                    000020  00000D  00002D        20       1  BANK0       1
                 cstackCOMMON                   000070  00000D  00007D        70       1  COMMON      1
 
@@ -128,13 +128,13 @@ UNUSED ADDRESS RANGES
         BANK2            0110-016F             60           1
         BANK3            0190-01EF             60           1
         CODE             0003-0003              1           2
-                         0206-1FFF            800
+                         0208-1FFF            800
         COMMON           007D-007D              1           1
         CONST            0003-0003              1           2
-                         0206-1FFF            100
+                         0208-1FFF            100
         EEDATA           2100-21FF            100           2
         ENTRY            0003-0003              1           2
-                         0206-1FFF            100
+                         0208-1FFF            100
         IDLOC            2000-2003              4           2
         RAM              002D-006F             43           1
                          00A0-00EF             50
@@ -146,9 +146,9 @@ UNUSED ADDRESS RANGES
         SFR3             0180-018F             10           1
         STACK            0110-016F             60           1
         STRCODE          0003-0003              1           2
-                         0206-1FFF           1DFA
+                         0208-1FFF           1DF8
         STRING           0003-0003              1           2
-                         0206-1FFF            100
+                         0208-1FFF            100
 
                                   Symbol Table
 
@@ -209,7 +209,7 @@ __Hsfr0                  sfr0         0000
 __Hsfr1                  sfr1         0000
 __Hsfr2                  sfr2         0000
 __Hsfr3                  sfr3         0000
-__Hspace_0               (abs)        0206
+__Hspace_0               (abs)        0208
 __Hspace_1               (abs)        007D
 __Hspace_2               (abs)        0000
 __Hspace_3               (abs)        0000
@@ -251,7 +251,7 @@ __Lspace_4               (abs)        0000
 __Lstack                 stack        0000
 __Lstrings               strings      0000
 __Ltext                  text         0000
-__S0                     (abs)        0206
+__S0                     (abs)        0208
 __S1                     (abs)        007D
 __S2                     (abs)        0000
 __S3                     (abs)        0000
@@ -266,35 +266,35 @@ ___latbits               (abs)        0002
 ___sp                    stack        0000
 ___stackhi               (abs)        0000
 ___stacklo               (abs)        0000
-___wmul                  text8        01A5
+___wmul                  text8        01A7
 ___wmul@multiplicand     cstackCOMMON 0072
 ___wmul@multiplier       cstackCOMMON 0070
 ___wmul@product          cstackCOMMON 0074
 __end_of_ADC_Select      text5        0097
 __end_of___awdiv         text9        0100
-__end_of___wmul          text8        01CA
+__end_of___wmul          text8        01CC
 __end_of__initialization cinit        0013
-__end_of_adc             text4        0200
-__end_of_initADC         text3        01F5
-__end_of_isr             text6        0180
-__end_of_main            maintext     0144
-__end_of_setup           text1        01A5
-__end_of_spiInit         text2        01E8
-__end_of_spiWrite        text7        0206
+__end_of_adc             text4        0202
+__end_of_initADC         text3        01F7
+__end_of_isr             text6        0182
+__end_of_main            maintext     0146
+__end_of_setup           text1        01A7
+__end_of_spiInit         text2        01EA
+__end_of_spiWrite        text7        0208
 __initialization         cinit        0011
 __pbssCOMMON             bssCOMMON    007B
 __pcstackBANK0           cstackBANK0  0020
 __pcstackCOMMON          cstackCOMMON 0070
 __pintentry              intentry     0004
 __pmaintext              maintext     0100
-__ptext1                 text1        0180
-__ptext2                 text2        01CA
-__ptext3                 text3        01E8
-__ptext4                 text4        01F5
+__ptext1                 text1        0182
+__ptext2                 text2        01CC
+__ptext3                 text3        01EA
+__ptext4                 text4        01F7
 __ptext5                 text5        0017
-__ptext6                 text6        0144
-__ptext7                 text7        0200
-__ptext8                 text8        01A5
+__ptext6                 text6        0146
+__ptext7                 text7        0202
+__ptext8                 text8        01A7
 __ptext9                 text9        0097
 __size_of_ADC_Select     (abs)        0000
 __size_of___awdiv        (abs)        0000
@@ -306,13 +306,13 @@ __size_of_main           (abs)        0000
 __size_of_setup          (abs)        0000
 __size_of_spiInit        (abs)        0000
 __size_of_spiWrite       (abs)        0000
-_adc                     text4        01F5
-_initADC                 text3        01E8
-_isr                     text6        0144
+_adc                     text4        01F7
+_initADC                 text3        01EA
+_isr                     text6        0146
 _main                    maintext     0100
-_setup                   text1        0180
-_spiInit                 text2        01CA
-_spiWrite                text7        0200
+_setup                   text1        0182
+_spiInit                 text2        01CC
+_spiWrite                text7        0202
 _valor_adc               bssCOMMON    007B
 btemp                    (abs)        007E
 end_of_initialization    cinit        0013
@@ -339,7 +339,7 @@ FUNCTION INFORMATION:
 
  *************** function _main *****************
  Defined at:
-		line 75 in file "main_slave3.c"
+		line 82 in file "main_slave3.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -371,7 +371,7 @@ Total ram usage:        0 bytes
 
  *************** function _setup *****************
  Defined at:
-		line 107 in file "main_slave3.c"
+		line 126 in file "main_slave3.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -524,7 +524,7 @@ Total ram usage:        3 bytes
 
  *************** function _isr *****************
  Defined at:
-		line 56 in file "main_slave3.c"
+		line 57 in file "main_slave3.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -650,16 +650,16 @@ MODULE INFORMATION
 
 Module		Function		Class		Link	Load	Size
 D:\Microchip\xc8\v2.31\pic\sources\c90\common\Umul16.c
-		___wmul        		CODE           	01A5	0000	37
+		___wmul        		CODE           	01A7	0000	37
 
 D:\Microchip\xc8\v2.31\pic\sources\c90\common\Umul16.c estimated size: 37
 
 main_slave3.c
-		_main          		CODE           	0100	0000	68
-		_isr           		CODE           	0144	0000	60
-		_setup         		CODE           	0180	0000	37
+		_main          		CODE           	0100	0000	70
+		_isr           		CODE           	0146	0000	60
+		_setup         		CODE           	0182	0000	37
 
-main_slave3.c estimated size: 165
+main_slave3.c estimated size: 167
 
 shared
 		__initialization		CODE           	0011	0000	2
@@ -667,15 +667,15 @@ shared
 shared estimated size: 2
 
 ADC.c
-		_adc           		CODE           	01F5	0000	11
+		_adc           		CODE           	01F7	0000	11
 		_ADC_Select    		CODE           	0017	0000	128
-		_initADC       		CODE           	01E8	0000	13
+		_initADC       		CODE           	01EA	0000	13
 
 ADC.c estimated size: 152
 
 SPI.c
-		_spiWrite      		CODE           	0200	0000	6
-		_spiInit       		CODE           	01CA	0000	30
+		_spiWrite      		CODE           	0202	0000	6
+		_spiInit       		CODE           	01CC	0000	30
 
 SPI.c estimated size: 36
 

@@ -2710,13 +2710,20 @@ void setup(void);
 
 
 
+
 void __attribute__((picinterrupt(("")))) isr(void){
+
    if(SSPIF == 1){
 
+
         spiWrite(contador);
+
         SSPIF = 0;
     }
+
    if (INTCONbits.RBIF == 1) {
+
+
 
         if (PORTBbits.RB0 == 0) {
             _delay((unsigned long)((50)*(8000000/4000.0)));
@@ -2742,7 +2749,10 @@ void __attribute__((picinterrupt(("")))) isr(void){
 
 
 void main(void) {
+
     setup();
+
+
     initIntB(0);
     initIntB(1);
 
@@ -2752,7 +2762,7 @@ void main(void) {
     while(1){
 
         PORTD = contador;
-# 107 "main_slave2.c"
+# 117 "main_slave2.c"
     }
     return;
 }
@@ -2760,6 +2770,9 @@ void main(void) {
 
 
 void setup(void){
+
+
+
     ANSEL = 0b00000000;
     ANSELH = 0;
 

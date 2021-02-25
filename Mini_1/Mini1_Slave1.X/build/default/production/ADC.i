@@ -2491,12 +2491,154 @@ extern __bank0 __bit __timeout;
 # 28 "D:/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\xc.h" 2 3
 # 13 "./ADC.h" 2
 
+# 1 "D:\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 1 3
+# 13 "D:\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 3
+typedef signed char int8_t;
+
+
+
+
+
+
+typedef signed int int16_t;
+
+
+
+
+
+
+
+typedef __int24 int24_t;
+
+
+
+
+
+
+
+typedef signed long int int32_t;
+# 52 "D:\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 3
+typedef unsigned char uint8_t;
+
+
+
+
+
+typedef unsigned int uint16_t;
+
+
+
+
+
+
+typedef __uint24 uint24_t;
+
+
+
+
+
+
+typedef unsigned long int uint32_t;
+# 88 "D:\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 3
+typedef signed char int_least8_t;
+
+
+
+
+
+
+
+typedef signed int int_least16_t;
+# 109 "D:\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 3
+typedef __int24 int_least24_t;
+# 118 "D:\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 3
+typedef signed long int int_least32_t;
+# 136 "D:\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 3
+typedef unsigned char uint_least8_t;
+
+
+
+
+
+
+typedef unsigned int uint_least16_t;
+# 154 "D:\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 3
+typedef __uint24 uint_least24_t;
+
+
+
+
+
+
+
+typedef unsigned long int uint_least32_t;
+# 181 "D:\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 3
+typedef signed char int_fast8_t;
+
+
+
+
+
+
+typedef signed int int_fast16_t;
+# 200 "D:\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 3
+typedef __int24 int_fast24_t;
+
+
+
+
+
+
+
+typedef signed long int int_fast32_t;
+# 224 "D:\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 3
+typedef unsigned char uint_fast8_t;
+
+
+
+
+
+typedef unsigned int uint_fast16_t;
+# 240 "D:\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 3
+typedef __uint24 uint_fast24_t;
+
+
+
+
+
+
+typedef unsigned long int uint_fast32_t;
+# 268 "D:\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 3
+typedef int32_t intmax_t;
+# 282 "D:\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 3
+typedef uint32_t uintmax_t;
+
+
+
+
+
+
+typedef int16_t intptr_t;
+
+
+
+
+typedef uint16_t uintptr_t;
+# 14 "./ADC.h" 2
+
+
 
 
 void initADC(void);
 
 void adc(void);
+
+void ADC_Select (uint8_t a);
 # 1 "ADC.c" 2
+
+# 1 "D:\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 1 3
+# 2 "ADC.c" 2
+
 
 
 
@@ -2515,6 +2657,30 @@ void initADC(void){
 }
 
 void adc(void) {
+
     _delay((unsigned long)((8)*(8000000/4000000.0)));
+
     ADCON0bits.GO_DONE = 1;
+}
+
+
+
+void ADC_Select (uint8_t a) {
+    switch(a){
+        case 0: ADCON0bits.CHS=0; break;
+        case 1: ADCON0bits.CHS=1; break;
+        case 2: ADCON0bits.CHS=2; break;
+        case 3: ADCON0bits.CHS=3; break;
+        case 4: ADCON0bits.CHS=4; break;
+        case 5: ADCON0bits.CHS=5; break;
+        case 6: ADCON0bits.CHS=6; break;
+        case 7: ADCON0bits.CHS=7; break;
+        case 8: ADCON0bits.CHS=8; break;
+        case 9: ADCON0bits.CHS=9; break;
+        case 10: ADCON0bits.CHS=10; break;
+        case 11: ADCON0bits.CHS=11; break;
+        case 12: ADCON0bits.CHS=12; break;
+        case 13: ADCON0bits.CHS=13; break;
+        default: ADCON0bits.CHS=0; break;
+    }
 }

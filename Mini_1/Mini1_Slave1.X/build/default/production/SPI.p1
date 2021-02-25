@@ -1,6 +1,6 @@
 Version 4.0 HI-TECH Software Intermediate Code
-"12 SPI.c
-[; ;SPI.c: 12: void spiInit(Spi_Type sType, Spi_Data_Sample sDataSample, Spi_Clock_Idle sClockIdle, Spi_Transmit_Edge sTransmitEdge)
+"13 SPI.c
+[; ;SPI.c: 13: void spiInit(Spi_Type sType, Spi_Data_Sample sDataSample, Spi_Clock_Idle sClockIdle, Spi_Transmit_Edge sTransmitEdge)
 [c E1264 32 33 34 35 36 37 .. ]
 [n E1264 . SPI_MASTER_OSC_DIV4 SPI_MASTER_OSC_DIV16 SPI_MASTER_OSC_DIV64 SPI_MASTER_TMR2 SPI_SLAVE_SS_EN SPI_SLAVE_SS_DIS  ]
 [c E1272 0 128 .. ]
@@ -293,147 +293,147 @@ Version 4.0 HI-TECH Software Intermediate Code
 "3546
 [; ;D:/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 3546: __asm("EECON2 equ 018Dh");
 [; <" EECON2 equ 018Dh ;# ">
-"12 SPI.c
-[; ;SPI.c: 12: void spiInit(Spi_Type sType, Spi_Data_Sample sDataSample, Spi_Clock_Idle sClockIdle, Spi_Transmit_Edge sTransmitEdge)
+"13 SPI.c
+[; ;SPI.c: 13: void spiInit(Spi_Type sType, Spi_Data_Sample sDataSample, Spi_Clock_Idle sClockIdle, Spi_Transmit_Edge sTransmitEdge)
 [v _spiInit `(v ~T0 @X0 1 ef4`E1264`E1272`E1276`E1280 ]
-"13
-[; ;SPI.c: 13: {
+"14
+[; ;SPI.c: 14: {
 {
 [e :U _spiInit ]
-"12
-[; ;SPI.c: 12: void spiInit(Spi_Type sType, Spi_Data_Sample sDataSample, Spi_Clock_Idle sClockIdle, Spi_Transmit_Edge sTransmitEdge)
+"13
+[; ;SPI.c: 13: void spiInit(Spi_Type sType, Spi_Data_Sample sDataSample, Spi_Clock_Idle sClockIdle, Spi_Transmit_Edge sTransmitEdge)
 [v _sType `E1264 ~T0 @X0 1 r1 ]
 [v _sDataSample `E1272 ~T0 @X0 1 r2 ]
 [v _sClockIdle `E1276 ~T0 @X0 1 r3 ]
 [v _sTransmitEdge `E1280 ~T0 @X0 1 r4 ]
-"13
-[; ;SPI.c: 13: {
-[f ]
 "14
-[; ;SPI.c: 14:     TRISC5 = 0;
-[e = _TRISC5 -> -> 0 `i `b ]
+[; ;SPI.c: 14: {
+[f ]
 "15
-[; ;SPI.c: 15:     if(sType & 0b00000100)
-[e $ ! != & -> _sType `ui -> -> 4 `i `ui -> -> 0 `i `ui 139  ]
+[; ;SPI.c: 15:     TRISC5 = 0;
+[e = _TRISC5 -> -> 0 `i `b ]
 "16
-[; ;SPI.c: 16:     {
-{
+[; ;SPI.c: 16:     if(sType & 0b00000100)
+[e $ ! != & -> _sType `ui -> -> 4 `i `ui -> -> 0 `i `ui 139  ]
 "17
-[; ;SPI.c: 17:         SSPSTAT = sTransmitEdge;
-[e = _SSPSTAT -> _sTransmitEdge `uc ]
+[; ;SPI.c: 17:     {
+{
 "18
-[; ;SPI.c: 18:         TRISC3 = 1;
-[e = _TRISC3 -> -> 1 `i `b ]
+[; ;SPI.c: 18:         SSPSTAT = sTransmitEdge;
+[e = _SSPSTAT -> _sTransmitEdge `uc ]
 "19
-[; ;SPI.c: 19:     }
+[; ;SPI.c: 19:         TRISC3 = 1;
+[e = _TRISC3 -> -> 1 `i `b ]
+"20
+[; ;SPI.c: 20:     }
 }
 [e $U 140  ]
-"20
-[; ;SPI.c: 20:     else
-[e :U 139 ]
 "21
-[; ;SPI.c: 21:     {
-{
+[; ;SPI.c: 21:     else
+[e :U 139 ]
 "22
-[; ;SPI.c: 22:         SSPSTAT = sDataSample | sTransmitEdge;
-[e = _SSPSTAT -> | -> _sDataSample `ui -> _sTransmitEdge `ui `uc ]
+[; ;SPI.c: 22:     {
+{
 "23
-[; ;SPI.c: 23:         TRISC3 = 0;
-[e = _TRISC3 -> -> 0 `i `b ]
+[; ;SPI.c: 23:         SSPSTAT = sDataSample | sTransmitEdge;
+[e = _SSPSTAT -> | -> _sDataSample `ui -> _sTransmitEdge `ui `uc ]
 "24
-[; ;SPI.c: 24:     }
+[; ;SPI.c: 24:         TRISC3 = 0;
+[e = _TRISC3 -> -> 0 `i `b ]
+"25
+[; ;SPI.c: 25:     }
 }
 [e :U 140 ]
-"26
-[; ;SPI.c: 26:     SSPCON = sType | sClockIdle;
-[e = _SSPCON -> | -> _sType `ui -> _sClockIdle `ui `uc ]
 "27
-[; ;SPI.c: 27: }
+[; ;SPI.c: 27:     SSPCON = sType | sClockIdle;
+[e = _SSPCON -> | -> _sType `ui -> _sClockIdle `ui `uc ]
+"28
+[; ;SPI.c: 28: }
 [e :UE 138 ]
 }
-"29
-[; ;SPI.c: 29: static void spiReceiveWait()
+"31
+[; ;SPI.c: 31: static void spiReceiveWait()
 [v _spiReceiveWait `(v ~T0 @X0 1 sf ]
-"30
-[; ;SPI.c: 30: {
+"32
+[; ;SPI.c: 32: {
 {
 [e :U _spiReceiveWait ]
 [f ]
-"31
-[; ;SPI.c: 31:     while ( !SSPSTATbits.BF );
+"33
+[; ;SPI.c: 33:     while ( !SSPSTATbits.BF );
 [e $U 142  ]
 [e :U 143 ]
 [e :U 142 ]
 [e $ ! != -> . . _SSPSTATbits 0 0 `i -> 0 `i 143  ]
 [e :U 144 ]
-"32
-[; ;SPI.c: 32: }
+"34
+[; ;SPI.c: 34: }
 [e :UE 141 ]
 }
-"34
-[; ;SPI.c: 34: void spiWrite(char dat)
+"36
+[; ;SPI.c: 36: void spiWrite(char dat)
 [v _spiWrite `(v ~T0 @X0 1 ef1`uc ]
-"35
-[; ;SPI.c: 35: {
+"37
+[; ;SPI.c: 37: {
 {
 [e :U _spiWrite ]
-"34
-[; ;SPI.c: 34: void spiWrite(char dat)
-[v _dat `uc ~T0 @X0 1 r1 ]
-"35
-[; ;SPI.c: 35: {
-[f ]
 "36
-[; ;SPI.c: 36:     SSPBUF = dat;
-[e = _SSPBUF -> _dat `uc ]
+[; ;SPI.c: 36: void spiWrite(char dat)
+[v _dat `uc ~T0 @X0 1 r1 ]
 "37
-[; ;SPI.c: 37: }
+[; ;SPI.c: 37: {
+[f ]
+"38
+[; ;SPI.c: 38:     SSPBUF = dat;
+[e = _SSPBUF -> _dat `uc ]
+"39
+[; ;SPI.c: 39: }
 [e :UE 145 ]
 }
-"39
-[; ;SPI.c: 39: unsigned spiDataReady()
+"41
+[; ;SPI.c: 41: unsigned spiDataReady()
 [v _spiDataReady `(ui ~T0 @X0 1 ef ]
-"40
-[; ;SPI.c: 40: {
+"42
+[; ;SPI.c: 42: {
 {
 [e :U _spiDataReady ]
 [f ]
-"41
-[; ;SPI.c: 41:     if(SSPSTATbits.BF)
+"43
+[; ;SPI.c: 43:     if(SSPSTATbits.BF)
 [e $ ! != -> . . _SSPSTATbits 0 0 `i -> 0 `i 147  ]
-"42
-[; ;SPI.c: 42:         return 1;
+"44
+[; ;SPI.c: 44:         return 1;
 [e ) -> -> 1 `i `ui ]
 [e $UE 146  ]
 [e $U 148  ]
-"43
-[; ;SPI.c: 43:     else
+"45
+[; ;SPI.c: 45:     else
 [e :U 147 ]
-"44
-[; ;SPI.c: 44:         return 0;
+"46
+[; ;SPI.c: 46:         return 0;
 [e ) -> -> 0 `i `ui ]
 [e $UE 146  ]
 [e :U 148 ]
-"45
-[; ;SPI.c: 45: }
+"47
+[; ;SPI.c: 47: }
 [e :UE 146 ]
 }
-"47
-[; ;SPI.c: 47: char spiRead()
+"49
+[; ;SPI.c: 49: char spiRead()
 [v _spiRead `(uc ~T0 @X0 1 ef ]
-"48
-[; ;SPI.c: 48: {
+"50
+[; ;SPI.c: 50: {
 {
 [e :U _spiRead ]
 [f ]
-"49
-[; ;SPI.c: 49:     spiReceiveWait();
+"51
+[; ;SPI.c: 51:     spiReceiveWait();
 [e ( _spiReceiveWait ..  ]
-"50
-[; ;SPI.c: 50:     return(SSPBUF);
+"52
+[; ;SPI.c: 52:     return(SSPBUF);
 [e ) -> _SSPBUF `uc ]
 [e $UE 149  ]
-"51
-[; ;SPI.c: 51: }
+"53
+[; ;SPI.c: 53: }
 [e :UE 149 ]
 }

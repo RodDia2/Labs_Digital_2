@@ -101,8 +101,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "1433
 [; ;D:/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 1433: extern volatile TRISAbits_t TRISAbits __attribute__((address(0x085)));
 [v _TRISAbits `VS52 ~T0 @X0 0 e@133 ]
-"131 main_slave2.c
-[; ;main_slave2.c: 131:     spiInit(SPI_SLAVE_SS_EN, SPI_DATA_SAMPLE_MIDDLE, SPI_CLOCK_IDLE_LOW, SPI_IDLE_2_ACTIVE);
+"144 main_slave2.c
+[; ;main_slave2.c: 144:     spiInit(SPI_SLAVE_SS_EN, SPI_DATA_SAMPLE_MIDDLE, SPI_CLOCK_IDLE_LOW, SPI_IDLE_2_ACTIVE);
 [c E1292 32 33 34 35 36 37 .. ]
 [n E1292 . SPI_MASTER_OSC_DIV4 SPI_MASTER_OSC_DIV16 SPI_MASTER_OSC_DIV64 SPI_MASTER_TMR2 SPI_SLAVE_SS_EN SPI_SLAVE_SS_DIS  ]
 [c E1300 0 128 .. ]
@@ -379,173 +379,173 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 0 `i `uc
 ]
 [v $root$_isr `(v ~T0 @X0 0 e ]
-"55
-[; ;main_slave2.c: 55: void __attribute__((picinterrupt(("")))) isr(void){
+"56
+[; ;main_slave2.c: 56: void __attribute__((picinterrupt(("")))) isr(void){
 [v _isr `(v ~T1 @X0 1 ef ]
 {
 [e :U _isr ]
 [f ]
-"56
-[; ;main_slave2.c: 56:    if(SSPIF == 1){
+"58
+[; ;main_slave2.c: 58:    if(SSPIF == 1){
 [e $ ! == -> _SSPIF `i -> 1 `i 139  ]
 {
-"58
-[; ;main_slave2.c: 58:         spiWrite(contador);
+"61
+[; ;main_slave2.c: 61:         spiWrite(contador);
 [e ( _spiWrite (1 -> _contador `uc ]
-"59
-[; ;main_slave2.c: 59:         SSPIF = 0;
+"63
+[; ;main_slave2.c: 63:         SSPIF = 0;
 [e = _SSPIF -> -> 0 `i `b ]
-"60
-[; ;main_slave2.c: 60:     }
+"64
+[; ;main_slave2.c: 64:     }
 }
 [e :U 139 ]
-"61
-[; ;main_slave2.c: 61:    if (INTCONbits.RBIF == 1) {
+"66
+[; ;main_slave2.c: 66:    if (INTCONbits.RBIF == 1) {
 [e $ ! == -> . . _INTCONbits 0 0 `i -> 1 `i 140  ]
 {
-"63
-[; ;main_slave2.c: 63:         if (PORTBbits.RB0 == 0) {
+"70
+[; ;main_slave2.c: 70:         if (PORTBbits.RB0 == 0) {
 [e $ ! == -> . . _PORTBbits 0 0 `i -> 0 `i 141  ]
 {
-"64
-[; ;main_slave2.c: 64:             _delay((unsigned long)((50)*(8000000/4000.0)));
+"71
+[; ;main_slave2.c: 71:             _delay((unsigned long)((50)*(8000000/4000.0)));
 [e ( __delay (1 -> * -> -> 50 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-"65
-[; ;main_slave2.c: 65:             if (PORTBbits.RB0 == 1) {
+"72
+[; ;main_slave2.c: 72:             if (PORTBbits.RB0 == 1) {
 [e $ ! == -> . . _PORTBbits 0 0 `i -> 1 `i 142  ]
 {
-"67
-[; ;main_slave2.c: 67:                 contador ++;
+"74
+[; ;main_slave2.c: 74:                 contador ++;
 [e ++ _contador -> -> 1 `i `uc ]
-"68
-[; ;main_slave2.c: 68:                 INTCONbits.RBIF = 0;
+"75
+[; ;main_slave2.c: 75:                 INTCONbits.RBIF = 0;
 [e = . . _INTCONbits 0 0 -> -> 0 `i `uc ]
-"69
-[; ;main_slave2.c: 69:             }
+"76
+[; ;main_slave2.c: 76:             }
 }
 [e :U 142 ]
-"70
-[; ;main_slave2.c: 70:         }
+"77
+[; ;main_slave2.c: 77:         }
 }
 [e :U 141 ]
-"72
-[; ;main_slave2.c: 72:         if (PORTBbits.RB1 == 0) {
+"79
+[; ;main_slave2.c: 79:         if (PORTBbits.RB1 == 0) {
 [e $ ! == -> . . _PORTBbits 0 1 `i -> 0 `i 143  ]
 {
-"73
-[; ;main_slave2.c: 73:             _delay((unsigned long)((50)*(8000000/4000.0)));
+"80
+[; ;main_slave2.c: 80:             _delay((unsigned long)((50)*(8000000/4000.0)));
 [e ( __delay (1 -> * -> -> 50 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-"74
-[; ;main_slave2.c: 74:             if (PORTBbits.RB1 == 1) {
+"81
+[; ;main_slave2.c: 81:             if (PORTBbits.RB1 == 1) {
 [e $ ! == -> . . _PORTBbits 0 1 `i -> 1 `i 144  ]
 {
-"76
-[; ;main_slave2.c: 76:                 contador --;
+"83
+[; ;main_slave2.c: 83:                 contador --;
 [e -- _contador -> -> 1 `i `uc ]
-"77
-[; ;main_slave2.c: 77:                 INTCONbits.RBIF = 0;
+"84
+[; ;main_slave2.c: 84:                 INTCONbits.RBIF = 0;
 [e = . . _INTCONbits 0 0 -> -> 0 `i `uc ]
-"78
-[; ;main_slave2.c: 78:             }
+"85
+[; ;main_slave2.c: 85:             }
 }
 [e :U 144 ]
-"79
-[; ;main_slave2.c: 79:         }
+"86
+[; ;main_slave2.c: 86:         }
 }
 [e :U 143 ]
-"80
-[; ;main_slave2.c: 80:     }
+"87
+[; ;main_slave2.c: 87:     }
 }
 [e :U 140 ]
-"82
-[; ;main_slave2.c: 82: }
+"89
+[; ;main_slave2.c: 89: }
 [e :UE 138 ]
 }
 [v $root$_main `(v ~T0 @X0 0 e ]
-"86
-[; ;main_slave2.c: 86: void main(void) {
+"93
+[; ;main_slave2.c: 93: void main(void) {
 [v _main `(v ~T0 @X0 1 ef ]
 {
 [e :U _main ]
 [f ]
-"87
-[; ;main_slave2.c: 87:     setup();
+"95
+[; ;main_slave2.c: 95:     setup();
 [e ( _setup ..  ]
-"88
-[; ;main_slave2.c: 88:     initIntB(0);
+"98
+[; ;main_slave2.c: 98:     initIntB(0);
 [e ( _initIntB (1 -> -> 0 `i `uc ]
-"89
-[; ;main_slave2.c: 89:     initIntB(1);
+"99
+[; ;main_slave2.c: 99:     initIntB(1);
 [e ( _initIntB (1 -> -> 1 `i `uc ]
-"94
-[; ;main_slave2.c: 94:     while(1){
+"104
+[; ;main_slave2.c: 104:     while(1){
 [e :U 147 ]
 {
-"96
-[; ;main_slave2.c: 96:         PORTD = contador;
+"106
+[; ;main_slave2.c: 106:         PORTD = contador;
 [e = _PORTD _contador ]
-"107
-[; ;main_slave2.c: 107:     }
+"117
+[; ;main_slave2.c: 117:     }
 }
 [e :U 146 ]
 [e $U 147  ]
 [e :U 148 ]
-"108
-[; ;main_slave2.c: 108:     return;
+"118
+[; ;main_slave2.c: 118:     return;
 [e $UE 145  ]
-"109
-[; ;main_slave2.c: 109: }
+"119
+[; ;main_slave2.c: 119: }
 [e :UE 145 ]
 }
-"113
-[; ;main_slave2.c: 113: void setup(void){
+"123
+[; ;main_slave2.c: 123: void setup(void){
 [v _setup `(v ~T0 @X0 1 ef ]
 {
 [e :U _setup ]
 [f ]
-"114
-[; ;main_slave2.c: 114:     ANSEL = 0b00000000;
-[e = _ANSEL -> -> 0 `i `uc ]
-"115
-[; ;main_slave2.c: 115:     ANSELH = 0;
-[e = _ANSELH -> -> 0 `i `uc ]
-"117
-[; ;main_slave2.c: 117:     TRISA = 0b00000000;
-[e = _TRISA -> -> 0 `i `uc ]
-"118
-[; ;main_slave2.c: 118:     TRISB = 0b00000011;
-[e = _TRISB -> -> 3 `i `uc ]
-"119
-[; ;main_slave2.c: 119:     TRISD = 0;
-[e = _TRISD -> -> 0 `i `uc ]
-"121
-[; ;main_slave2.c: 121:     PORTA = 0;
-[e = _PORTA -> -> 0 `i `uc ]
-"122
-[; ;main_slave2.c: 122:     PORTB = 0;
-[e = _PORTB -> -> 0 `i `uc ]
-"123
-[; ;main_slave2.c: 123:     PORTD = 0;
-[e = _PORTD -> -> 0 `i `uc ]
-"125
-[; ;main_slave2.c: 125:     INTCONbits.GIE = 1;
-[e = . . _INTCONbits 0 7 -> -> 1 `i `uc ]
-"126
-[; ;main_slave2.c: 126:     INTCONbits.PEIE = 1;
-[e = . . _INTCONbits 0 6 -> -> 1 `i `uc ]
 "127
-[; ;main_slave2.c: 127:     PIR1bits.SSPIF = 0;
-[e = . . _PIR1bits 0 3 -> -> 0 `i `uc ]
+[; ;main_slave2.c: 127:     ANSEL = 0b00000000;
+[e = _ANSEL -> -> 0 `i `uc ]
 "128
-[; ;main_slave2.c: 128:     PIE1bits.SSPIE = 1;
-[e = . . _PIE1bits 0 3 -> -> 1 `i `uc ]
-"129
-[; ;main_slave2.c: 129:     TRISAbits.TRISA5 = 1;
-[e = . . _TRISAbits 0 5 -> -> 1 `i `uc ]
+[; ;main_slave2.c: 128:     ANSELH = 0;
+[e = _ANSELH -> -> 0 `i `uc ]
+"130
+[; ;main_slave2.c: 130:     TRISA = 0b00000000;
+[e = _TRISA -> -> 0 `i `uc ]
 "131
-[; ;main_slave2.c: 131:     spiInit(SPI_SLAVE_SS_EN, SPI_DATA_SAMPLE_MIDDLE, SPI_CLOCK_IDLE_LOW, SPI_IDLE_2_ACTIVE);
+[; ;main_slave2.c: 131:     TRISB = 0b00000011;
+[e = _TRISB -> -> 3 `i `uc ]
+"132
+[; ;main_slave2.c: 132:     TRISD = 0;
+[e = _TRISD -> -> 0 `i `uc ]
+"134
+[; ;main_slave2.c: 134:     PORTA = 0;
+[e = _PORTA -> -> 0 `i `uc ]
+"135
+[; ;main_slave2.c: 135:     PORTB = 0;
+[e = _PORTB -> -> 0 `i `uc ]
+"136
+[; ;main_slave2.c: 136:     PORTD = 0;
+[e = _PORTD -> -> 0 `i `uc ]
+"138
+[; ;main_slave2.c: 138:     INTCONbits.GIE = 1;
+[e = . . _INTCONbits 0 7 -> -> 1 `i `uc ]
+"139
+[; ;main_slave2.c: 139:     INTCONbits.PEIE = 1;
+[e = . . _INTCONbits 0 6 -> -> 1 `i `uc ]
+"140
+[; ;main_slave2.c: 140:     PIR1bits.SSPIF = 0;
+[e = . . _PIR1bits 0 3 -> -> 0 `i `uc ]
+"141
+[; ;main_slave2.c: 141:     PIE1bits.SSPIE = 1;
+[e = . . _PIE1bits 0 3 -> -> 1 `i `uc ]
+"142
+[; ;main_slave2.c: 142:     TRISAbits.TRISA5 = 1;
+[e = . . _TRISAbits 0 5 -> -> 1 `i `uc ]
+"144
+[; ;main_slave2.c: 144:     spiInit(SPI_SLAVE_SS_EN, SPI_DATA_SAMPLE_MIDDLE, SPI_CLOCK_IDLE_LOW, SPI_IDLE_2_ACTIVE);
 [e ( _spiInit (4 , , , . `E1292 4 . `E1300 0 . `E1304 1 . `E1308 0 ]
-"133
-[; ;main_slave2.c: 133: }
+"146
+[; ;main_slave2.c: 146: }
 [e :UE 149 ]
 }

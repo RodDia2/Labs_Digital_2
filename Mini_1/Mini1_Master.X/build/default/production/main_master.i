@@ -2822,11 +2822,14 @@ uint8_t USART_Read(void);
 
 
 
+
+
 uint8_t TEMP = 5;
 uint8_t ADC = 0;
 uint8_t CONT = 0;
 char pantalla[20];
 char recibido = 0;
+float V1 = 0.0;
 
 
 
@@ -2837,7 +2840,9 @@ void setup(void);
 
 
 void main(void) {
+
     setup();
+
     LCD_Init();
     LCD_clear();
 
@@ -2845,18 +2850,19 @@ void main(void) {
 
     Init_Transmit();
     Init_Receive();
-
-
-
+# 84 "main_master.c"
     while(1){
 
-        USART_Write_String("ADC CONT TEMP \n");
+
+        USART_Write_String("ADC  CONT  TEMP \n");
 
         USART_Write(13);
         USART_Write(10);
 
 
-        sprintf(pantalla, "%2d  %2d  %2d", ADC,CONT,TEMP);
+
+        V1 = ADC*0.0196;
+        sprintf(pantalla, "%1.2fV %3d  %3dC", V1,CONT,TEMP);
 
         USART_Write_String(pantalla);
 
@@ -2870,7 +2876,12 @@ void main(void) {
         LCD_Set_Cursor(2,1);
         LCD_Write_String(pantalla);
 
+
         _delay((unsigned long)((500)*(8000000/4000.0)));
+
+
+
+
 
 
        PORTCbits.RC2 = 0;
@@ -2916,6 +2927,9 @@ void main(void) {
 
 
 void setup(void){
+
+
+
     ANSEL = 0;
     ANSELH = 0;
 
@@ -2925,11 +2939,18 @@ void setup(void){
     TRISC7 = 1;
     TRISB = 0;
     TRISD = 0;
+    TRISE = 0;
+
     PORTB = 0;
     PORTD = 0;
+    PORTE = 0;
+
+
     PORTCbits.RC2 = 1;
     PORTCbits.RC1 = 1;
     PORTCbits.RC0 = 1;
+
+
     spiInit(SPI_MASTER_OSC_DIV4, SPI_DATA_SAMPLE_MIDDLE, SPI_CLOCK_IDLE_LOW, SPI_IDLE_2_ACTIVE);
 
 }

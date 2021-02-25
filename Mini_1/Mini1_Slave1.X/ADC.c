@@ -18,7 +18,9 @@ void initADC(void){
 }
 
 void adc(void) {
+    // se espera un delay recomendado antes de comenzar la conversión 
     __delay_us(8);
+    // al setear el bit de go, inicia la conversión
     ADCON0bits.GO_DONE = 1;
 }
 

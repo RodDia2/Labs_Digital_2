@@ -11,22 +11,22 @@
 # All addresses and the length are given in unqualified hexadecimal
 # in delta units.  Any other numeric values are decimal.
 %PSECTS
-$C:\Users\jrdia\AppData\Local\Temp\srms.o
+$C:\Users\jrdia\AppData\Local\Temp\s14s0.o
 reset_vec CODE 0 0 0 3 2
 end_init CODE 0 E E 3 2
 config CONFIG 4 2007 2007 2 2
 $dist/default/production\Mini1_Slave3.X.production.o
 cinit CODE 0 11 11 6 2
-text1 CODE 0 180 180 25 2
-text2 CODE 0 1CA 1CA 1E 2
-text3 CODE 0 1E8 1E8 D 2
-text4 CODE 0 1F5 1F5 B 2
+text1 CODE 0 182 182 25 2
+text2 CODE 0 1CC 1CC 1E 2
+text3 CODE 0 1EA 1EA D 2
+text4 CODE 0 1F7 1F7 B 2
 text5 CODE 0 17 17 80 2
-text6 CODE 0 144 144 3C 2
-text7 CODE 0 200 200 6 2
-text8 CODE 0 1A5 1A5 25 2
+text6 CODE 0 146 146 3C 2
+text7 CODE 0 202 202 6 2
+text8 CODE 0 1A7 1A7 25 2
 text9 CODE 0 97 97 69 2
-maintext CODE 0 100 100 44 2
+maintext CODE 0 100 100 46 2
 cstackCOMMON COMMON 1 70 70 B 1
 cstackBANK0 BANK0 1 20 20 D 1
 intentry CODE 0 4 4 A 2
@@ -47,13 +47,13 @@ BANK1 A0-EF 1
 BANK2 110-16F 1
 BANK3 190-1EF 1
 CONST 3-3 2
-CONST 206-1FFF 2
+CONST 208-1FFF 2
 ENTRY 3-3 2
-ENTRY 206-1FFF 2
+ENTRY 208-1FFF 2
 IDLOC 2000-2003 2
 STACK 110-16F 1
 CODE 3-3 2
-CODE 206-1FFF 2
+CODE 208-1FFF 2
 SFR0 0-1F 1
 SFR1 80-9F 1
 SFR2 100-10F 1
@@ -61,9 +61,9 @@ SFR3 180-18F 1
 COMMON 7D-7D 1
 EEDATA 2100-21FF 2
 STRCODE 3-3 2
-STRCODE 206-1FFF 2
+STRCODE 208-1FFF 2
 STRING 3-3 2
-STRING 206-1FFF 2
+STRING 208-1FFF 2
 # %LINETAB Section
 # This section enumerates the file/line to address mappings.
 # The beginning of the section is indicated by %LINETAB.
@@ -78,14 +78,14 @@ STRING 206-1FFF 2
 # All other numeric values are in decimal.
 %LINETAB
 $dist/default/production\Mini1_Slave3.X.production.o
-11 cinit CODE >801:C:\Users\jrdia\AppData\Local\Temp\srms.s
-11 cinit CODE >804:C:\Users\jrdia\AppData\Local\Temp\srms.s
-11 cinit CODE >818:C:\Users\jrdia\AppData\Local\Temp\srms.s
-12 cinit CODE >819:C:\Users\jrdia\AppData\Local\Temp\srms.s
-13 cinit CODE >825:C:\Users\jrdia\AppData\Local\Temp\srms.s
-13 cinit CODE >827:C:\Users\jrdia\AppData\Local\Temp\srms.s
-14 cinit CODE >828:C:\Users\jrdia\AppData\Local\Temp\srms.s
-4 intentry CODE >56:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\main_slave3.c
+11 cinit CODE >801:C:\Users\jrdia\AppData\Local\Temp\s14s0.s
+11 cinit CODE >804:C:\Users\jrdia\AppData\Local\Temp\s14s0.s
+11 cinit CODE >818:C:\Users\jrdia\AppData\Local\Temp\s14s0.s
+12 cinit CODE >819:C:\Users\jrdia\AppData\Local\Temp\s14s0.s
+13 cinit CODE >825:C:\Users\jrdia\AppData\Local\Temp\s14s0.s
+13 cinit CODE >827:C:\Users\jrdia\AppData\Local\Temp\s14s0.s
+14 cinit CODE >828:C:\Users\jrdia\AppData\Local\Temp\s14s0.s
+4 intentry CODE >57:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\main_slave3.c
 97 text9 CODE >5:D:\Microchip\xc8\v2.31\pic\sources\c90\common\awdiv.c
 97 text9 CODE >13:D:\Microchip\xc8\v2.31\pic\sources\c90\common\awdiv.c
 9A text9 CODE >14:D:\Microchip\xc8\v2.31\pic\sources\c90\common\awdiv.c
@@ -111,26 +111,26 @@ F1 text9 CODE >38:D:\Microchip\xc8\v2.31\pic\sources\c90\common\awdiv.c
 F6 text9 CODE >39:D:\Microchip\xc8\v2.31\pic\sources\c90\common\awdiv.c
 FB text9 CODE >40:D:\Microchip\xc8\v2.31\pic\sources\c90\common\awdiv.c
 FF text9 CODE >41:D:\Microchip\xc8\v2.31\pic\sources\c90\common\awdiv.c
-1A5 text8 CODE >15:D:\Microchip\xc8\v2.31\pic\sources\c90\common\Umul16.c
-1A5 text8 CODE >43:D:\Microchip\xc8\v2.31\pic\sources\c90\common\Umul16.c
-1A7 text8 CODE >45:D:\Microchip\xc8\v2.31\pic\sources\c90\common\Umul16.c
-1AB text8 CODE >46:D:\Microchip\xc8\v2.31\pic\sources\c90\common\Umul16.c
-1B1 text8 CODE >47:D:\Microchip\xc8\v2.31\pic\sources\c90\common\Umul16.c
-1B8 text8 CODE >48:D:\Microchip\xc8\v2.31\pic\sources\c90\common\Umul16.c
-1BF text8 CODE >49:D:\Microchip\xc8\v2.31\pic\sources\c90\common\Umul16.c
-1C5 text8 CODE >52:D:\Microchip\xc8\v2.31\pic\sources\c90\common\Umul16.c
-1C9 text8 CODE >53:D:\Microchip\xc8\v2.31\pic\sources\c90\common\Umul16.c
-200 text7 CODE >34:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\SPI.c
-201 text7 CODE >36:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\SPI.c
-205 text7 CODE >37:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\SPI.c
-144 text6 CODE >56:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\main_slave3.c
-144 text6 CODE >57:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\main_slave3.c
-148 text6 CODE >59:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\main_slave3.c
-14E text6 CODE >60:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\main_slave3.c
-151 text6 CODE >62:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\main_slave3.c
-155 text6 CODE >64:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\main_slave3.c
-178 text6 CODE >66:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\main_slave3.c
-179 text6 CODE >71:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\main_slave3.c
+1A7 text8 CODE >15:D:\Microchip\xc8\v2.31\pic\sources\c90\common\Umul16.c
+1A7 text8 CODE >43:D:\Microchip\xc8\v2.31\pic\sources\c90\common\Umul16.c
+1A9 text8 CODE >45:D:\Microchip\xc8\v2.31\pic\sources\c90\common\Umul16.c
+1AD text8 CODE >46:D:\Microchip\xc8\v2.31\pic\sources\c90\common\Umul16.c
+1B3 text8 CODE >47:D:\Microchip\xc8\v2.31\pic\sources\c90\common\Umul16.c
+1BA text8 CODE >48:D:\Microchip\xc8\v2.31\pic\sources\c90\common\Umul16.c
+1C1 text8 CODE >49:D:\Microchip\xc8\v2.31\pic\sources\c90\common\Umul16.c
+1C7 text8 CODE >52:D:\Microchip\xc8\v2.31\pic\sources\c90\common\Umul16.c
+1CB text8 CODE >53:D:\Microchip\xc8\v2.31\pic\sources\c90\common\Umul16.c
+202 text7 CODE >34:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\SPI.c
+203 text7 CODE >36:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\SPI.c
+207 text7 CODE >37:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\SPI.c
+146 text6 CODE >57:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\main_slave3.c
+146 text6 CODE >59:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\main_slave3.c
+14A text6 CODE >62:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\main_slave3.c
+150 text6 CODE >64:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\main_slave3.c
+153 text6 CODE >67:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\main_slave3.c
+157 text6 CODE >71:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\main_slave3.c
+17A text6 CODE >73:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\main_slave3.c
+17B text6 CODE >78:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\main_slave3.c
 17 text5 CODE >27:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\ADC.c
 1A text5 CODE >28:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\ADC.c
 1B text5 CODE >29:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\ADC.c
@@ -150,66 +150,65 @@ FF text9 CODE >41:D:\Microchip\xc8\v2.31\pic\sources\c90\common\awdiv.c
 5F text5 CODE >43:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\ADC.c
 62 text5 CODE >44:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\ADC.c
 96 text5 CODE >45:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\ADC.c
-1F5 text4 CODE >20:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\ADC.c
-1F5 text4 CODE >21:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\ADC.c
-1FC text4 CODE >22:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\ADC.c
-1FF text4 CODE >23:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\ADC.c
-1E8 text3 CODE >7:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\ADC.c
-1E8 text3 CODE >13:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\ADC.c
-1E9 text3 CODE >14:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\ADC.c
-1EC text3 CODE >15:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\ADC.c
-1EF text3 CODE >16:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\ADC.c
-1F1 text3 CODE >17:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\ADC.c
-1F4 text3 CODE >18:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\ADC.c
-1CA text2 CODE >12:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\SPI.c
-1CD text2 CODE >14:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\SPI.c
-1D0 text2 CODE >15:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\SPI.c
-1D6 text2 CODE >17:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\SPI.c
-1DA text2 CODE >18:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\SPI.c
-1DB text2 CODE >19:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\SPI.c
-1DC text2 CODE >22:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\SPI.c
-1E1 text2 CODE >23:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\SPI.c
-1E2 text2 CODE >24:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\SPI.c
-1E2 text2 CODE >26:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\SPI.c
-1E7 text2 CODE >27:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\SPI.c
-180 text1 CODE >107:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\main_slave3.c
-180 text1 CODE >108:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\main_slave3.c
-184 text1 CODE >109:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\main_slave3.c
-185 text1 CODE >111:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\main_slave3.c
-189 text1 CODE >112:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\main_slave3.c
-18A text1 CODE >113:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\main_slave3.c
-18B text1 CODE >114:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\main_slave3.c
-18C text1 CODE >116:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\main_slave3.c
-18F text1 CODE >117:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\main_slave3.c
-190 text1 CODE >118:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\main_slave3.c
-191 text1 CODE >119:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\main_slave3.c
-192 text1 CODE >123:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\main_slave3.c
-193 text1 CODE >124:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\main_slave3.c
-194 text1 CODE >125:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\main_slave3.c
-195 text1 CODE >126:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\main_slave3.c
-198 text1 CODE >127:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\main_slave3.c
-199 text1 CODE >129:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\main_slave3.c
-1A4 text1 CODE >131:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\main_slave3.c
-100 maintext CODE >75:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\main_slave3.c
-100 maintext CODE >76:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\main_slave3.c
-105 maintext CODE >77:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\main_slave3.c
-10A maintext CODE >78:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\main_slave3.c
-110 maintext CODE >79:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\main_slave3.c
-113 maintext CODE >84:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\main_slave3.c
-118 maintext CODE >85:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\main_slave3.c
-11C maintext CODE >86:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\main_slave3.c
-122 maintext CODE >87:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\main_slave3.c
-123 maintext CODE >88:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\main_slave3.c
-124 maintext CODE >89:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\main_slave3.c
-125 maintext CODE >91:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\main_slave3.c
-132 maintext CODE >92:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\main_slave3.c
-133 maintext CODE >93:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\main_slave3.c
-134 maintext CODE >94:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\main_slave3.c
-135 maintext CODE >95:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\main_slave3.c
-13C maintext CODE >96:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\main_slave3.c
-13D maintext CODE >97:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\main_slave3.c
-13E maintext CODE >98:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\main_slave3.c
-140 maintext CODE >99:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\main_slave3.c
+1F7 text4 CODE >20:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\ADC.c
+1F7 text4 CODE >21:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\ADC.c
+1FE text4 CODE >22:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\ADC.c
+201 text4 CODE >23:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\ADC.c
+1EA text3 CODE >7:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\ADC.c
+1EA text3 CODE >13:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\ADC.c
+1EB text3 CODE >14:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\ADC.c
+1EE text3 CODE >15:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\ADC.c
+1F1 text3 CODE >16:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\ADC.c
+1F3 text3 CODE >17:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\ADC.c
+1F6 text3 CODE >18:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\ADC.c
+1CC text2 CODE >12:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\SPI.c
+1CF text2 CODE >14:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\SPI.c
+1D2 text2 CODE >15:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\SPI.c
+1D8 text2 CODE >17:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\SPI.c
+1DC text2 CODE >18:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\SPI.c
+1DD text2 CODE >19:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\SPI.c
+1DE text2 CODE >22:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\SPI.c
+1E3 text2 CODE >23:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\SPI.c
+1E4 text2 CODE >24:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\SPI.c
+1E4 text2 CODE >26:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\SPI.c
+1E9 text2 CODE >27:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\SPI.c
+182 text1 CODE >126:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\main_slave3.c
+182 text1 CODE >130:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\main_slave3.c
+186 text1 CODE >131:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\main_slave3.c
+187 text1 CODE >133:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\main_slave3.c
+18B text1 CODE >134:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\main_slave3.c
+18C text1 CODE >135:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\main_slave3.c
+18D text1 CODE >136:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\main_slave3.c
+18E text1 CODE >138:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\main_slave3.c
+191 text1 CODE >139:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\main_slave3.c
+192 text1 CODE >140:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\main_slave3.c
+193 text1 CODE >141:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\main_slave3.c
+194 text1 CODE >145:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\main_slave3.c
+195 text1 CODE >146:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\main_slave3.c
+196 text1 CODE >147:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\main_slave3.c
+197 text1 CODE >148:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\main_slave3.c
+19A text1 CODE >149:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\main_slave3.c
+19B text1 CODE >151:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\main_slave3.c
+1A6 text1 CODE >153:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\main_slave3.c
+100 maintext CODE >82:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\main_slave3.c
+100 maintext CODE >84:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\main_slave3.c
+105 maintext CODE >86:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\main_slave3.c
+10A maintext CODE >88:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\main_slave3.c
+110 maintext CODE >91:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\main_slave3.c
+113 maintext CODE >98:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\main_slave3.c
+118 maintext CODE >105:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\main_slave3.c
+11E maintext CODE >106:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\main_slave3.c
+121 maintext CODE >107:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\main_slave3.c
+122 maintext CODE >108:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\main_slave3.c
+123 maintext CODE >110:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\main_slave3.c
+130 maintext CODE >111:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\main_slave3.c
+133 maintext CODE >112:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\main_slave3.c
+134 maintext CODE >113:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\main_slave3.c
+135 maintext CODE >114:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\main_slave3.c
+13C maintext CODE >115:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\main_slave3.c
+13F maintext CODE >116:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\main_slave3.c
+140 maintext CODE >117:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\main_slave3.c
+142 maintext CODE >118:D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_1\Mini1_Slave3.X\main_slave3.c
 # %SYMTAB Section
 # An enumeration of all symbols in the program.
 # The beginning of the section is indicated by %SYMTAB.
@@ -225,7 +224,7 @@ FF text9 CODE >41:D:\Microchip\xc8\v2.31\pic\sources\c90\common\awdiv.c
 ___latbits 2 0 ABS 0 - dist/default/production\Mini1_Slave3.X.production.o
 ___awdiv@counter 20 0 BANK0 1 cstackBANK0 dist/default/production\Mini1_Slave3.X.production.o
 __size_of_ADC_Select 0 0 ABS 0 - dist/default/production\Mini1_Slave3.X.production.o
-__Hspace_0 206 0 ABS 0 - -
+__Hspace_0 208 0 ABS 0 - -
 __Hspace_1 7D 0 ABS 0 - -
 __Hspace_2 0 0 ABS 0 - -
 __Hspace_3 0 0 ABS 0 - -
@@ -233,21 +232,21 @@ __Hspace_4 4010 0 ABS 0 - -
 spiInit@sTransmitEdge 2B 0 BANK0 1 cstackBANK0 dist/default/production\Mini1_Slave3.X.production.o
 __Heeprom_data 0 0 EEDATA 3 eeprom_data -
 __Hstrings 0 0 ABS 0 strings -
-___sp 0 0 STACK 2 stack C:\Users\jrdia\AppData\Local\Temp\srms.o
+___sp 0 0 STACK 2 stack C:\Users\jrdia\AppData\Local\Temp\s14s0.o
 _main 200 0 CODE 0 maintext dist/default/production\Mini1_Slave3.X.production.o
 btemp 7E 0 ABS 0 - dist/default/production\Mini1_Slave3.X.production.o
-start 1C 0 CODE 0 init C:\Users\jrdia\AppData\Local\Temp\srms.o
+start 1C 0 CODE 0 init C:\Users\jrdia\AppData\Local\Temp\s14s0.o
 __size_of___awdiv 0 0 ABS 0 - dist/default/production\Mini1_Slave3.X.production.o
 __size_of_main 0 0 ABS 0 - dist/default/production\Mini1_Slave3.X.production.o
 __HbssCOMMON 0 0 ABS 0 bssCOMMON -
 ?___wmul 70 0 COMMON 1 cstackCOMMON dist/default/production\Mini1_Slave3.X.production.o
 __Hpowerup 0 0 CODE 0 powerup -
-intlevel0 0 0 ENTRY 0 functab C:\Users\jrdia\AppData\Local\Temp\srms.o
-intlevel1 0 0 ENTRY 0 functab C:\Users\jrdia\AppData\Local\Temp\srms.o
-intlevel2 0 0 ENTRY 0 functab C:\Users\jrdia\AppData\Local\Temp\srms.o
-intlevel3 0 0 ENTRY 0 functab C:\Users\jrdia\AppData\Local\Temp\srms.o
-intlevel4 0 0 ENTRY 0 functab C:\Users\jrdia\AppData\Local\Temp\srms.o
-intlevel5 0 0 ENTRY 0 functab C:\Users\jrdia\AppData\Local\Temp\srms.o
+intlevel0 0 0 ENTRY 0 functab C:\Users\jrdia\AppData\Local\Temp\s14s0.o
+intlevel1 0 0 ENTRY 0 functab C:\Users\jrdia\AppData\Local\Temp\s14s0.o
+intlevel2 0 0 ENTRY 0 functab C:\Users\jrdia\AppData\Local\Temp\s14s0.o
+intlevel3 0 0 ENTRY 0 functab C:\Users\jrdia\AppData\Local\Temp\s14s0.o
+intlevel4 0 0 ENTRY 0 functab C:\Users\jrdia\AppData\Local\Temp\s14s0.o
+intlevel5 0 0 ENTRY 0 functab C:\Users\jrdia\AppData\Local\Temp\s14s0.o
 __LbssCOMMON 0 0 ABS 0 bssCOMMON -
 wtemp0 7E 0 ABS 0 - dist/default/production\Mini1_Slave3.X.production.o
 __Hfunctab 0 0 ENTRY 0 functab -
@@ -260,13 +259,13 @@ _ADRESH 1E 0 ABS 0 - dist/default/production\Mini1_Slave3.X.production.o
 _ANSELH 189 0 ABS 0 - dist/default/production\Mini1_Slave3.X.production.o
 ___awdiv@dividend 78 0 COMMON 1 cstackCOMMON dist/default/production\Mini1_Slave3.X.production.o
 __size_of_initADC 0 0 ABS 0 - dist/default/production\Mini1_Slave3.X.production.o
-__end_of___wmul 394 0 CODE 0 text8 dist/default/production\Mini1_Slave3.X.production.o
+__end_of___wmul 398 0 CODE 0 text8 dist/default/production\Mini1_Slave3.X.production.o
 __size_of_spiInit 0 0 ABS 0 - dist/default/production\Mini1_Slave3.X.production.o
 __Lmaintext 0 0 ABS 0 maintext -
 ___awdiv@divisor 76 0 COMMON 1 cstackCOMMON dist/default/production\Mini1_Slave3.X.production.o
 __end_of___awdiv 200 0 CODE 0 text9 dist/default/production\Mini1_Slave3.X.production.o
-___stackhi 0 0 ABS 0 - C:\Users\jrdia\AppData\Local\Temp\srms.o
-___stacklo 0 0 ABS 0 - C:\Users\jrdia\AppData\Local\Temp\srms.o
+___stackhi 0 0 ABS 0 - C:\Users\jrdia\AppData\Local\Temp\s14s0.o
+___stacklo 0 0 ABS 0 - C:\Users\jrdia\AppData\Local\Temp\s14s0.o
 __size_of_setup 0 0 ABS 0 - dist/default/production\Mini1_Slave3.X.production.o
 spiInit@sDataSample 29 0 BANK0 1 cstackBANK0 dist/default/production\Mini1_Slave3.X.production.o
 start_initialization 22 0 CODE 0 cinit dist/default/production\Mini1_Slave3.X.production.o
@@ -276,8 +275,8 @@ _SSPBUF 13 0 ABS 0 - dist/default/production\Mini1_Slave3.X.production.o
 _SSPCON 14 0 ABS 0 - dist/default/production\Mini1_Slave3.X.production.o
 _TRISC3 43B 0 ABS 0 - dist/default/production\Mini1_Slave3.X.production.o
 _TRISC5 43D 0 ABS 0 - dist/default/production\Mini1_Slave3.X.production.o
-__end_of_initADC 3EA 0 CODE 0 text3 dist/default/production\Mini1_Slave3.X.production.o
-___int_sp 0 0 STACK 2 stack C:\Users\jrdia\AppData\Local\Temp\srms.o
+__end_of_initADC 3EE 0 CODE 0 text3 dist/default/production\Mini1_Slave3.X.production.o
+___int_sp 0 0 STACK 2 stack C:\Users\jrdia\AppData\Local\Temp\s14s0.o
 __Hbank0 0 0 ABS 0 bank0 -
 __Hbank1 0 0 ABS 0 bank1 -
 __Hbank2 0 0 ABS 0 bank2 -
@@ -285,7 +284,7 @@ __Hbank3 0 0 ABS 0 bank3 -
 __Hcinit 2E 0 CODE 0 cinit -
 __Hstack 0 0 STACK 2 stack -
 __Hmaintext 0 0 ABS 0 maintext -
-__end_of_spiInit 3D0 0 CODE 0 text2 dist/default/production\Mini1_Slave3.X.production.o
+__end_of_spiInit 3D4 0 CODE 0 text2 dist/default/production\Mini1_Slave3.X.production.o
 __Hcommon 0 0 ABS 0 common -
 __Hconfig 4012 0 CONFIG 4 config -
 _valor_adc 7B 0 COMMON 1 bssCOMMON dist/default/production\Mini1_Slave3.X.production.o
@@ -314,21 +313,21 @@ __Lsfr1 0 0 ABS 0 sfr1 -
 __Lsfr2 0 0 ABS 0 sfr2 -
 __Lsfr3 0 0 ABS 0 sfr3 -
 __Ltext 0 0 ABS 0 text -
-___wmul 34A 0 CODE 0 text8 dist/default/production\Mini1_Slave3.X.production.o
+___wmul 34E 0 CODE 0 text8 dist/default/production\Mini1_Slave3.X.production.o
 __LcstackBANK0 0 0 ABS 0 cstackBANK0 -
 __HcstackCOMMON 0 0 ABS 0 cstackCOMMON -
-__S0 206 0 ABS 0 - -
+__S0 208 0 ABS 0 - -
 __S1 7D 0 ABS 0 - -
 __S2 0 0 ABS 0 - -
 __S3 0 0 ABS 0 - -
-_adc 3EA 0 CODE 0 text4 dist/default/production\Mini1_Slave3.X.production.o
-_isr 288 0 CODE 0 text6 dist/default/production\Mini1_Slave3.X.production.o
+_adc 3EE 0 CODE 0 text4 dist/default/production\Mini1_Slave3.X.production.o
+_isr 28C 0 CODE 0 text6 dist/default/production\Mini1_Slave3.X.production.o
 saved_w 7E 0 ABS 0 - dist/default/production\Mini1_Slave3.X.production.o
-__end_of_adc 400 0 CODE 0 text4 dist/default/production\Mini1_Slave3.X.production.o
-__end_of_isr 300 0 CODE 0 text6 dist/default/production\Mini1_Slave3.X.production.o
+__end_of_adc 404 0 CODE 0 text4 dist/default/production\Mini1_Slave3.X.production.o
+__end_of_isr 304 0 CODE 0 text6 dist/default/production\Mini1_Slave3.X.production.o
 __Lintentry 8 0 CODE 0 intentry -
 _ADC_Select 2E 0 CODE 0 text5 dist/default/production\Mini1_Slave3.X.production.o
-reset_vec 0 0 CODE 0 reset_vec C:\Users\jrdia\AppData\Local\Temp\srms.o
+reset_vec 0 0 CODE 0 reset_vec C:\Users\jrdia\AppData\Local\Temp\s14s0.o
 __size_of___wmul 0 0 ABS 0 - dist/default/production\Mini1_Slave3.X.production.o
 _PIE1bits 8C 0 ABS 0 - dist/default/production\Mini1_Slave3.X.production.o
 ___awdiv 12E 0 CODE 0 text9 dist/default/production\Mini1_Slave3.X.production.o
@@ -355,17 +354,17 @@ __Lstrings 0 0 ABS 0 strings -
 ___awdiv@quotient 22 0 BANK0 1 cstackBANK0 dist/default/production\Mini1_Slave3.X.production.o
 ?___awdiv 76 0 COMMON 1 cstackCOMMON dist/default/production\Mini1_Slave3.X.production.o
 __Hreset_vec 6 0 CODE 0 reset_vec -
-_initADC 3D0 0 CODE 0 text3 dist/default/production\Mini1_Slave3.X.production.o
-__ptext1 300 0 CODE 0 text1 dist/default/production\Mini1_Slave3.X.production.o
-__ptext2 394 0 CODE 0 text2 dist/default/production\Mini1_Slave3.X.production.o
-__ptext3 3D0 0 CODE 0 text3 dist/default/production\Mini1_Slave3.X.production.o
-__ptext4 3EA 0 CODE 0 text4 dist/default/production\Mini1_Slave3.X.production.o
+_initADC 3D4 0 CODE 0 text3 dist/default/production\Mini1_Slave3.X.production.o
+__ptext1 304 0 CODE 0 text1 dist/default/production\Mini1_Slave3.X.production.o
+__ptext2 398 0 CODE 0 text2 dist/default/production\Mini1_Slave3.X.production.o
+__ptext3 3D4 0 CODE 0 text3 dist/default/production\Mini1_Slave3.X.production.o
+__ptext4 3EE 0 CODE 0 text4 dist/default/production\Mini1_Slave3.X.production.o
 __ptext5 2E 0 CODE 0 text5 dist/default/production\Mini1_Slave3.X.production.o
-__ptext6 288 0 CODE 0 text6 dist/default/production\Mini1_Slave3.X.production.o
-__ptext7 400 0 CODE 0 text7 dist/default/production\Mini1_Slave3.X.production.o
-__ptext8 34A 0 CODE 0 text8 dist/default/production\Mini1_Slave3.X.production.o
+__ptext6 28C 0 CODE 0 text6 dist/default/production\Mini1_Slave3.X.production.o
+__ptext7 404 0 CODE 0 text7 dist/default/production\Mini1_Slave3.X.production.o
+__ptext8 34E 0 CODE 0 text8 dist/default/production\Mini1_Slave3.X.production.o
 __ptext9 12E 0 CODE 0 text9 dist/default/production\Mini1_Slave3.X.production.o
-_spiInit 394 0 CODE 0 text2 dist/default/production\Mini1_Slave3.X.production.o
+_spiInit 398 0 CODE 0 text2 dist/default/production\Mini1_Slave3.X.production.o
 spiWrite@dat 70 0 COMMON 1 cstackCOMMON dist/default/production\Mini1_Slave3.X.production.o
 __Lpowerup 0 0 CODE 0 powerup -
 spiInit@sType 2C 0 BANK0 1 cstackBANK0 dist/default/production\Mini1_Slave3.X.production.o
@@ -378,7 +377,7 @@ __Lclrtext 0 0 ABS 0 clrtext -
 __pcstackCOMMON 70 0 COMMON 1 cstackCOMMON dist/default/production\Mini1_Slave3.X.production.o
 _SSPSTAT 94 0 ABS 0 - dist/default/production\Mini1_Slave3.X.production.o
 __Hend_init 22 0 CODE 0 end_init -
-__end_of_main 288 0 CODE 0 maintext dist/default/production\Mini1_Slave3.X.production.o
+__end_of_main 28C 0 CODE 0 maintext dist/default/production\Mini1_Slave3.X.production.o
 _ANSEL 188 0 ABS 0 - dist/default/production\Mini1_Slave3.X.production.o
 _PORTA 5 0 ABS 0 - dist/default/production\Mini1_Slave3.X.production.o
 _PORTB 6 0 ABS 0 - dist/default/production\Mini1_Slave3.X.production.o
@@ -389,20 +388,20 @@ _TRISA 85 0 ABS 0 - dist/default/production\Mini1_Slave3.X.production.o
 _TRISB 86 0 ABS 0 - dist/default/production\Mini1_Slave3.X.production.o
 _TRISC 87 0 ABS 0 - dist/default/production\Mini1_Slave3.X.production.o
 _TRISD 88 0 ABS 0 - dist/default/production\Mini1_Slave3.X.production.o
-__end_of_setup 34A 0 CODE 0 text1 dist/default/production\Mini1_Slave3.X.production.o
+__end_of_setup 34E 0 CODE 0 text1 dist/default/production\Mini1_Slave3.X.production.o
 __Hram 0 0 ABS 0 ram -
 __Lram 0 0 ABS 0 ram -
 interrupt_function 8 0 CODE 0 intentry dist/default/production\Mini1_Slave3.X.production.o
-_setup 300 0 CODE 0 text1 dist/default/production\Mini1_Slave3.X.production.o
+_setup 304 0 CODE 0 text1 dist/default/production\Mini1_Slave3.X.production.o
 _SSPSTATbits 94 0 ABS 0 - dist/default/production\Mini1_Slave3.X.production.o
 __pintentry 8 0 CODE 0 intentry dist/default/production\Mini1_Slave3.X.production.o
 __size_of_adc 0 0 ABS 0 - dist/default/production\Mini1_Slave3.X.production.o
 __size_of_isr 0 0 ABS 0 - dist/default/production\Mini1_Slave3.X.production.o
 spiInit@sClockIdle 2A 0 BANK0 1 cstackBANK0 dist/default/production\Mini1_Slave3.X.production.o
 __initialization 22 0 CODE 0 cinit dist/default/production\Mini1_Slave3.X.production.o
-_spiWrite 400 0 CODE 0 text7 dist/default/production\Mini1_Slave3.X.production.o
+_spiWrite 404 0 CODE 0 text7 dist/default/production\Mini1_Slave3.X.production.o
 ___wmul@product 74 0 COMMON 1 cstackCOMMON dist/default/production\Mini1_Slave3.X.production.o
-__end_of_spiWrite 40C 0 CODE 0 text7 dist/default/production\Mini1_Slave3.X.production.o
+__end_of_spiWrite 410 0 CODE 0 text7 dist/default/production\Mini1_Slave3.X.production.o
 # %SPLITSTAB Section
 # This section enumerates all the psect splits performed by the assembler.
 # The beginning of the section is indicated by %SPLITSTAB.
@@ -430,7 +429,7 @@ __end_of_spiWrite 40C 0 CODE 0 text7 dist/default/production\Mini1_Slave3.X.prod
 %SEGMENTS
 cstackCOMMON 1 70 70 D 1
 cstackBANK0 1 20 20 D 1
-intentry 0 4 8 202 2
+intentry 0 4 8 204 2
 reset_vec 0 0 0 3 2
 # %NOTES Section
 # This section contains data of all the note-psects.  The beginning of the section
