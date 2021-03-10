@@ -21,11 +21,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 "228 D:/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
 [; ;D:/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 228: extern volatile unsigned char PORTB __attribute__((address(0x006)));
 [v _PORTB `Vuc ~T0 @X0 0 e@6 ]
-"194 D:\Microchip\xc8\v2.31\pic\include\c90\stdio.h
-[v _sprintf `(i ~T0 @X0 0 e1v`*uc`*Cuc ]
-"19 ./USART.h
-[; ;./USART.h: 19: void UART_Write_String(char*);
-[v _UART_Write_String `(v ~T0 @X0 0 ef1`*uc ]
+"18 ./USART.h
+[; ;./USART.h: 18: void UART_Write(unsigned char);
+[v _UART_Write `(v ~T0 @X0 0 ef1`uc ]
 "54 D:/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
 [; ;D:/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 54: __asm("INDF equ 00h");
 [; <" INDF equ 00h ;# ">
@@ -410,56 +408,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;MPU.c: 80:   PORTB = (Ay+16384)/128;
 [e = _PORTB -> / + _Ay -> 16384 `i -> 128 `i `uc ]
 "82
-[; ;MPU.c: 82:   sprintf(buffer,"Ax = %d    ",Ax);
-[e ( _sprintf (1 , (. , &U _buffer :s 1C _Ax ]
-"83
-[; ;MPU.c: 83:   UART_Write_String(buffer);
-[e ( _UART_Write_String (1 &U _buffer ]
-"85
-[; ;MPU.c: 85:   sprintf(buffer," Ay = %d    ",Ay);
-[e ( _sprintf (1 , (. , &U _buffer :s 2C _Ay ]
-"86
-[; ;MPU.c: 86:   UART_Write_String(buffer);
-[e ( _UART_Write_String (1 &U _buffer ]
-"88
-[; ;MPU.c: 88:   sprintf(buffer," Az = %d    ",Az);
-[e ( _sprintf (1 , (. , &U _buffer :s 3C _Az ]
-"89
-[; ;MPU.c: 89:   UART_Write_String(buffer);
-[e ( _UART_Write_String (1 &U _buffer ]
-"91
-[; ;MPU.c: 91:   sprintf(buffer," T = %d  ",T);
-[e ( _sprintf (1 , (. , &U _buffer :s 4C _T ]
-"92
-[; ;MPU.c: 92:   UART_Write_String(buffer);
-[e ( _UART_Write_String (1 &U _buffer ]
-"94
-[; ;MPU.c: 94:   sprintf(buffer," Gx = %d    ",Gx);
-[e ( _sprintf (1 , (. , &U _buffer :s 5C _Gx ]
-"95
-[; ;MPU.c: 95:   UART_Write_String(buffer);
-[e ( _UART_Write_String (1 &U _buffer ]
-"97
-[; ;MPU.c: 97:   sprintf(buffer," Gy = %d    ",Gy);
-[e ( _sprintf (1 , (. , &U _buffer :s 6C _Gy ]
-"98
-[; ;MPU.c: 98:   UART_Write_String(buffer);
-[e ( _UART_Write_String (1 &U _buffer ]
-"100
-[; ;MPU.c: 100:   sprintf(buffer," Gz = %d\r\n",Gz);
-[e ( _sprintf (1 , (. , &U _buffer :s 7C _Gz ]
-"101
-[; ;MPU.c: 101:   UART_Write_String(buffer);
-[e ( _UART_Write_String (1 &U _buffer ]
-"102
-[; ;MPU.c: 102: }
+[; ;MPU.c: 82:   UART_Write(1);
+[e ( _UART_Write (1 -> -> 1 `i `uc ]
+"103
+[; ;MPU.c: 103: }
 [e :UE 140 ]
 }
-[p f _sprintf 8388736 ]
-[a 4C 32 84 32 61 32 37 100 32 32 0 ]
-[a 3C 32 65 122 32 61 32 37 100 32 32 32 32 0 ]
-[a 6C 32 71 121 32 61 32 37 100 32 32 32 32 0 ]
-[a 2C 32 65 121 32 61 32 37 100 32 32 32 32 0 ]
-[a 5C 32 71 120 32 61 32 37 100 32 32 32 32 0 ]
-[a 1C 65 120 32 61 32 37 100 32 32 32 32 0 ]
-[a 7C 32 71 122 32 61 32 37 100 13 10 0 ]

@@ -78,25 +78,26 @@ void MPU6050_Read()
   I2C_Master_Stop();
   
   PORTB = (Ay+16384)/128;
- 
-  sprintf(buffer,"Ax = %d    ",Ax);
-  UART_Write_String(buffer);
- 
-  sprintf(buffer," Ay = %d    ",Ay);
-  UART_Write_String(buffer);
- 
-  sprintf(buffer," Az = %d    ",Az);
-  UART_Write_String(buffer);
- 
-  sprintf(buffer," T = %d  ",T);
-  UART_Write_String(buffer);
- 
-  sprintf(buffer," Gx = %d    ",Gx);
-  UART_Write_String(buffer);
- 
-  sprintf(buffer," Gy = %d    ",Gy);
-  UART_Write_String(buffer);
- 
-  sprintf(buffer," Gz = %d\r\n",Gz);
-  UART_Write_String(buffer);
+  //UART_Write_String((Ay+16384)/128);
+  UART_Write(1);
+//  sprintf(buffer,"Ax = %d    ",Ax);
+//  UART_Write_String(buffer);
+// 
+//  sprintf(buffer," Ay = %d    ",Ay);
+//  UART_Write_String(buffer);
+// 
+//  sprintf(buffer," Az = %d    ",Az);
+//  UART_Write_String(buffer);
+// 
+//  sprintf(buffer," T = %d  ",T);
+//  UART_Write_String(buffer);
+// 
+//  sprintf(buffer," Gx = %d    ",Gx);
+//  UART_Write_String(buffer);
+// 
+//  sprintf(buffer," Gy = %d    ",Gy);
+//  UART_Write_String(buffer);
+// 
+//  sprintf(buffer," Gz = %d\r\n",Gz);
+//  UART_Write_String(buffer);
 }

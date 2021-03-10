@@ -22,17 +22,25 @@
 
 // digital pin 5
 #define LED_PIN 2
+#define RXD2 16
+#define TXD2 17
+
+int incomingByte = 0;
 
 // set up the 'digital' feed
+AdafruitIO_Feed *AYFeed = io.feed("AY");
 AdafruitIO_Feed *Led1Feed = io.feed("Led1");
 AdafruitIO_Feed *Piloto1Feed = io.feed("Piloto1");
+AdafruitIO_Feed *Led2Feed = io.feed("Led2");
+AdafruitIO_Feed *Piloto2Feed = io.feed("Piloto2");
 
 void setup() {
   
   pinMode(LED_PIN, OUTPUT);
   
   // start the serial connection
-  Serial.begin(115200);
+  Serial.begin(9600);
+  Serial2.begin(9600, SERIAL_8N1, RXD2, TXD2);
 
   // wait for serial monitor to open
   while(! Serial);
@@ -46,7 +54,7 @@ void setup() {
   // will be called whenever a message is
   // received from adafruit io.
   Led1Feed->onMessage(handleMessage);
-
+  Led2Feed->onMessage(handleMessage);
   // wait for a connection
   while(io.status() < AIO_CONNECTED) {
     Serial.print(".");
@@ -57,6 +65,7 @@ void setup() {
   Serial.println();
   Serial.println(io.statusText());
   Led1Feed->get();
+  Led2Feed->get();
 
 }
 
@@ -68,6 +77,15 @@ void loop() {
   // io.adafruit.com, and processes any incoming data.
   io.run();
 
+  if (Serial2.available() > 0) {
+    incomingByte = Serial2.read();
+    Serial.print("Entrada UART: ");
+    Serial.println(incomingByte);
+    AYFeed->save(incomingByte);
+    }
+
+  delay(3000);
+  
 }
 
 // this function is called whenever an 'digital' feed message
@@ -79,12 +97,12 @@ void handleMessage(AdafruitIO_Data *data) {
   Serial.println(data->value());
   if (data->toString()=="ON") {
     digitalWrite(LED_PIN, HIGH);
-    Serial.print("sending -> ");
+    Serial.print("sending -> on");
     Piloto1Feed->save(1);
     }
   if (data->toString()=="OFF") {
     digitalWrite(LED_PIN, LOW);
-    Serial.print("sending -> ");
+    Serial.print("sending -> off");
     Piloto1Feed->save(0);
     }
   /*
