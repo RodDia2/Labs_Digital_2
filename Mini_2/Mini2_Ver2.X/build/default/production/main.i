@@ -2652,8 +2652,6 @@ void main(void){
 
 
 void setup (void) {
-    TRISE = 0;
-    PORTE = 0;
     ANSEL = 0b00000000;
     ANSELH = 0;
 

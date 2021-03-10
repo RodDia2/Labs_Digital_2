@@ -407,8 +407,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;MPU.c: 78:   I2C_Master_Stop();
 [e ( _I2C_Master_Stop ..  ]
 "80
-[; ;MPU.c: 80:   PORTB = Ay/64;
-[e = _PORTB -> / _Ay -> 64 `i `uc ]
+[; ;MPU.c: 80:   PORTB = (Ay+16384)/128;
+[e = _PORTB -> / + _Ay -> 16384 `i -> 128 `i `uc ]
 "82
 [; ;MPU.c: 82:   sprintf(buffer,"Ax = %d    ",Ax);
 [e ( _sprintf (1 , (. , &U _buffer :s 1C _Ax ]

@@ -77,7 +77,7 @@ void MPU6050_Read()
   Gz = ((int)I2C_Read(0)<<8) | (int)I2C_Read(1);
   I2C_Master_Stop();
   
-  PORTB = Ay/64;
+  PORTB = (Ay+16384)/128;
  
   sprintf(buffer,"Ax = %d    ",Ax);
   UART_Write_String(buffer);

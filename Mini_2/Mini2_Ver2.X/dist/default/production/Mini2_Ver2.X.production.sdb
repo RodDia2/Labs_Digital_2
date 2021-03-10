@@ -19,7 +19,7 @@
 [v ___eecpymem __eecpymem `(v  1 e 1 0 ]
 "39
 [v ___memcpyee __memcpyee `(v  1 e 1 0 ]
-"15 D:\Semestre_7\archivos de ayuda\Mini_proyectodos\Mini2_Ver2.X\I2c.c
+"15 D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_2\Mini2_Ver2.X\I2c.c
 [v _I2C_Master_Init I2C_Master_Init `(v  1 e 1 0 ]
 "25
 [v _I2C_Master_Wait I2C_Master_Wait `(v  1 e 1 0 ]
@@ -35,17 +35,17 @@
 [v _I2C_Master_Write I2C_Master_Write `(uc  1 e 1 0 ]
 "89
 [v _I2C_Read I2C_Read `(uc  1 e 1 0 ]
-"54 D:\Semestre_7\archivos de ayuda\Mini_proyectodos\Mini2_Ver2.X\main.c
+"54 D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_2\Mini2_Ver2.X\main.c
 [v _main main `(v  1 e 1 0 ]
 "74
 [v _setup setup `(v  1 e 1 0 ]
-"93
+"91
 [v _setOsc setOsc `(v  1 e 1 0 ]
-"19 D:\Semestre_7\archivos de ayuda\Mini_proyectodos\Mini2_Ver2.X\MPU.c
+"19 D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_2\Mini2_Ver2.X\MPU.c
 [v _MPU6050_Init MPU6050_Init `(v  1 e 1 0 ]
 "62
 [v _MPU6050_Read MPU6050_Read `(v  1 e 1 0 ]
-"17 D:\Semestre_7\archivos de ayuda\Mini_proyectodos\Mini2_Ver2.X\USART.c
+"17 D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_2\Mini2_Ver2.X\USART.c
 [v _UART_TX_Init UART_TX_Init `(v  1 e 1 0 ]
 "30
 [v _UART_Write UART_Write `(v  1 e 1 0 ]
@@ -143,7 +143,7 @@
 [v _TXEN TXEN `VEb  1 e 0 @1221 ]
 "358 D:\Microchip\xc8\v2.31\pic\sources\c90\common\doprnt.c
 [v _dpowers dpowers `DC[5]ui  1 s 10 dpowers ]
-"54 D:\Semestre_7\archivos de ayuda\Mini_proyectodos\Mini2_Ver2.X\main.c
+"54 D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_2\Mini2_Ver2.X\main.c
 [v _main main `(v  1 e 1 0 ]
 {
 "69
@@ -151,19 +151,19 @@
 "74
 [v _setup setup `(v  1 e 1 0 ]
 {
-"91
+"89
 } 0
-"93
+"91
 [v _setOsc setOsc `(v  1 e 1 0 ]
 {
-"95
+"93
 } 0
-"17 D:\Semestre_7\archivos de ayuda\Mini_proyectodos\Mini2_Ver2.X\USART.c
+"17 D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_2\Mini2_Ver2.X\USART.c
 [v _UART_TX_Init UART_TX_Init `(v  1 e 1 0 ]
 {
 "28
 } 0
-"62 D:\Semestre_7\archivos de ayuda\Mini_proyectodos\Mini2_Ver2.X\MPU.c
+"62 D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_2\Mini2_Ver2.X\MPU.c
 [v _MPU6050_Read MPU6050_Read `(v  1 e 1 0 ]
 {
 "64
@@ -234,7 +234,7 @@
 [v ___awdiv@dividend dividend `i  1 p 2 2 ]
 "41
 } 0
-"36 D:\Semestre_7\archivos de ayuda\Mini_proyectodos\Mini2_Ver2.X\USART.c
+"36 D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_2\Mini2_Ver2.X\USART.c
 [v _UART_Write_String UART_Write_String `(v  1 e 1 0 ]
 {
 [v UART_Write_String@buf buf `*.4uc  1 a 1 wreg ]
@@ -254,7 +254,7 @@
 [v UART_Write@data data `uc  1 a 1 0 ]
 "34
 } 0
-"89 D:\Semestre_7\archivos de ayuda\Mini_proyectodos\Mini2_Ver2.X\I2c.c
+"89 D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_2\Mini2_Ver2.X\I2c.c
 [v _I2C_Read I2C_Read `(uc  1 e 1 0 ]
 {
 [v I2C_Read@ACK_NACK ACK_NACK `uc  1 a 1 wreg ]
@@ -276,12 +276,12 @@
 {
 "60
 } 0
-"19 D:\Semestre_7\archivos de ayuda\Mini_proyectodos\Mini2_Ver2.X\MPU.c
+"19 D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_2\Mini2_Ver2.X\MPU.c
 [v _MPU6050_Init MPU6050_Init `(v  1 e 1 0 ]
 {
 "60
 } 0
-"36 D:\Semestre_7\archivos de ayuda\Mini_proyectodos\Mini2_Ver2.X\I2c.c
+"36 D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_2\Mini2_Ver2.X\I2c.c
 [v _I2C_Start I2C_Start `(v  1 e 1 0 ]
 {
 [v I2C_Start@add add `uc  1 a 1 wreg ]
