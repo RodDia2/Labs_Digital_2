@@ -20,8 +20,8 @@
 //   - Adafruit AirLift Shield -> https://www.adafruit.com/product/4285
 //   - Adafruit AirLift FeatherWing -> https://www.adafruit.com/product/4264
 
-#define WIFI_SSID "HUAWEI"
-#define WIFI_PASS "1121RAG31"
+#define WIFI_SSID "ARRIS-EB62"
+#define WIFI_PASS "2PM7H7600913"
 
 // uncomment the following line if you are using airlift
 // #define USE_AIRLIFT

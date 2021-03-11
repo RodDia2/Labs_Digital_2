@@ -2643,6 +2643,9 @@ void main(void){
  {
         RD2 = !RD2;
         MPU6050_Read();
+
+        PORTA++;
+
         _delay((unsigned long)((50)*(8000000/4000.0)));
     }
     return;

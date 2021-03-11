@@ -63,6 +63,8 @@ void main(void){
 	{
         RD2 = !RD2;  // Blink LED
         MPU6050_Read();
+       
+        
         __delay_ms(50);
     }
     return;

@@ -26,6 +26,8 @@
 #define TXD2 17
 
 int incomingByte = 0;
+String incomingString = "";
+float incomingFloat = 0.0;
 
 // set up the 'digital' feed
 AdafruitIO_Feed *AYFeed = io.feed("AY");
@@ -37,6 +39,8 @@ AdafruitIO_Feed *Piloto2Feed = io.feed("Piloto2");
 void setup() {
   
   pinMode(LED_PIN, OUTPUT);
+  pinMode(22, OUTPUT);
+  pinMode(23, OUTPUT);
   
   // start the serial connection
   Serial.begin(9600);
@@ -54,7 +58,7 @@ void setup() {
   // will be called whenever a message is
   // received from adafruit io.
   Led1Feed->onMessage(handleMessage);
-  Led2Feed->onMessage(handleMessage);
+  Led2Feed->onMessage(handleMessage2);
   // wait for a connection
   while(io.status() < AIO_CONNECTED) {
     Serial.print(".");
@@ -79,11 +83,20 @@ void loop() {
 
   if (Serial2.available() > 0) {
     incomingByte = Serial2.read();
-    Serial.print("Entrada UART: ");
+   // incomingFloat = Serial2.read();
+   // incomingByte = incomingFloat.toInt();
+   // incomingString = Serial2.readString();
+   // Serial.println(Serial2.readString());
+    Serial.print("Valor AY: ");
+   // Serial.println(incomingByte);
     Serial.println(incomingByte);
+  //  Serial.println(Serial2.read());
     AYFeed->save(incomingByte);
-    }
+  }
 
+  //Serial2.write((char)10);
+  Serial.write((char)2);
+  
   delay(3000);
   
 }
@@ -97,21 +110,31 @@ void handleMessage(AdafruitIO_Data *data) {
   Serial.println(data->value());
   if (data->toString()=="ON") {
     digitalWrite(LED_PIN, HIGH);
-    Serial.print("sending -> on");
+    digitalWrite(22, HIGH);
+    Serial.print("sending -> on1");
+    Serial2.write(0X0B);
     Piloto1Feed->save(1);
     }
   if (data->toString()=="OFF") {
     digitalWrite(LED_PIN, LOW);
-    Serial.print("sending -> off");
+    digitalWrite(22, LOW);
+    Serial.print("sending -> off1");
     Piloto1Feed->save(0);
     }
-  /*
-  if(data->toPinLevel() == HIGH)
-    Serial.println("HIGH");
-  else
-    Serial.println("LOW");
+}
+void handleMessage2(AdafruitIO_Data *data) {
 
-
-  digitalWrite(LED_PIN, data->toPinLevel());
-  */
+  Serial.print("received <- ");
+  Serial.println(data->value());
+  if (data->toString()=="ON") {
+    digitalWrite(23, HIGH);
+    Serial.print("sending -> on2");
+    Serial2.write(0X0A);
+    Piloto2Feed->save(1);
+    }
+  if (data->toString()=="OFF") {
+    digitalWrite(23, LOW);
+    Serial.print("sending -> off2");
+    Piloto2Feed->save(0);
+    }
 }

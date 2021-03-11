@@ -2676,6 +2676,7 @@ void MPU6050_Read()
 {
   char buffer[40];
   int Ax,Ay,Az,T,Gx,Gy,Gz;
+  float AY = 0.0;
 
   I2C_Start(0xD0);
   I2C_Master_Write(0x3B);
@@ -2691,7 +2692,13 @@ void MPU6050_Read()
   I2C_Master_Stop();
 
   PORTB = (Ay+16384)/128;
+  AY = (float)Ay/16384.0;
 
-  UART_Write(1);
-# 103 "MPU.c"
+
+
+
+
+  sprintf(buffer," Ay = %d    ",5);
+  UART_Write_String(buffer);
+# 105 "MPU.c"
 }

@@ -63,6 +63,7 @@ void MPU6050_Read()
 {
   char buffer[40];
   int Ax,Ay,Az,T,Gx,Gy,Gz;
+  float AY  = 0.0;
   // Prepare For Reading, Starting From ACCEL_XOUT_H
   I2C_Start(0xD0);
   I2C_Master_Write(ACCEL_XOUT_H);
@@ -78,13 +79,14 @@ void MPU6050_Read()
   I2C_Master_Stop();
   
   PORTB = (Ay+16384)/128;
+  AY = (float)Ay/16384.0;
   //UART_Write_String((Ay+16384)/128);
-  UART_Write(1);
-//  sprintf(buffer,"Ax = %d    ",Ax);
-//  UART_Write_String(buffer);
+  //UART_Write_String();
+  //sprintf(buffer,"3.2%f",AY);
+  //UART_Write_String(buffer);
 // 
-//  sprintf(buffer," Ay = %d    ",Ay);
-//  UART_Write_String(buffer);
+  sprintf(buffer," Ay = %d    ",5);
+  UART_Write_String(buffer);
 // 
 //  sprintf(buffer," Az = %d    ",Az);
 //  UART_Write_String(buffer);

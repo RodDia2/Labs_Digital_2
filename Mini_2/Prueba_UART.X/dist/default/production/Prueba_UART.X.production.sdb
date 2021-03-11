@@ -1,0 +1,177 @@
+[p GLOBOPT AUTOSTATIC IEEE_DBL IEEE_FLT PIC14 PICREGULAR PICMID ]
+[d version 1.1 ]
+[d edition pro ]
+[d chip 16F887 ]
+[d frameptr 0 ]
+"10 D:\Microchip\xc8\v2.31\pic\sources\c90\common\sprcadd.c
+[v ___fladd __fladd `(d  1 e 4 0 ]
+"4 D:\Microchip\xc8\v2.31\pic\sources\c90\common\Umul8_16.c
+[v __Umul8_16 _Umul8_16 `(ui  1 e 2 0 ]
+"6 D:\Microchip\xc8\v2.31\pic\sources\c90\pic\__eeprom.c
+[v ___eecpymem __eecpymem `(v  1 e 1 0 ]
+"39
+[v ___memcpyee __memcpyee `(v  1 e 1 0 ]
+"60 D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_2\Prueba_UART.X\main_prueba_uart.c
+[v _main main `(v  1 e 1 0 ]
+"120
+[v _setup setup `(v  1 e 1 0 ]
+"137
+[v _setOsc setOsc `(v  1 e 1 0 ]
+"18 D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_2\Prueba_UART.X\USART.c
+[v _UART_TX_Init UART_TX_Init `(v  1 e 1 0 ]
+"33
+[v _UART_Write UART_Write `(v  1 e 1 0 ]
+"39
+[v _UART_Write_String UART_Write_String `(v  1 e 1 0 ]
+"166 D:/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
+[v _PORTA PORTA `VEuc  1 e 1 @5 ]
+"228
+[v _PORTB PORTB `VEuc  1 e 1 @6 ]
+"290
+[v _PORTC PORTC `VEuc  1 e 1 @7 ]
+[s S63 . 1 `uc 1 RC0 1 0 :1:0 
+`uc 1 RC1 1 0 :1:1 
+`uc 1 RC2 1 0 :1:2 
+`uc 1 RC3 1 0 :1:3 
+`uc 1 RC4 1 0 :1:4 
+`uc 1 RC5 1 0 :1:5 
+`uc 1 RC6 1 0 :1:6 
+`uc 1 RC7 1 0 :1:7 
+]
+"307
+[u S72 . 1 `S63 1 . 1 0 ]
+[v _PORTCbits PORTCbits `VES72  1 e 1 @7 ]
+"352
+[v _PORTD PORTD `VEuc  1 e 1 @8 ]
+[s S42 . 1 `uc 1 RD0 1 0 :1:0 
+`uc 1 RD1 1 0 :1:1 
+`uc 1 RD2 1 0 :1:2 
+`uc 1 RD3 1 0 :1:3 
+`uc 1 RD4 1 0 :1:4 
+`uc 1 RD5 1 0 :1:5 
+`uc 1 RD6 1 0 :1:6 
+`uc 1 RD7 1 0 :1:7 
+]
+"369
+[u S51 . 1 `S42 1 . 1 0 ]
+[v _PORTDbits PORTDbits `VES51  1 e 1 @8 ]
+"414
+[v _PORTE PORTE `VEuc  1 e 1 @9 ]
+[s S169 . 1 `uc 1 RX9D 1 0 :1:0 
+`uc 1 OERR 1 0 :1:1 
+`uc 1 FERR 1 0 :1:2 
+`uc 1 ADDEN 1 0 :1:3 
+`uc 1 CREN 1 0 :1:4 
+`uc 1 SREN 1 0 :1:5 
+`uc 1 RX9 1 0 :1:6 
+`uc 1 SPEN 1 0 :1:7 
+]
+"1068
+[s S178 . 1 `uc 1 RCD8 1 0 :1:0 
+`uc 1 . 1 0 :5:1 
+`uc 1 RC9 1 0 :1:6 
+]
+[s S182 . 1 `uc 1 . 1 0 :6:0 
+`uc 1 nRC8 1 0 :1:6 
+]
+[s S185 . 1 `uc 1 . 1 0 :6:0 
+`uc 1 RC8_9 1 0 :1:6 
+]
+[u S188 . 1 `S169 1 . 1 0 `S178 1 . 1 0 `S182 1 . 1 0 `S185 1 . 1 0 ]
+[v _RCSTAbits RCSTAbits `VES188  1 e 1 @24 ]
+"1133
+[v _TXREG TXREG `VEuc  1 e 1 @25 ]
+"1140
+[v _RCREG RCREG `VEuc  1 e 1 @26 ]
+"1416
+[v _TRISA TRISA `VEuc  1 e 1 @133 ]
+"1478
+[v _TRISB TRISB `VEuc  1 e 1 @134 ]
+"1540
+[v _TRISC TRISC `VEuc  1 e 1 @135 ]
+"1602
+[v _TRISD TRISD `VEuc  1 e 1 @136 ]
+"1664
+[v _TRISE TRISE `VEuc  1 e 1 @137 ]
+[s S102 . 1 `uc 1 SCS 1 0 :1:0 
+`uc 1 LTS 1 0 :1:1 
+`uc 1 HTS 1 0 :1:2 
+`uc 1 OSTS 1 0 :1:3 
+`uc 1 IRCF 1 0 :3:4 
+]
+"1882
+[s S108 . 1 `uc 1 . 1 0 :4:0 
+`uc 1 IRCF0 1 0 :1:4 
+`uc 1 IRCF1 1 0 :1:5 
+`uc 1 IRCF2 1 0 :1:6 
+]
+[u S113 . 1 `S102 1 . 1 0 `S108 1 . 1 0 ]
+[v _OSCCONbits OSCCONbits `VES113  1 e 1 @143 ]
+"2642
+[v _SPBRG SPBRG `VEuc  1 e 1 @153 ]
+"3387
+[v _ANSEL ANSEL `VEuc  1 e 1 @392 ]
+"3449
+[v _ANSELH ANSELH `VEuc  1 e 1 @393 ]
+"3695
+[v _BRGH BRGH `VEb  1 e 0 @1218 ]
+"4175
+[v _RCIF RCIF `VEb  1 e 0 @101 ]
+"4187
+[v _RD2 RD2 `VEb  1 e 0 @66 ]
+"4259
+[v _SPEN SPEN `VEb  1 e 0 @199 ]
+"4313
+[v _SYNC SYNC `VEb  1 e 0 @1220 ]
+"4466
+[v _TRISC6 TRISC6 `VEb  1 e 0 @1086 ]
+"4469
+[v _TRISC7 TRISC7 `VEb  1 e 0 @1087 ]
+"4508
+[v _TRMT TRMT `VEb  1 e 0 @1217 ]
+"4538
+[v _TXEN TXEN `VEb  1 e 0 @1221 ]
+"45 D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_2\Prueba_UART.X\main_prueba_uart.c
+[v _recibido recibido `uc  1 e 1 0 ]
+"46
+[v _contador contador `uc  1 e 1 0 ]
+"60
+[v _main main `(v  1 e 1 0 ]
+{
+"115
+} 0
+"120
+[v _setup setup `(v  1 e 1 0 ]
+{
+"135
+} 0
+"137
+[v _setOsc setOsc `(v  1 e 1 0 ]
+{
+"139
+} 0
+"39 D:\Semestre_7\Digital_2\Labs_Digital_2\Mini_2\Prueba_UART.X\USART.c
+[v _UART_Write_String UART_Write_String `(v  1 e 1 0 ]
+{
+[v UART_Write_String@buf buf `*.24uc  1 a 1 wreg ]
+"41
+[v UART_Write_String@i i `i  1 a 2 1 ]
+"39
+[v UART_Write_String@buf buf `*.24uc  1 a 1 wreg ]
+"41
+[v UART_Write_String@buf buf `*.24uc  1 a 1 3 ]
+"44
+} 0
+"33
+[v _UART_Write UART_Write `(v  1 e 1 0 ]
+{
+[v UART_Write@data data `uc  1 a 1 wreg ]
+[v UART_Write@data data `uc  1 a 1 wreg ]
+[v UART_Write@data data `uc  1 a 1 0 ]
+"37
+} 0
+"18
+[v _UART_TX_Init UART_TX_Init `(v  1 e 1 0 ]
+{
+"31
+} 0
