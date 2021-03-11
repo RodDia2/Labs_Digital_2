@@ -20,16 +20,17 @@
 
 /************************ Example Starts Here *******************************/
 
-// digital pin 5
+// digital pin 2
+// se definen los pines del UART2
 #define LED_PIN 2
 #define RXD2 16
 #define TXD2 17
-
+// se crearon variables para probar USART
 int incomingByte = 0;
 String incomingString = "";
 float incomingFloat = 0.0;
 
-// set up the 'digital' feed
+// set up the 'digital' feeds
 AdafruitIO_Feed *AYFeed = io.feed("AY");
 AdafruitIO_Feed *Led1Feed = io.feed("Led1");
 AdafruitIO_Feed *Piloto1Feed = io.feed("Piloto1");
@@ -37,7 +38,7 @@ AdafruitIO_Feed *Led2Feed = io.feed("Led2");
 AdafruitIO_Feed *Piloto2Feed = io.feed("Piloto2");
 
 void setup() {
-  
+  // se tienen 3 pines como output
   pinMode(LED_PIN, OUTPUT);
   pinMode(22, OUTPUT);
   pinMode(23, OUTPUT);
@@ -80,7 +81,7 @@ void loop() {
   // function. it keeps the client connected to
   // io.adafruit.com, and processes any incoming data.
   io.run();
-
+  // cuando hay datos disponibles, se leen, se despliegan en el COM y se mandan a Adafruit
   if (Serial2.available() > 0) {
     incomingByte = Serial2.read();
    // incomingFloat = Serial2.read();
@@ -95,7 +96,7 @@ void loop() {
   }
 
   //Serial2.write((char)10);
-  Serial.write((char)2);
+  //Serial.write((char)2);
   
   delay(3000);
   
@@ -104,6 +105,8 @@ void loop() {
 // this function is called whenever an 'digital' feed message
 // is received from Adafruit IO. it was attached to
 // the 'digital' feed in the setup() function above.
+// la primera sirve para la primer luz piloto y la seguna para el piloto2 
+// se encargan de mandar el valor que se debe encender cada led, mandar de regreso el dato de indicacion y mandar datos por usart.
 void handleMessage(AdafruitIO_Data *data) {
 
   Serial.print("received <- ");
@@ -112,13 +115,14 @@ void handleMessage(AdafruitIO_Data *data) {
     digitalWrite(LED_PIN, HIGH);
     digitalWrite(22, HIGH);
     Serial.print("sending -> on1");
-    Serial2.write(0X0B);
+    Serial2.write(0x01);
     Piloto1Feed->save(1);
     }
   if (data->toString()=="OFF") {
     digitalWrite(LED_PIN, LOW);
     digitalWrite(22, LOW);
     Serial.print("sending -> off1");
+    Serial2.write(0x02);
     Piloto1Feed->save(0);
     }
 }
@@ -129,12 +133,13 @@ void handleMessage2(AdafruitIO_Data *data) {
   if (data->toString()=="ON") {
     digitalWrite(23, HIGH);
     Serial.print("sending -> on2");
-    Serial2.write(0X0A);
+    Serial2.write(0x04);
     Piloto2Feed->save(1);
     }
   if (data->toString()=="OFF") {
     digitalWrite(23, LOW);
     Serial.print("sending -> off2");
+    Serial2.write(0x08);
     Piloto2Feed->save(0);
     }
 }

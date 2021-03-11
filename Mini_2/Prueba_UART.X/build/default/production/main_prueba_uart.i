@@ -2796,17 +2796,28 @@ void main(void){
     while(1)
  {
         RD2 = !RD2;
-# 82 "main_prueba_uart.c"
-          UART_Write_String("1");
+        UART_Write_String("V1     V2   CONT");
+        UART_Write(13);
+        UART_Write(10);
+        sprintf(pantalla, "%1.2f   %3d %3d", 5.2,contador2,contador);
 
+        UART_Write_String(pantalla);
 
+        UART_Write(13);
+        UART_Write(10);
 
+        sprintf(buffer,"%d",5);
+        UART_Write_String(buffer);
+        UART_Write_String("1");
+
+        UART_Write(13);
+        UART_Write(10);
         if(RCIF==1){
 
 
 
+            recibido = USART_Read();
 
-            recibido = RCREG;
             if(recibido > 0) {
                 PORTDbits.RD0 = 1;
             }
@@ -2817,11 +2828,12 @@ void main(void){
                 PORTCbits.RC1 = 1;
             }
 
-
-
-
-
-
+            if(recibido == '+'){
+                contador2++;
+            }
+            if(recibido == '-'){
+                contador2--;
+            }
 
         }
 

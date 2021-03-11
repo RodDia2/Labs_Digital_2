@@ -110,7 +110,7 @@
 #define FIFO_R_W            0x74
 #define WHO_AM_I            0x75
 //------------------------------------
-
+// se tienen funciones para inicializar y para leer/mandar
 void MPU6050_Init();
 void MPU6050_Read();
 

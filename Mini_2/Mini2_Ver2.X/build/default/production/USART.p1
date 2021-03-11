@@ -20,12 +20,41 @@ Version 4.0 HI-TECH Software Intermediate Code
 "4538
 [; ;D:/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 4538: extern volatile __bit TXEN __attribute__((address(0x4C5)));
 [v _TXEN `Vb ~T0 @X0 0 e@1221 ]
+"1044
+[; ;D:/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 1044:     struct {
+[s S37 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S37 . RX9D OERR FERR ADDEN CREN SREN RX9 SPEN ]
+"1054
+[; ;D:/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 1054:     struct {
+[s S38 :1 `uc 1 :5 `uc 1 :1 `uc 1 ]
+[n S38 . RCD8 . RC9 ]
+"1059
+[; ;D:/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 1059:     struct {
+[s S39 :6 `uc 1 :1 `uc 1 ]
+[n S39 . . nRC8 ]
+"1063
+[; ;D:/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 1063:     struct {
+[s S40 :6 `uc 1 :1 `uc 1 ]
+[n S40 . . RC8_9 ]
+"1043
+[; ;D:/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 1043: typedef union {
+[u S36 `S37 1 `S38 1 `S39 1 `S40 1 ]
+[n S36 . . . . . ]
+"1068
+[; ;D:/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 1068: extern volatile RCSTAbits_t RCSTAbits __attribute__((address(0x018)));
+[v _RCSTAbits `VS36 ~T0 @X0 0 e@24 ]
 "4508
 [; ;D:/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 4508: extern volatile __bit TRMT __attribute__((address(0x4C1)));
 [v _TRMT `Vb ~T0 @X0 0 e@1217 ]
 "1133
 [; ;D:/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 1133: extern volatile unsigned char TXREG __attribute__((address(0x019)));
 [v _TXREG `Vuc ~T0 @X0 0 e@25 ]
+"4175
+[; ;D:/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 4175: extern volatile __bit RCIF __attribute__((address(0x65)));
+[v _RCIF `Vb ~T0 @X0 0 e@101 ]
+"1140
+[; ;D:/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 1140: extern volatile unsigned char RCREG __attribute__((address(0x01A)));
+[v _RCREG `Vuc ~T0 @X0 0 e@26 ]
 "54 D:/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
 [; ;D:/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 54: __asm("INDF equ 00h");
 [; <" INDF equ 00h ;# ">
@@ -289,67 +318,91 @@ Version 4.0 HI-TECH Software Intermediate Code
 "27
 [; ;USART.c: 27:   TXEN = 1;
 [e = _TXEN -> -> 1 `i `b ]
-"28
-[; ;USART.c: 28: }
+"29
+[; ;USART.c: 29:   RCSTAbits.CREN = 1;
+[e = . . _RCSTAbits 0 4 -> -> 1 `i `uc ]
+"30
+[; ;USART.c: 30: }
 [e :UE 138 ]
 }
-"30
-[; ;USART.c: 30: void UART_Write(unsigned char data)
+"33
+[; ;USART.c: 33: void UART_Write(unsigned char data)
 [v _UART_Write `(v ~T0 @X0 1 ef1`uc ]
-"31
-[; ;USART.c: 31: {
+"34
+[; ;USART.c: 34: {
 {
 [e :U _UART_Write ]
-"30
-[; ;USART.c: 30: void UART_Write(unsigned char data)
+"33
+[; ;USART.c: 33: void UART_Write(unsigned char data)
 [v _data `uc ~T0 @X0 1 r1 ]
-"31
-[; ;USART.c: 31: {
+"34
+[; ;USART.c: 34: {
 [f ]
-"32
-[; ;USART.c: 32:   while(!TRMT);
+"35
+[; ;USART.c: 35:   while(!TRMT);
 [e $U 140  ]
 [e :U 141 ]
 [e :U 140 ]
 [e $ ! _TRMT 141  ]
 [e :U 142 ]
-"33
-[; ;USART.c: 33:   TXREG = data;
+"36
+[; ;USART.c: 36:   TXREG = data;
 [e = _TXREG _data ]
-"34
-[; ;USART.c: 34: }
+"37
+[; ;USART.c: 37: }
 [e :UE 139 ]
 }
-"36
-[; ;USART.c: 36: void UART_Write_String(char* buf)
+"39
+[; ;USART.c: 39: void UART_Write_String(char* buf)
 [v _UART_Write_String `(v ~T0 @X0 1 ef1`*uc ]
-"37
-[; ;USART.c: 37: {
+"40
+[; ;USART.c: 40: {
 {
 [e :U _UART_Write_String ]
-"36
-[; ;USART.c: 36: void UART_Write_String(char* buf)
+"39
+[; ;USART.c: 39: void UART_Write_String(char* buf)
 [v _buf `*uc ~T0 @X0 1 r1 ]
-"37
-[; ;USART.c: 37: {
+"40
+[; ;USART.c: 40: {
 [f ]
-"38
-[; ;USART.c: 38:     int i=0;
+"41
+[; ;USART.c: 41:     int i=0;
 [v _i `i ~T0 @X0 1 a ]
 [e = _i -> 0 `i ]
-"39
-[; ;USART.c: 39:     while(buf[i] != '\0')
+"42
+[; ;USART.c: 42:     while(buf[i] != '\0')
 [e $U 144  ]
 [e :U 145 ]
-"40
-[; ;USART.c: 40:         UART_Write(buf[i++]);
+"43
+[; ;USART.c: 43:         UART_Write(buf[i++]);
 [e ( _UART_Write (1 -> *U + _buf * -> ++ _i -> 1 `i `x -> -> # *U _buf `i `x `uc ]
 [e :U 144 ]
-"39
-[; ;USART.c: 39:     while(buf[i] != '\0')
+"42
+[; ;USART.c: 42:     while(buf[i] != '\0')
 [e $ != -> *U + _buf * -> _i `x -> -> # *U _buf `i `x `ui -> 0 `ui 145  ]
 [e :U 146 ]
-"41
-[; ;USART.c: 41: }
+"44
+[; ;USART.c: 44: }
 [e :UE 143 ]
+}
+"46
+[; ;USART.c: 46: uint8_t USART_Read(){
+[v _USART_Read `(uc ~T0 @X0 1 ef ]
+{
+[e :U _USART_Read ]
+[f ]
+"47
+[; ;USART.c: 47:   while(!RCIF);
+[e $U 148  ]
+[e :U 149 ]
+[e :U 148 ]
+[e $ ! _RCIF 149  ]
+[e :U 150 ]
+"48
+[; ;USART.c: 48:   return RCREG;
+[e ) _RCREG ]
+[e $UE 147  ]
+"49
+[; ;USART.c: 49: }
+[e :UE 147 ]
 }

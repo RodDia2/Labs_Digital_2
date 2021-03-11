@@ -26,6 +26,8 @@ int humedad = 0;
 // set up the 'counter' feed
 //AdafruitIO_Feed *counter = io.feed("counter");
 AdafruitIO_Feed *humedadFeed = io.feed("HUMEDAD");
+AdafruitIO_Feed *Led1Feed = io.feed("Led1");
+
 void setup() {
 
   // start the serial connection

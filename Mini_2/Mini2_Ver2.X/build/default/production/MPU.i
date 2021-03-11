@@ -2520,10 +2520,152 @@ void MPU6050_Read();
 
 
 # 1 "./USART.h" 1
-# 17 "./USART.h"
+
+
+
+
+
+
+
+# 1 "D:\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 1 3
+# 13 "D:\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 3
+typedef signed char int8_t;
+
+
+
+
+
+
+typedef signed int int16_t;
+
+
+
+
+
+
+
+typedef __int24 int24_t;
+
+
+
+
+
+
+
+typedef signed long int int32_t;
+# 52 "D:\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 3
+typedef unsigned char uint8_t;
+
+
+
+
+
+typedef unsigned int uint16_t;
+
+
+
+
+
+
+typedef __uint24 uint24_t;
+
+
+
+
+
+
+typedef unsigned long int uint32_t;
+# 88 "D:\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 3
+typedef signed char int_least8_t;
+
+
+
+
+
+
+
+typedef signed int int_least16_t;
+# 109 "D:\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 3
+typedef __int24 int_least24_t;
+# 118 "D:\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 3
+typedef signed long int int_least32_t;
+# 136 "D:\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 3
+typedef unsigned char uint_least8_t;
+
+
+
+
+
+
+typedef unsigned int uint_least16_t;
+# 154 "D:\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 3
+typedef __uint24 uint_least24_t;
+
+
+
+
+
+
+
+typedef unsigned long int uint_least32_t;
+# 181 "D:\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 3
+typedef signed char int_fast8_t;
+
+
+
+
+
+
+typedef signed int int_fast16_t;
+# 200 "D:\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 3
+typedef __int24 int_fast24_t;
+
+
+
+
+
+
+
+typedef signed long int int_fast32_t;
+# 224 "D:\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 3
+typedef unsigned char uint_fast8_t;
+
+
+
+
+
+typedef unsigned int uint_fast16_t;
+# 240 "D:\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 3
+typedef __uint24 uint_fast24_t;
+
+
+
+
+
+
+typedef unsigned long int uint_fast32_t;
+# 268 "D:\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 3
+typedef int32_t intmax_t;
+# 282 "D:\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 3
+typedef uint32_t uintmax_t;
+
+
+
+
+
+
+typedef int16_t intptr_t;
+
+
+
+
+typedef uint16_t uintptr_t;
+# 8 "./USART.h" 2
+# 19 "./USART.h"
 void UART_TX_Init(void);
 void UART_Write(unsigned char);
 void UART_Write_String(char*);
+uint8_t USART_Read(void);
 # 13 "MPU.c" 2
 
 # 1 "D:\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdio.h" 1 3
@@ -2636,10 +2778,12 @@ void MPU6050_Init()
   I2C_Master_Init();
 
 
+
   I2C_Start(0xD0);
   I2C_Master_Write(0x19);
   I2C_Master_Write(0x07);
   I2C_Master_Stop();
+
 
 
   I2C_Start(0xD0);
@@ -2648,10 +2792,12 @@ void MPU6050_Init()
   I2C_Master_Stop();
 
 
+
   I2C_Start(0xD0);
   I2C_Master_Write(0x1A);
-  I2C_Master_Write(0x00);
+  I2C_Master_Write(0x04);
   I2C_Master_Stop();
+
 
 
   I2C_Start(0xD0);
@@ -2660,10 +2806,12 @@ void MPU6050_Init()
   I2C_Master_Stop();
 
 
+
   I2C_Start(0xD0);
   I2C_Master_Write(0x1B);
   I2C_Master_Write(0x18);
   I2C_Master_Stop();
+
 
 
   I2C_Start(0xD0);
@@ -2676,7 +2824,7 @@ void MPU6050_Read()
 {
   char buffer[40];
   int Ax,Ay,Az,T,Gx,Gy,Gz;
-  float AY = 0.0;
+  int AY = 0;
 
   I2C_Start(0xD0);
   I2C_Master_Write(0x3B);
@@ -2692,13 +2840,14 @@ void MPU6050_Read()
   I2C_Master_Stop();
 
   PORTB = (Ay+16384)/128;
-  AY = (float)Ay/16384.0;
+
+  AY = (Ay+16384)/128;
 
 
 
 
 
-  sprintf(buffer," Ay = %d    ",5);
+  sprintf(buffer,"%d",AY);
   UART_Write_String(buffer);
-# 105 "MPU.c"
+# 112 "MPU.c"
 }

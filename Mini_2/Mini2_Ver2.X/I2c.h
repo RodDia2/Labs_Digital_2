@@ -1,7 +1,7 @@
 /* File: I2C.h */
 
 #define _XTAL_FREQ             8000000
-
+// se define el baudrate y los pines de SCL y SDA del PIC
 #define I2C_BaudRate           9600
 #define SCL_D                  TRISC3
 #define SDA_D                  TRISC4

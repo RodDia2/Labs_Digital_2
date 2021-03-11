@@ -23,8 +23,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _PORTB `Vuc ~T0 @X0 0 e@6 ]
 "194 D:\Microchip\xc8\v2.31\pic\include\c90\stdio.h
 [v _sprintf `(i ~T0 @X0 0 e1v`*uc`*Cuc ]
-"19 ./USART.h
-[; ;./USART.h: 19: void UART_Write_String(char*);
+"21 ./USART.h
+[; ;./USART.h: 21: void UART_Write_String(char*);
 [v _UART_Write_String `(v ~T0 @X0 0 ef1`*uc ]
 "54 D:/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
 [; ;D:/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 54: __asm("INDF equ 00h");
@@ -274,95 +274,95 @@ Version 4.0 HI-TECH Software Intermediate Code
 "23
 [; ;MPU.c: 23:   I2C_Master_Init();
 [e ( _I2C_Master_Init ..  ]
-"26
-[; ;MPU.c: 26:   I2C_Start(0xD0);
-[e ( _I2C_Start (1 -> -> 208 `i `uc ]
 "27
-[; ;MPU.c: 27:   I2C_Master_Write(0x19);
-[e ( _I2C_Master_Write (1 -> -> 25 `i `uc ]
+[; ;MPU.c: 27:   I2C_Start(0xD0);
+[e ( _I2C_Start (1 -> -> 208 `i `uc ]
 "28
-[; ;MPU.c: 28:   I2C_Master_Write(0x07);
-[e ( _I2C_Master_Write (1 -> -> 7 `i `uc ]
+[; ;MPU.c: 28:   I2C_Master_Write(0x19);
+[e ( _I2C_Master_Write (1 -> -> 25 `i `uc ]
 "29
-[; ;MPU.c: 29:   I2C_Master_Stop();
+[; ;MPU.c: 29:   I2C_Master_Write(0x07);
+[e ( _I2C_Master_Write (1 -> -> 7 `i `uc ]
+"30
+[; ;MPU.c: 30:   I2C_Master_Stop();
 [e ( _I2C_Master_Stop ..  ]
-"32
-[; ;MPU.c: 32:   I2C_Start(0xD0);
-[e ( _I2C_Start (1 -> -> 208 `i `uc ]
-"33
-[; ;MPU.c: 33:   I2C_Master_Write(0x6B);
-[e ( _I2C_Master_Write (1 -> -> 107 `i `uc ]
 "34
-[; ;MPU.c: 34:   I2C_Master_Write(0x01);
-[e ( _I2C_Master_Write (1 -> -> 1 `i `uc ]
+[; ;MPU.c: 34:   I2C_Start(0xD0);
+[e ( _I2C_Start (1 -> -> 208 `i `uc ]
 "35
-[; ;MPU.c: 35:   I2C_Master_Stop();
-[e ( _I2C_Master_Stop ..  ]
-"38
-[; ;MPU.c: 38:   I2C_Start(0xD0);
-[e ( _I2C_Start (1 -> -> 208 `i `uc ]
-"39
-[; ;MPU.c: 39:   I2C_Master_Write(0x1A);
-[e ( _I2C_Master_Write (1 -> -> 26 `i `uc ]
-"40
-[; ;MPU.c: 40:   I2C_Master_Write(0x00);
-[e ( _I2C_Master_Write (1 -> -> 0 `i `uc ]
-"41
-[; ;MPU.c: 41:   I2C_Master_Stop();
-[e ( _I2C_Master_Stop ..  ]
-"44
-[; ;MPU.c: 44:   I2C_Start(0xD0);
-[e ( _I2C_Start (1 -> -> 208 `i `uc ]
-"45
-[; ;MPU.c: 45:   I2C_Master_Write(0x1C);
-[e ( _I2C_Master_Write (1 -> -> 28 `i `uc ]
-"46
-[; ;MPU.c: 46:   I2C_Master_Write(0x00);
-[e ( _I2C_Master_Write (1 -> -> 0 `i `uc ]
-"47
-[; ;MPU.c: 47:   I2C_Master_Stop();
-[e ( _I2C_Master_Stop ..  ]
-"50
-[; ;MPU.c: 50:   I2C_Start(0xD0);
-[e ( _I2C_Start (1 -> -> 208 `i `uc ]
-"51
-[; ;MPU.c: 51:   I2C_Master_Write(0x1B);
-[e ( _I2C_Master_Write (1 -> -> 27 `i `uc ]
-"52
-[; ;MPU.c: 52:   I2C_Master_Write(0x18);
-[e ( _I2C_Master_Write (1 -> -> 24 `i `uc ]
-"53
-[; ;MPU.c: 53:   I2C_Master_Stop();
-[e ( _I2C_Master_Stop ..  ]
-"56
-[; ;MPU.c: 56:   I2C_Start(0xD0);
-[e ( _I2C_Start (1 -> -> 208 `i `uc ]
-"57
-[; ;MPU.c: 57:   I2C_Master_Write(0x38);
-[e ( _I2C_Master_Write (1 -> -> 56 `i `uc ]
-"58
-[; ;MPU.c: 58:   I2C_Master_Write(0x01);
+[; ;MPU.c: 35:   I2C_Master_Write(0x6B);
+[e ( _I2C_Master_Write (1 -> -> 107 `i `uc ]
+"36
+[; ;MPU.c: 36:   I2C_Master_Write(0x01);
 [e ( _I2C_Master_Write (1 -> -> 1 `i `uc ]
-"59
-[; ;MPU.c: 59:   I2C_Master_Stop();
+"37
+[; ;MPU.c: 37:   I2C_Master_Stop();
 [e ( _I2C_Master_Stop ..  ]
-"60
-[; ;MPU.c: 60: }
+"41
+[; ;MPU.c: 41:   I2C_Start(0xD0);
+[e ( _I2C_Start (1 -> -> 208 `i `uc ]
+"42
+[; ;MPU.c: 42:   I2C_Master_Write(0x1A);
+[e ( _I2C_Master_Write (1 -> -> 26 `i `uc ]
+"43
+[; ;MPU.c: 43:   I2C_Master_Write(0x04);
+[e ( _I2C_Master_Write (1 -> -> 4 `i `uc ]
+"44
+[; ;MPU.c: 44:   I2C_Master_Stop();
+[e ( _I2C_Master_Stop ..  ]
+"48
+[; ;MPU.c: 48:   I2C_Start(0xD0);
+[e ( _I2C_Start (1 -> -> 208 `i `uc ]
+"49
+[; ;MPU.c: 49:   I2C_Master_Write(0x1C);
+[e ( _I2C_Master_Write (1 -> -> 28 `i `uc ]
+"50
+[; ;MPU.c: 50:   I2C_Master_Write(0x00);
+[e ( _I2C_Master_Write (1 -> -> 0 `i `uc ]
+"51
+[; ;MPU.c: 51:   I2C_Master_Stop();
+[e ( _I2C_Master_Stop ..  ]
+"55
+[; ;MPU.c: 55:   I2C_Start(0xD0);
+[e ( _I2C_Start (1 -> -> 208 `i `uc ]
+"56
+[; ;MPU.c: 56:   I2C_Master_Write(0x1B);
+[e ( _I2C_Master_Write (1 -> -> 27 `i `uc ]
+"57
+[; ;MPU.c: 57:   I2C_Master_Write(0x18);
+[e ( _I2C_Master_Write (1 -> -> 24 `i `uc ]
+"58
+[; ;MPU.c: 58:   I2C_Master_Stop();
+[e ( _I2C_Master_Stop ..  ]
+"62
+[; ;MPU.c: 62:   I2C_Start(0xD0);
+[e ( _I2C_Start (1 -> -> 208 `i `uc ]
+"63
+[; ;MPU.c: 63:   I2C_Master_Write(0x38);
+[e ( _I2C_Master_Write (1 -> -> 56 `i `uc ]
+"64
+[; ;MPU.c: 64:   I2C_Master_Write(0x01);
+[e ( _I2C_Master_Write (1 -> -> 1 `i `uc ]
+"65
+[; ;MPU.c: 65:   I2C_Master_Stop();
+[e ( _I2C_Master_Stop ..  ]
+"66
+[; ;MPU.c: 66: }
 [e :UE 139 ]
 }
-"62
-[; ;MPU.c: 62: void MPU6050_Read()
+"68
+[; ;MPU.c: 68: void MPU6050_Read()
 [v _MPU6050_Read `(v ~T0 @X0 1 ef ]
-"63
-[; ;MPU.c: 63: {
+"69
+[; ;MPU.c: 69: {
 {
 [e :U _MPU6050_Read ]
 [f ]
-"64
-[; ;MPU.c: 64:   char buffer[40];
+"70
+[; ;MPU.c: 70:   char buffer[40];
 [v _buffer `uc ~T0 @X0 -> 40 `i a ]
-"65
-[; ;MPU.c: 65:   int Ax,Ay,Az,T,Gx,Gy,Gz;
+"71
+[; ;MPU.c: 71:   int Ax,Ay,Az,T,Gx,Gy,Gz;
 [v _Ax `i ~T0 @X0 1 a ]
 [v _Ay `i ~T0 @X0 1 a ]
 [v _Az `i ~T0 @X0 1 a ]
@@ -370,61 +370,61 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _Gx `i ~T0 @X0 1 a ]
 [v _Gy `i ~T0 @X0 1 a ]
 [v _Gz `i ~T0 @X0 1 a ]
-"66
-[; ;MPU.c: 66:   float AY = 0.0;
-[v _AY `f ~T0 @X0 1 a ]
-[e = _AY -> .0.0 `f ]
-"68
-[; ;MPU.c: 68:   I2C_Start(0xD0);
-[e ( _I2C_Start (1 -> -> 208 `i `uc ]
-"69
-[; ;MPU.c: 69:   I2C_Master_Write(0x3B);
-[e ( _I2C_Master_Write (1 -> -> 59 `i `uc ]
-"70
-[; ;MPU.c: 70:   I2C_Master_Stop();
-[e ( _I2C_Master_Stop ..  ]
-"71
-[; ;MPU.c: 71:   I2C_Start(0xD1);
-[e ( _I2C_Start (1 -> -> 209 `i `uc ]
 "72
-[; ;MPU.c: 72:   Ax = ((int)I2C_Read(0)<<8) | (int)I2C_Read(0);
-[e = _Ax | << -> ( _I2C_Read (1 -> -> 0 `i `uc `i -> 8 `i -> ( _I2C_Read (1 -> -> 0 `i `uc `i ]
-"73
-[; ;MPU.c: 73:   Ay = ((int)I2C_Read(0)<<8) | (int)I2C_Read(0);
-[e = _Ay | << -> ( _I2C_Read (1 -> -> 0 `i `uc `i -> 8 `i -> ( _I2C_Read (1 -> -> 0 `i `uc `i ]
+[; ;MPU.c: 72:   int AY = 0;
+[v _AY `i ~T0 @X0 1 a ]
+[e = _AY -> 0 `i ]
 "74
-[; ;MPU.c: 74:   Az = ((int)I2C_Read(0)<<8) | (int)I2C_Read(0);
-[e = _Az | << -> ( _I2C_Read (1 -> -> 0 `i `uc `i -> 8 `i -> ( _I2C_Read (1 -> -> 0 `i `uc `i ]
+[; ;MPU.c: 74:   I2C_Start(0xD0);
+[e ( _I2C_Start (1 -> -> 208 `i `uc ]
 "75
-[; ;MPU.c: 75:   T = ((int)I2C_Read(0)<<8) | (int)I2C_Read(0);
-[e = _T | << -> ( _I2C_Read (1 -> -> 0 `i `uc `i -> 8 `i -> ( _I2C_Read (1 -> -> 0 `i `uc `i ]
+[; ;MPU.c: 75:   I2C_Master_Write(0x3B);
+[e ( _I2C_Master_Write (1 -> -> 59 `i `uc ]
 "76
-[; ;MPU.c: 76:   Gx = ((int)I2C_Read(0)<<8) | (int)I2C_Read(0);
-[e = _Gx | << -> ( _I2C_Read (1 -> -> 0 `i `uc `i -> 8 `i -> ( _I2C_Read (1 -> -> 0 `i `uc `i ]
-"77
-[; ;MPU.c: 77:   Gy = ((int)I2C_Read(0)<<8) | (int)I2C_Read(0);
-[e = _Gy | << -> ( _I2C_Read (1 -> -> 0 `i `uc `i -> 8 `i -> ( _I2C_Read (1 -> -> 0 `i `uc `i ]
-"78
-[; ;MPU.c: 78:   Gz = ((int)I2C_Read(0)<<8) | (int)I2C_Read(1);
-[e = _Gz | << -> ( _I2C_Read (1 -> -> 0 `i `uc `i -> 8 `i -> ( _I2C_Read (1 -> -> 1 `i `uc `i ]
-"79
-[; ;MPU.c: 79:   I2C_Master_Stop();
+[; ;MPU.c: 76:   I2C_Master_Stop();
 [e ( _I2C_Master_Stop ..  ]
+"77
+[; ;MPU.c: 77:   I2C_Start(0xD1);
+[e ( _I2C_Start (1 -> -> 209 `i `uc ]
+"78
+[; ;MPU.c: 78:   Ax = ((int)I2C_Read(0)<<8) | (int)I2C_Read(0);
+[e = _Ax | << -> ( _I2C_Read (1 -> -> 0 `i `uc `i -> 8 `i -> ( _I2C_Read (1 -> -> 0 `i `uc `i ]
+"79
+[; ;MPU.c: 79:   Ay = ((int)I2C_Read(0)<<8) | (int)I2C_Read(0);
+[e = _Ay | << -> ( _I2C_Read (1 -> -> 0 `i `uc `i -> 8 `i -> ( _I2C_Read (1 -> -> 0 `i `uc `i ]
+"80
+[; ;MPU.c: 80:   Az = ((int)I2C_Read(0)<<8) | (int)I2C_Read(0);
+[e = _Az | << -> ( _I2C_Read (1 -> -> 0 `i `uc `i -> 8 `i -> ( _I2C_Read (1 -> -> 0 `i `uc `i ]
 "81
-[; ;MPU.c: 81:   PORTB = (Ay+16384)/128;
-[e = _PORTB -> / + _Ay -> 16384 `i -> 128 `i `uc ]
+[; ;MPU.c: 81:   T = ((int)I2C_Read(0)<<8) | (int)I2C_Read(0);
+[e = _T | << -> ( _I2C_Read (1 -> -> 0 `i `uc `i -> 8 `i -> ( _I2C_Read (1 -> -> 0 `i `uc `i ]
 "82
-[; ;MPU.c: 82:   AY = (float)Ay/16384.0;
-[e = _AY -> / -> -> _Ay `f `d .16384.0 `f ]
-"88
-[; ;MPU.c: 88:   sprintf(buffer," Ay = %d    ",5);
-[e ( _sprintf (1 , (. , &U _buffer :s 1C -> 5 `i ]
+[; ;MPU.c: 82:   Gx = ((int)I2C_Read(0)<<8) | (int)I2C_Read(0);
+[e = _Gx | << -> ( _I2C_Read (1 -> -> 0 `i `uc `i -> 8 `i -> ( _I2C_Read (1 -> -> 0 `i `uc `i ]
+"83
+[; ;MPU.c: 83:   Gy = ((int)I2C_Read(0)<<8) | (int)I2C_Read(0);
+[e = _Gy | << -> ( _I2C_Read (1 -> -> 0 `i `uc `i -> 8 `i -> ( _I2C_Read (1 -> -> 0 `i `uc `i ]
+"84
+[; ;MPU.c: 84:   Gz = ((int)I2C_Read(0)<<8) | (int)I2C_Read(1);
+[e = _Gz | << -> ( _I2C_Read (1 -> -> 0 `i `uc `i -> 8 `i -> ( _I2C_Read (1 -> -> 1 `i `uc `i ]
+"85
+[; ;MPU.c: 85:   I2C_Master_Stop();
+[e ( _I2C_Master_Stop ..  ]
+"87
+[; ;MPU.c: 87:   PORTB = (Ay+16384)/128;
+[e = _PORTB -> / + _Ay -> 16384 `i -> 128 `i `uc ]
 "89
-[; ;MPU.c: 89:   UART_Write_String(buffer);
+[; ;MPU.c: 89:   AY = (Ay+16384)/128;
+[e = _AY / + _Ay -> 16384 `i -> 128 `i ]
+"95
+[; ;MPU.c: 95:   sprintf(buffer,"%d",AY);
+[e ( _sprintf (1 , (. , &U _buffer :s 1C _AY ]
+"96
+[; ;MPU.c: 96:   UART_Write_String(buffer);
 [e ( _UART_Write_String (1 &U _buffer ]
-"105
-[; ;MPU.c: 105: }
+"112
+[; ;MPU.c: 112: }
 [e :UE 140 ]
 }
 [p f _sprintf 8388736 ]
-[a 1C 32 65 121 32 61 32 37 100 32 32 32 32 0 ]
+[a 1C 37 100 0 ]

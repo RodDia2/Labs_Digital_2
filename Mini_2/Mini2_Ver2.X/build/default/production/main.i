@@ -2608,20 +2608,176 @@ extern int sprintf(char *, const char *, ...);
 extern int printf(const char *, ...);
 # 31 "main.c" 2
 
+# 1 "D:\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 1 3
+# 13 "D:\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 3
+typedef signed char int8_t;
+
+
+
+
+
+
+typedef signed int int16_t;
+
+
+
+
+
+
+
+typedef __int24 int24_t;
+
+
+
+
+
+
+
+typedef signed long int int32_t;
+# 52 "D:\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 3
+typedef unsigned char uint8_t;
+
+
+
+
+
+typedef unsigned int uint16_t;
+
+
+
+
+
+
+typedef __uint24 uint24_t;
+
+
+
+
+
+
+typedef unsigned long int uint32_t;
+# 88 "D:\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 3
+typedef signed char int_least8_t;
+
+
+
+
+
+
+
+typedef signed int int_least16_t;
+# 109 "D:\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 3
+typedef __int24 int_least24_t;
+# 118 "D:\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 3
+typedef signed long int int_least32_t;
+# 136 "D:\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 3
+typedef unsigned char uint_least8_t;
+
+
+
+
+
+
+typedef unsigned int uint_least16_t;
+# 154 "D:\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 3
+typedef __uint24 uint_least24_t;
+
+
+
+
+
+
+
+typedef unsigned long int uint_least32_t;
+# 181 "D:\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 3
+typedef signed char int_fast8_t;
+
+
+
+
+
+
+typedef signed int int_fast16_t;
+# 200 "D:\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 3
+typedef __int24 int_fast24_t;
+
+
+
+
+
+
+
+typedef signed long int int_fast32_t;
+# 224 "D:\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 3
+typedef unsigned char uint_fast8_t;
+
+
+
+
+
+typedef unsigned int uint_fast16_t;
+# 240 "D:\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 3
+typedef __uint24 uint_fast24_t;
+
+
+
+
+
+
+typedef unsigned long int uint_fast32_t;
+# 268 "D:\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 3
+typedef int32_t intmax_t;
+# 282 "D:\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 3
+typedef uint32_t uintmax_t;
+
+
+
+
+
+
+typedef int16_t intptr_t;
+
+
+
+
+typedef uint16_t uintptr_t;
+# 32 "main.c" 2
+
+
 
 # 1 "./USART.h" 1
-# 17 "./USART.h"
+
+
+
+
+
+
+
+# 1 "D:\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 1 3
+# 8 "./USART.h" 2
+# 19 "./USART.h"
 void UART_TX_Init(void);
 void UART_Write(unsigned char);
 void UART_Write_String(char*);
-# 33 "main.c" 2
+uint8_t USART_Read(void);
+# 35 "main.c" 2
 
 # 1 "./MPU.h" 1
 # 114 "./MPU.h"
 void MPU6050_Init();
 void MPU6050_Read();
-# 34 "main.c" 2
-# 45 "main.c"
+# 36 "main.c" 2
+
+
+
+
+
+
+
+uint8_t recibido = 0;
+
+
+
 void setup(void);
 void setOsc(void);
 
@@ -2632,9 +2788,13 @@ void setOsc(void);
 
 
 void main(void){
+
     setup();
+
     UART_TX_Init();
+
     MPU6050_Init();
+
     setOsc();
 
 
@@ -2643,8 +2803,16 @@ void main(void){
  {
         RD2 = !RD2;
         MPU6050_Read();
-
-        PORTA++;
+        if (RCIF==1){
+            recibido = USART_Read();
+            switch(recibido) {
+                case 0x01: PORTDbits.RD1 = 1;PORTCbits.RC2 = 0;
+                case 0x02: PORTDbits.RD1 = 0;PORTCbits.RC2 = 0;
+                case 0x04: PORTDbits.RD0 = 1;PORTCbits.RC2 = 0;
+                case 0x08: PORTDbits.RD0 = 0;PORTCbits.RC2 = 0;
+                default: PORTCbits.RC2 = 1;
+            }
+        }
 
         _delay((unsigned long)((50)*(8000000/4000.0)));
     }
@@ -2655,6 +2823,8 @@ void main(void){
 
 
 void setup (void) {
+
+
     ANSEL = 0b00000000;
     ANSELH = 0;
 
@@ -2666,11 +2836,12 @@ void setup (void) {
 
     TRISA = 0b00000000;
     TRISB = 0;
-    TRISC = 0b00000000;
+    TRISC = 0b10000000;
     TRISD = 0;
     TRISE = 0;
 }
 
 void setOsc(void){
+
     OSCCONbits.IRCF = 0b111;
 }

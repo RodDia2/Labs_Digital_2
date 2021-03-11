@@ -1,8 +1,8 @@
 /*
  * File:   I2c.c
- * Author: betov
+ * Author: Rodrigo D'iaz, basado en Pablo Mazariegos
  *
- * Created on 9 de marzo de 2021, 01:09 AM
+ * 
  */
 
 #include <xc.h>
@@ -11,7 +11,7 @@
 
 //---------------[ I2C Routines ]-------------------
 //--------------------------------------------------
-
+// funcion para inicializar maestro
 void I2C_Master_Init()
 {
   SSPCON  = 0x28;
@@ -21,51 +21,51 @@ void I2C_Master_Init()
   SCL_D = 1;
   SDA_D = 1; 
 }
-
+// para esperar un dato
 void I2C_Master_Wait()
 {
     while ((SSPSTAT & 0x04) || (SSPCON2 & 0x1F));
 }
-
+// se inicia el maestro
 void I2C_Master_Start()
 {
     I2C_Master_Wait();
     SEN = 1;
 }
-
+// se inicia la comunicacion
 void I2C_Start(char add)
 {
     I2C_Master_Wait();
     SEN = 1;
     I2C_Master_Write(add);
 }
-
+// se vuelve a encender el maestro
 void I2C_Master_RepeatedStart()
 {
     I2C_Master_Wait();
     RSEN = 1;
 }
-
+// se detiene la comunicacion del maestro
 void I2C_Master_Stop()
 {
     I2C_Master_Wait();
     PEN = 1;
 }
-
+// se manda bit de ack
 void I2C_ACK(void)
 {
 	ACKDT = 0;			// 0 -> ACK
     ACKEN = 1;			// Send ACK
     while(ACKEN);
 }
-
+// se manda bit de nack
 void I2C_NACK(void)
 {
 	ACKDT = 1;			// 1 -> NACK
 	ACKEN = 1;			// Send NACK
     while(ACKEN);
 }
-
+// el maestro escribe
 unsigned char I2C_Master_Write(unsigned char data)
 {
     I2C_Master_Wait();
@@ -74,7 +74,7 @@ unsigned char I2C_Master_Write(unsigned char data)
 	SSPIF = 0;
     return ACKSTAT;
 }
-
+// se lee un byte
 unsigned char I2C_Read_Byte(void)
 {
     //---[ Receive & Return A Byte ]---
@@ -85,7 +85,7 @@ unsigned char I2C_Read_Byte(void)
     I2C_Master_Wait();
     return SSPBUF;	  // Return The Received Byte
 }
-
+// se revisan los bits de ack o nack
 unsigned char I2C_Read(unsigned char ACK_NACK)
 {  
     //---[ Receive & Return A Byte & Send ACK or NACK ]---

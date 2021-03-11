@@ -15,13 +15,18 @@ Version 4.0 HI-TECH Software Intermediate Code
 "20 ./USART.h
 [; ;./USART.h: 20: void UART_Write_String(char*);
 [v _UART_Write_String `(v ~T0 @X0 0 ef1`*uc ]
+"19
+[; ;./USART.h: 19: void UART_Write(unsigned char);
+[v _UART_Write `(v ~T0 @X0 0 ef1`uc ]
+"194 D:\Microchip\xc8\v2.31\pic\include\c90\stdio.h
+[v _sprintf `(i ~T0 @X0 0 e1v`*uc`*Cuc ]
 "4175 D:/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
 [; ;D:/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 4175: extern volatile __bit RCIF __attribute__((address(0x65)));
 [v _RCIF `Vb ~T0 @X0 0 e@101 ]
-"1140
-[; ;D:/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 1140: extern volatile unsigned char RCREG __attribute__((address(0x01A)));
-[v _RCREG `Vuc ~T0 @X0 0 e@26 ]
-"358
+"21 ./USART.h
+[; ;./USART.h: 21: uint8_t USART_Read(void);
+[v _USART_Read `(uc ~T0 @X0 0 ef ]
+"358 D:/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
 [; ;D:/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 358:     struct {
 [s S12 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S12 . RD0 RD1 RD2 RD3 RD4 RD5 RD6 RD7 ]
@@ -405,16 +410,49 @@ Version 4.0 HI-TECH Software Intermediate Code
 "69
 [; ;main_prueba_uart.c: 69:         RD2 = !RD2;
 [e = _RD2 ! _RD2 ]
-"82
-[; ;main_prueba_uart.c: 82:           UART_Write_String("1");
+"70
+[; ;main_prueba_uart.c: 70:         UART_Write_String("V1     V2   CONT");
 [e ( _UART_Write_String (1 :s 1C ]
+"71
+[; ;main_prueba_uart.c: 71:         UART_Write(13);
+[e ( _UART_Write (1 -> -> 13 `i `uc ]
+"72
+[; ;main_prueba_uart.c: 72:         UART_Write(10);
+[e ( _UART_Write (1 -> -> 10 `i `uc ]
+"73
+[; ;main_prueba_uart.c: 73:         sprintf(pantalla, "%1.2f   %3d %3d", 5.2,contador2,contador);
+[e ( _sprintf (1 , , , (. , &U _pantalla :s 2C .5.2 -> _contador2 `i -> _contador `i ]
+"75
+[; ;main_prueba_uart.c: 75:         UART_Write_String(pantalla);
+[e ( _UART_Write_String (1 &U _pantalla ]
+"77
+[; ;main_prueba_uart.c: 77:         UART_Write(13);
+[e ( _UART_Write (1 -> -> 13 `i `uc ]
+"78
+[; ;main_prueba_uart.c: 78:         UART_Write(10);
+[e ( _UART_Write (1 -> -> 10 `i `uc ]
+"80
+[; ;main_prueba_uart.c: 80:         sprintf(buffer,"%d",5);
+[e ( _sprintf (1 , (. , &U _buffer :s 3C -> 5 `i ]
+"81
+[; ;main_prueba_uart.c: 81:         UART_Write_String(buffer);
+[e ( _UART_Write_String (1 &U _buffer ]
+"82
+[; ;main_prueba_uart.c: 82:         UART_Write_String("1");
+[e ( _UART_Write_String (1 :s 4C ]
+"84
+[; ;main_prueba_uart.c: 84:         UART_Write(13);
+[e ( _UART_Write (1 -> -> 13 `i `uc ]
+"85
+[; ;main_prueba_uart.c: 85:         UART_Write(10);
+[e ( _UART_Write (1 -> -> 10 `i `uc ]
 "86
 [; ;main_prueba_uart.c: 86:         if(RCIF==1){
 [e $ ! == -> _RCIF `i -> 1 `i 143  ]
 {
-"91
-[; ;main_prueba_uart.c: 91:             recibido = RCREG;
-[e = _recibido -> _RCREG `uc ]
+"90
+[; ;main_prueba_uart.c: 90:             recibido = USART_Read();
+[e = _recibido -> ( _USART_Read ..  `uc ]
 "92
 [; ;main_prueba_uart.c: 92:             if(recibido > 0) {
 [e $ ! > -> _recibido `i -> 0 `i 144  ]
@@ -448,86 +486,112 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main_prueba_uart.c: 100:             }
 }
 [e :U 146 ]
-"108
-[; ;main_prueba_uart.c: 108:         }
+"102
+[; ;main_prueba_uart.c: 102:             if(recibido == '+'){
+[e $ ! == -> _recibido `ui -> 43 `ui 147  ]
+{
+"103
+[; ;main_prueba_uart.c: 103:                 contador2++;
+[e ++ _contador2 -> -> 1 `i `uc ]
+"104
+[; ;main_prueba_uart.c: 104:             }
+}
+[e :U 147 ]
+"105
+[; ;main_prueba_uart.c: 105:             if(recibido == '-'){
+[e $ ! == -> _recibido `ui -> 45 `ui 148  ]
+{
+"106
+[; ;main_prueba_uart.c: 106:                 contador2--;
+[e -- _contador2 -> -> 1 `i `uc ]
+"107
+[; ;main_prueba_uart.c: 107:             }
+}
+[e :U 148 ]
+"109
+[; ;main_prueba_uart.c: 109:         }
 }
 [e :U 143 ]
-"110
-[; ;main_prueba_uart.c: 110:         contador++;
+"111
+[; ;main_prueba_uart.c: 111:         contador++;
 [e ++ _contador -> -> 1 `i `uc ]
-"112
-[; ;main_prueba_uart.c: 112:         _delay((unsigned long)((500)*(8000000/4000.0)));
-[e ( __delay (1 -> * -> -> 500 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
 "113
-[; ;main_prueba_uart.c: 113:     }
+[; ;main_prueba_uart.c: 113:         _delay((unsigned long)((500)*(8000000/4000.0)));
+[e ( __delay (1 -> * -> -> 500 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+"114
+[; ;main_prueba_uart.c: 114:     }
 }
 [e :U 140 ]
 [e $U 141  ]
 [e :U 142 ]
-"114
-[; ;main_prueba_uart.c: 114:     return;
-[e $UE 139  ]
 "115
-[; ;main_prueba_uart.c: 115: }
+[; ;main_prueba_uart.c: 115:     return;
+[e $UE 139  ]
+"116
+[; ;main_prueba_uart.c: 116: }
 [e :UE 139 ]
 }
-"120
-[; ;main_prueba_uart.c: 120: void setup (void) {
+"121
+[; ;main_prueba_uart.c: 121: void setup (void) {
 [v _setup `(v ~T0 @X0 1 ef ]
 {
 [e :U _setup ]
 [f ]
-"121
-[; ;main_prueba_uart.c: 121:     ANSEL = 0b00000000;
-[e = _ANSEL -> -> 0 `i `uc ]
 "122
-[; ;main_prueba_uart.c: 122:     ANSELH = 0;
+[; ;main_prueba_uart.c: 122:     ANSEL = 0b00000000;
+[e = _ANSEL -> -> 0 `i `uc ]
+"123
+[; ;main_prueba_uart.c: 123:     ANSELH = 0;
 [e = _ANSELH -> -> 0 `i `uc ]
-"124
-[; ;main_prueba_uart.c: 124:     PORTA = 0;
-[e = _PORTA -> -> 0 `i `uc ]
 "125
-[; ;main_prueba_uart.c: 125:     PORTB = 0;
-[e = _PORTB -> -> 0 `i `uc ]
+[; ;main_prueba_uart.c: 125:     PORTA = 0;
+[e = _PORTA -> -> 0 `i `uc ]
 "126
-[; ;main_prueba_uart.c: 126:     PORTC = 0;
-[e = _PORTC -> -> 0 `i `uc ]
+[; ;main_prueba_uart.c: 126:     PORTB = 0;
+[e = _PORTB -> -> 0 `i `uc ]
 "127
-[; ;main_prueba_uart.c: 127:     PORTD = 0;
-[e = _PORTD -> -> 0 `i `uc ]
+[; ;main_prueba_uart.c: 127:     PORTC = 0;
+[e = _PORTC -> -> 0 `i `uc ]
 "128
-[; ;main_prueba_uart.c: 128:     PORTE = 0;
+[; ;main_prueba_uart.c: 128:     PORTD = 0;
+[e = _PORTD -> -> 0 `i `uc ]
+"129
+[; ;main_prueba_uart.c: 129:     PORTE = 0;
 [e = _PORTE -> -> 0 `i `uc ]
-"130
-[; ;main_prueba_uart.c: 130:     TRISA = 0b00000000;
-[e = _TRISA -> -> 0 `i `uc ]
 "131
-[; ;main_prueba_uart.c: 131:     TRISB = 0;
-[e = _TRISB -> -> 0 `i `uc ]
+[; ;main_prueba_uart.c: 131:     TRISA = 0b00000000;
+[e = _TRISA -> -> 0 `i `uc ]
 "132
-[; ;main_prueba_uart.c: 132:     TRISC = 0b10000000;
-[e = _TRISC -> -> 128 `i `uc ]
+[; ;main_prueba_uart.c: 132:     TRISB = 0;
+[e = _TRISB -> -> 0 `i `uc ]
 "133
-[; ;main_prueba_uart.c: 133:     TRISD = 0;
-[e = _TRISD -> -> 0 `i `uc ]
+[; ;main_prueba_uart.c: 133:     TRISC = 0b10000000;
+[e = _TRISC -> -> 128 `i `uc ]
 "134
-[; ;main_prueba_uart.c: 134:     TRISE = 0;
-[e = _TRISE -> -> 0 `i `uc ]
+[; ;main_prueba_uart.c: 134:     TRISD = 0;
+[e = _TRISD -> -> 0 `i `uc ]
 "135
-[; ;main_prueba_uart.c: 135: }
-[e :UE 147 ]
+[; ;main_prueba_uart.c: 135:     TRISE = 0;
+[e = _TRISE -> -> 0 `i `uc ]
+"136
+[; ;main_prueba_uart.c: 136: }
+[e :UE 149 ]
 }
-"137
-[; ;main_prueba_uart.c: 137: void setOsc(void){
+"138
+[; ;main_prueba_uart.c: 138: void setOsc(void){
 [v _setOsc `(v ~T0 @X0 1 ef ]
 {
 [e :U _setOsc ]
 [f ]
-"138
-[; ;main_prueba_uart.c: 138:     OSCCONbits.IRCF = 0b111;
-[e = . . _OSCCONbits 0 4 -> -> 7 `i `uc ]
 "139
-[; ;main_prueba_uart.c: 139: }
-[e :UE 148 ]
+[; ;main_prueba_uart.c: 139:     OSCCONbits.IRCF = 0b111;
+[e = . . _OSCCONbits 0 4 -> -> 7 `i `uc ]
+"140
+[; ;main_prueba_uart.c: 140: }
+[e :UE 150 ]
 }
-[a 1C 49 0 ]
+[p f _sprintf 8495232 ]
+[a 2C 37 49 46 50 102 32 32 32 37 51 100 32 37 51 100 0 ]
+[a 3C 37 100 0 ]
+[a 1C 86 49 32 32 32 32 32 86 50 32 32 32 67 79 78 84 0 ]
+[a 4C 49 0 ]
