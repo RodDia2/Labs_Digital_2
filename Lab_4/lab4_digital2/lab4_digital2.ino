@@ -27,20 +27,38 @@ void setup() {
 }
 
 void loop() {
-
+//switch (cont) {
+//  case 0:
+  
+//  }
 }
 
 void blink() {
-  digitalWrite(ledRojo, HIGH);
-  delay(1000);
-  digitalWrite(ledRojo, LOW);
-  digitalWrite(ledAzul, HIGH);
-  delay(1000);
-  digitalWrite(ledAzul, LOW);
-  digitalWrite(ledVerde, HIGH);
-  delay(1000);
-  digitalWrite(ledVerde, LOW);
-  bandera2 = 1;
+  if (bandera == 1) {
+    digitalWrite(ledRojo, LOW);
+    digitalWrite(ledAzul, LOW);
+    digitalWrite(ledVerde, LOW);
+    delay(50);
+    digitalWrite(ledRojo, HIGH);
+    delay(1000);
+    digitalWrite(ledRojo, LOW);
+    digitalWrite(ledAzul, HIGH);
+    delay(1000);
+    digitalWrite(ledAzul, LOW);
+    digitalWrite(ledVerde, HIGH);
+    delay(1000);
+    digitalWrite(ledVerde, LOW);
+    bandera2 = 1;
+    bandera = 0;
+  }
+  if (bandera == 0) {
+    cont2++;
+    if (cont2 > 8) {
+      cont2 = 0;
+      digitalWrite(ledRojo, HIGH);
+      bandera = 1;
+      }
+    }
 }
 
 void blink2() {
@@ -49,6 +67,7 @@ void blink2() {
     if (cont > 8) {
       cont = 0;
       digitalWrite(ledAzul, HIGH);
+      bandera = 1;
       }
     }
 }
