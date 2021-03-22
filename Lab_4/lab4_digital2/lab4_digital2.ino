@@ -22,7 +22,7 @@ void setup() {
   
   pinMode(interruptPin, INPUT_PULLUP);
   pinMode(interruptPin2, INPUT_PULLUP);
-  attachInterrupt(digitalPinToInterrupt(interruptPin), blink, FALLING);
+  attachInterrupt(digitalPinToInterrupt(interruptPin), blink, LOW);
   attachInterrupt(digitalPinToInterrupt(interruptPin2), blink2, RISING);
 }
 
@@ -34,6 +34,8 @@ void loop() {
 }
 
 void blink() {
+  delay(50);
+  if (digitalRead(interruptPin) == HIGH) {
   if (bandera == 1) {
     digitalWrite(ledRojo, LOW);
     digitalWrite(ledAzul, LOW);
@@ -58,10 +60,13 @@ void blink() {
       digitalWrite(ledRojo, HIGH);
       bandera = 1;
       }
-    }
+  }
+ }
 }
 
 void blink2() {
+  delay(50);
+  if (digitalRead(interruptPin2) == HIGH) {
   if (bandera2 == 1) {
     cont++;
     if (cont > 8) {
@@ -70,4 +75,5 @@ void blink2() {
       bandera = 1;
       }
     }
+  }
 }
