@@ -25,6 +25,8 @@
 #include <SD.h>
 
 File root;
+File myFile;
+int seleccion = 0;
 
 void setup()
 {
@@ -55,7 +57,64 @@ void setup()
 
 void loop()
 {
-  // nothing happens after setup finishes.
+if (Serial.available()>0){
+  seleccion = Serial.read();
+  if (seleccion == '1'){
+      myFile = SD.open("kirby.txt");
+      if (myFile) {
+      Serial.println("kirby.txt:");
+
+      // read from the file until there's nothing else in it:
+      while (myFile.available()) {
+        Serial.write(myFile.read());
+      }
+    // close the file:
+      myFile.close();
+    } else {
+      // if the file didn't open, print an error:
+      Serial.println("error opening test.txt");
+    }
+    }
+  if (seleccion == '2'){
+      myFile = SD.open("rayquaza.txt");
+      if (myFile) {
+      Serial.println("rayquaza.txt:");
+
+      // read from the file until there's nothing else in it:
+      while (myFile.available()) {
+        Serial.write(myFile.read());
+      }
+    // close the file:
+      myFile.close();
+    } else {
+      // if the file didn't open, print an error:
+      Serial.println("error opening test.txt");
+    }
+    }
+  if (seleccion == '3'){
+      myFile = SD.open("pikachu.txt");
+      if (myFile) {
+      Serial.println("pikachu.txt:");
+
+      // read from the file until there's nothing else in it:
+      while (myFile.available()) {
+        Serial.write(myFile.read());
+      }
+    // close the file:
+      myFile.close();
+    } else {
+      // if the file didn't open, print an error:
+      Serial.println("error opening test.txt");
+    }
+    }
+  if (seleccion == '4'){
+     root = SD.open("/");
+
+    printDirectory(root, 0);
+
+    Serial.println("done!");
+    }
+  }
 }
 
 void printDirectory(File dir, int numTabs) {
