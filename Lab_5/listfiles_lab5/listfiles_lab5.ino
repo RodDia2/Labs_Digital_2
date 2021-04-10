@@ -23,9 +23,10 @@
  */
 #include <SPI.h>
 #include <SD.h>
-
+// crear los files
 File root;
 File myFile;
+// se crea una variable para seleccionar las opciones
 int seleccion = 0;
 
 void setup()
@@ -41,13 +42,13 @@ void setup()
   // (10 on most Arduino boards, 53 on the Mega) must be left as an output
   // or the SD library functions will not work.
   pinMode(PA_3, OUTPUT); // chip select
-
+  // se revisa el chip select para ver si se realizo la conexion
   if (!SD.begin(PA_3)) {
     Serial.println("initialization failed!");
     return;
   }
   Serial.println("initialization done.");
-
+  // se abre con la funcion open y se utiliza la funcion de print Directory para saber que archivos hay y su tamano
   root = SD.open("/");
 
   printDirectory(root, 0);
@@ -57,10 +58,15 @@ void setup()
 
 void loop()
 {
+ // en el loop se revisa si se recibe un dato en el puerto serial y se revisa si es alguna de las opciones disponibles
 if (Serial.available()>0){
+  // se guarda el dato
   seleccion = Serial.read();
+  // si es igual a 1
   if (seleccion == '1'){
+    // se abre el archivo
       myFile = SD.open("kirby.txt");
+      // se revisa que se pueda acceder el archivo
       if (myFile) {
       Serial.println("kirby.txt:");
 
@@ -75,6 +81,7 @@ if (Serial.available()>0){
       Serial.println("error opening test.txt");
     }
     }
+    // se repite el mismo proceso para 1 pero para 2 y 3
   if (seleccion == '2'){
       myFile = SD.open("rayquaza.txt");
       if (myFile) {
@@ -107,12 +114,13 @@ if (Serial.available()>0){
       Serial.println("error opening test.txt");
     }
     }
+    // esta ultima opcion es simplemente volver a desplegar el menu
   if (seleccion == '4'){
      root = SD.open("/");
 
-    printDirectory(root, 0);
+     printDirectory(root, 0);
 
-    Serial.println("done!");
+     Serial.println("done!");
     }
   }
 }
