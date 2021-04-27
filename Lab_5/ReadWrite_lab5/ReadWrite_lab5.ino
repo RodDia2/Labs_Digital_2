@@ -61,7 +61,7 @@ void setup()
     // if the file didn't open, print an error:
     Serial.println("error opening test.txt");
   }
-/*
+
   // re-open the file for reading:
   myFile = SD.open("test.txt");
   if (myFile) {
@@ -78,7 +78,7 @@ void setup()
     Serial.println("error opening test.txt");
   }
 }
-*/
+
 void loop()
 {
   // nothing happens after setup
