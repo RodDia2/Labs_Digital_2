@@ -31,11 +31,15 @@
 #define LCD_RD PE_1
 int DPINS[] = {PB_0, PB_1, PB_2, PB_3, PB_4, PB_5, PB_6, PB_7};  
 
-const int P1derecha = PA_2;
+const int P1derecha = PA_7;
 const int P1izquierda  = PF_4;
-const int P1agachado = PD_6;
-const int P1puno = PD_7;
-const int P1patada = PA_4;
+//const int P1agachado = PD_6;
+const int P1puno = PF_1;
+//const int P1patada = PA_4;
+
+const int P2derecha = PD_7;
+const int P2izquierda  = PD_6;
+const int P2puno = PE_3;
 
 int x1 = 0;
 int x2 = 0;
@@ -43,10 +47,16 @@ int x2 = 0;
 int posP1 = 0;
 int P1_d = 0;
 int P1_i = 0;
-int P1_a = 0;
-int P1_pa = 0;
+//int P1_a = 0;
+//int P1_pa = 0;
 int P1_pu = 0;
 int P1_pu_c = 0;
+
+int posP2 = 271;
+int P2_d = 0;
+int P2_i = 0;
+int P2_pu = 0;
+int P2_pu_c = 0;
 //***************************************************************************************************************************************
 // Functions Prototypes
 //***************************************************************************************************************************************
@@ -95,9 +105,12 @@ void setup() {
   GPIOPadConfigSet(GPIO_PORTB_BASE, 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7, GPIO_STRENGTH_8MA, GPIO_PIN_TYPE_STD_WPU);
   pinMode(P1derecha, INPUT_PULLUP);
   pinMode(P1izquierda, INPUT_PULLUP);
-  pinMode(P1agachado, INPUT_PULLUP);
+  //pinMode(P1agachado, INPUT_PULLUP);
   pinMode(P1puno, INPUT_PULLUP);
-  pinMode(P1patada, INPUT_PULLUP);
+  //pinMode(P1patada, INPUT_PULLUP);
+  pinMode(P2derecha, INPUT_PULLUP);
+  pinMode(P2izquierda, INPUT_PULLUP);
+  pinMode(P2puno, INPUT_PULLUP);
   Serial.println("Inicio");
   LCD_Init();
   LCD_Clear(0x00);
@@ -114,8 +127,8 @@ void setup() {
  }
  //234x15
  LCD_Bitmap(43,10,234,15,barravida);
- LCD_Sprite(0, 100, 49,84,jinmov,6,0,0,0 );
- LCD_Sprite(271,100,49,84,kazuya,6,0,1,0);
+ LCD_Sprite(0, 100, 49,84,jinmov,3,0,0,0 );
+ LCD_Sprite(271,100,49,84,kazuya,3,0,1,0);
 
  x1 = 0;
  x2 = 271;
@@ -129,9 +142,12 @@ void loop() {
 //botones
   P1_d = digitalRead(P1derecha);
   P1_i = digitalRead(P1izquierda);
-  P1_a = digitalRead(P1agachado);
+  //P1_a = digitalRead(P1agachado);
   P1_pu = digitalRead(P1puno);
-  P1_pa = digitalRead(P1patada);
+  //P1_pa = digitalRead(P1patada);
+  P2_d = digitalRead(P2derecha);
+  P2_i = digitalRead(P2izquierda);
+  P2_pu = digitalRead(P2puno);
 // jin mov derecha
   if (P1_d == LOW) {
     for (int x = x1; x < x1+30; x++) {
@@ -140,14 +156,14 @@ void loop() {
         } else {
           posP1++;
           }
-      int anim = (x/25)%6;
-      LCD_Sprite(posP1, 100, 49,84,jinmov,6,anim,0,0 );
+      int anim = (x/25)%3;
+      LCD_Sprite(posP1, 100, 49,84,jinmov,3,anim,0,0 );
       V_line(posP1-1,100,84,0x665F);
       
       }
     x1 = posP1;
   }
-  // jin mov izquierda
+// jin mov izquierda
   if (P1_i == LOW) {
     for (int x = x1; x > x1-30; x--) {
       if (x<=0) {
@@ -155,14 +171,45 @@ void loop() {
         } else {
           posP1--;
           }
-      int anim = (x/25)%6;
-      LCD_Sprite(posP1, 100, 49,84,jinmov,6,anim,1,0);
+      int anim = (x/25)%3;
+      LCD_Sprite(posP1, 100, 49,84,jinmov,3,anim,1,0);
       V_line(posP1+49,100,84,0x665F);
       
       }
     x1 = posP1;
   }
+  // kasuya mov derecha
+  if (P2_d == LOW) {
+    for (int x = x2; x < x2+30; x++) {
+      if (x>=270) {
+        posP2 = 270;
+        } else {
+          posP2++;
+          }
+      int anim5 = (x/25)%3;
+      LCD_Sprite(posP2, 100, 49,84,kazuya,3,anim5,0,0 );
+      V_line(posP2-1,100,84,0x665F);
+      
+      }
+    x2 = posP2;
+  }
+// kasuya mov izquierda
+  if (P2_i == LOW) {
+    for (int x = x2; x > x2-30; x--) {
+      if (x<=0 or x<x1+55) {
+        posP2 = x1+55;
+        } else {
+          posP2--;
+          }
+      int anim5 = (x/25)%3;
+      LCD_Sprite(posP2, 100, 49,84,kazuya,3,anim5,1,0);
+      V_line(posP2+49,100,84,0x665F);
+      
+      }
+    x2 = posP2;
+  }
   // jin agachado
+  /*
   if (P1_a == LOW) {
     for(int x = 0; x <=20; x++){
       int anim2 = (x/10)%4;
@@ -170,29 +217,30 @@ void loop() {
       //V_line(posP1-1,102,81,0x665F); 
       }
     }
+    */
   // jin punos
   if (P1_pu == LOW) {
     switch (P1_pu_c) {
       case 0:
-        for(int x = 0; x <= 31; x++) {
-          int anim3 = (x/10)%4;
-          LCD_Sprite(posP1,102,70,82,jindere,4,anim3,0,0 );
+        for(int x = 0; x <= 21; x++) {
+          int anim3 = (x/10)%2;
+          LCD_Sprite(posP1,102,70,82,jindere,2,anim3,0,0 );
           //V_line(posP1-1,102,82,0x665F);
         }
-        LCD_Sprite(posP1,102,70,82,jindere,4,0,0,0 );
+        LCD_Sprite(posP1,102,70,82,jindere,2,0,0,0 );
         FillRect(posP1,101,70,84,0x665F);
-        LCD_Sprite(posP1, 100, 49,84,jinmov,6,0,0,0 );
+        LCD_Sprite(posP1, 100, 49,84,jinmov,3,0,0,0 );
         
         break;
       case 1:
-        for(int x = 0; x<= 31; x++) {
-          int anim4 = (x/10)%3;
-          LCD_Sprite(posP1, 102,66,82,jinizq,3,anim4,0,0 );
+        for(int x = 0; x<= 21; x++) {
+          int anim4 = (x/10)%2;
+          LCD_Sprite(posP1, 102,66,82,jinizq,2,anim4,0,0 );
           //V_line(posP1-1,102,82,0x665F);
         }
-        LCD_Sprite(posP1, 102,66,82,jinizq,3,0,0,0 );
+        LCD_Sprite(posP1, 102,66,82,jinizq,2,0,0,0 );
         FillRect(posP1,101,70,84,0x665F);
-        LCD_Sprite(posP1, 100, 49,84,jinmov,6,0,0,0 );
+        LCD_Sprite(posP1, 100, 49,84,jinmov,3,0,0,0 );
         
         break;
     }
@@ -200,6 +248,38 @@ void loop() {
       P1_pu_c = 1;
       } else {
         P1_pu_c = 0;
+        }
+  }
+  // kasuya punos
+  if (P2_pu == LOW) {
+    switch (P2_pu_c) {
+      case 0:
+        for(int x = 0; x <= 21; x++) {
+          int anim3 = (x/10)%2;
+          LCD_Sprite(posP2-20,99,73,84,kazuyadere,2,anim3,1,0 );
+          //V_line(posP1-1,102,82,0x665F);
+        }
+        LCD_Sprite(posP2-20,99,73,84,kazuyadere,2,0,1,0 );
+        FillRect(posP2-20,101,70,84,0x665F);
+        LCD_Sprite(posP2, 100, 49,84,kazuya,3,0,1,0 );
+        
+        break;
+      case 1:
+        for(int x = 0; x<= 21; x++) {
+          int anim4 = (x/10)%2;
+          LCD_Sprite(posP2-20, 99,68,85,kazuyaizq,2,anim4,1,0 );
+          //V_line(posP1-1,102,82,0x665F);
+        }
+        LCD_Sprite(posP2-20, 99,68,85,kazuyaizq,2,0,1,0 );
+        FillRect(posP2-20,101,70,85,0x665F);
+        LCD_Sprite(posP2, 100, 49,84,kazuya,3,0,1,0 );
+        
+        break;
+    }
+    if (P2_pu_c == 0) {
+      P2_pu_c = 1;
+      } else {
+        P2_pu_c = 0;
         }
   }
   // jin patada 
