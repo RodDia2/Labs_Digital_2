@@ -63,6 +63,16 @@ int P2_pu = 0;
 int P2_pu_c = 0;
 int P2_pa = 0;
 int P2_a = 0;
+
+int vidaP1 = 0;
+int vidaP2 = 0;
+int vidaP1_index = 0;
+int vidaP2_index = 0;
+int P1combo = 0;
+int P2combo = 0;
+int P1def = 0;
+int P2def = 0;
+int win = 0;
 //***************************************************************************************************************************************
 // Functions Prototypes
 //***************************************************************************************************************************************
@@ -102,6 +112,7 @@ extern uint8_t jinmuerto[];
 extern uint8_t kazuyamuerto[];
 // vida
 extern uint8_t barravida[];
+extern uint8_t logo[];
 //***************************************************************************************************************************************
 // Inicialización
 //***************************************************************************************************************************************
@@ -141,12 +152,22 @@ void setup() {
  x1 = 0;
  x2 = 271;
 
+ vidaP1 = 100;
+ vidaP2 = 100;
+ vidaP1_index = 148;
+ vidaP2_index = 272;
+
+
+ //FillRect(48,14,100,6,0xFFFF);
+ //FillRect(172,14,100,6,0xFFFF);
+
 }
 //***************************************************************************************************************************************
 // Loop Infinito
 //***************************************************************************************************************************************
 void loop() {
 
+ // LCD_Bitmap(100,100,194,81,logo);
 //botones
   P1_d = digitalRead(P1derecha);
   P1_i = digitalRead(P1izquierda);
@@ -158,6 +179,43 @@ void loop() {
   P2_pu = digitalRead(P2puno);
   P2_pa = digitalRead(P2patada);
   P2_a = digitalRead(P2agachado);
+
+  if (win == 1) {
+    P1_d = HIGH;
+    P1_i = HIGH;
+    P1_a = HIGH;
+    P1_pu = HIGH;
+    P1_pa = HIGH;
+    P2_d = HIGH;
+    P2_i = HIGH;
+    P2_pu = HIGH;
+    P2_pa = HIGH;
+    P2_a = HIGH;
+    P2_a = digitalRead(P2agachado);
+    if (P2_a == LOW) {
+      win = 0;
+      FillRect(0, 0, 340, 220, 0x665F);
+      for(int x = 0; x <319; x++){ 
+        LCD_Bitmap(x, 185, 95, 40, suelo);
+        LCD_Bitmap(x, 225, 95, 40, suelo);
+        x += 94;
+      }
+ //234x15
+      LCD_Bitmap(43,10,234,15,barravida);
+      LCD_Sprite(0, 100, 49,84,jinmov,3,0,0,0 );
+      LCD_Sprite(271,100,49,84,kazuya,3,0,1,0);
+
+      x1 = 0;
+      x2 = 260;
+      posP1 = x1;
+      posP2 = x2;
+      P1combo = 0;
+      P2combo = 0;
+
+      vidaP1 = 100;
+      vidaP2 = 100;
+      }
+    }
 // jin mov derecha
   if (P1_d == LOW) {
     for (int x = x1; x < x1+30; x++) {
@@ -218,7 +276,7 @@ void loop() {
       }
     x2 = posP2;
   }
-  // jin agachado
+  // jin agachado***************************************************************************************************
   
   if (P1_a == LOW) {
     for(int x = 0; x <=19; x++){
@@ -236,7 +294,8 @@ void loop() {
     }
   }
     
-  // jin punos
+  // jin punos*************************************************************************************************************
+  
   if (P1_pu == LOW) {
     switch (P1_pu_c) {
       case 0:
@@ -248,7 +307,11 @@ void loop() {
         LCD_Sprite(posP1+5,102,70,82,jindere,2,0,0,0 );
         FillRect(posP1+5,101,70,84,0x665F);
         LCD_Sprite(posP1, 100, 49,84,jinmov,3,0,0,0 );
-        
+        P1combo = 0;
+        if (x2-x1<75){
+          vidaP2 = vidaP2 - 10;
+          P1combo = 1;
+          }
         break;
       case 1:
         for(int x = 0; x<= 21; x++) {
@@ -259,7 +322,17 @@ void loop() {
         LCD_Sprite(posP1+5, 102,66,82,jinizq,2,0,0,0 );
         FillRect(posP1+5,101,70,84,0x665F);
         LCD_Sprite(posP1, 100, 49,84,jinmov,3,0,0,0 );
-        
+        if (x2-x1<75) {
+          if (P1combo == 1) {
+            vidaP2 = vidaP2 - 20;
+            P1combo = 2;
+            } else {
+              vidaP2 = vidaP2 -10;
+              P1combo = 0;
+              }
+          } else {
+            P1combo = 0;
+            }
         break;
     }
     if (P1_pu_c == 0) {
@@ -280,6 +353,11 @@ void loop() {
         LCD_Sprite(posP2-20,99,73,84,kazuyadere,2,0,1,0 );
         FillRect(posP2-20,101,70,84,0x665F);
         LCD_Sprite(posP2, 100, 49,84,kazuya,3,0,1,0 );
+        P2combo = 0;
+        if (x2-x1<75) {
+          vidaP1 = vidaP1 - 10;
+          P2combo = 1;
+          }
         
         break;
       case 1:
@@ -291,7 +369,18 @@ void loop() {
         LCD_Sprite(posP2-20, 99,68,85,kazuyaizq,2,0,1,0 );
         FillRect(posP2-20,101,70,85,0x665F);
         LCD_Sprite(posP2, 100, 49,84,kazuya,3,0,1,0 );
-        
+        if (x2-x1<75) {
+          if (P2combo == 1) {
+            vidaP1 = vidaP1 - 20;
+            P2combo = 2;
+            } else {
+              vidaP1 = vidaP1 - 10;
+              P2combo = 0;
+              }
+         } else {
+          P2combo = 0;
+          }
+
         break;
     }
     if (P2_pu_c == 0) {
@@ -300,7 +389,7 @@ void loop() {
         P2_pu_c = 0;
         }
   }
-  // jin patada 
+  // jin patada *******************************************************************************************************************************
   
   if (P1_pa == LOW) {
     for(int x = 0; x <=21; x++){
@@ -311,6 +400,14 @@ void loop() {
     FillRect(posP1,101,75,84,0x665F);
     FillRect(posP1-20,101,20,84,0x665F);
     LCD_Sprite(posP1, 100, 49,84,jinmov,3,0,0,0 );
+    if (x2-x1<75) {
+      if (P1combo == 2) {
+        vidaP2 = vidaP2 - 70;
+        } else {
+          vidaP2 = vidaP2 - 25;
+          }
+      }
+    P1combo == 0;
   }
   // kazuya patada
   if (P2_pa == LOW) {
@@ -321,167 +418,34 @@ void loop() {
     }
     FillRect(posP2-20,100,20,84,0x665F);
     LCD_Sprite(posP2, 100, 49,84,kazuya,3,0,1,0 );
+    if (x2-x1<75) {
+      if (P2combo == 2) {
+        vidaP1 = vidaP1 - 70;
+        } else {
+          vidaP1 = vidaP1 - 25;
+          }
+      }
+    P2combo == 0;
   }
+  //******************************************************************************************
+  if (vidaP2 <= 0) {
+    vidaP2 = 0;
+    win = 1;
+    FillRect(18,14,15,15,0xFF40);
+    }
+  if (vidaP1 <= 0) {
+    vidaP1 = 0;
+    win = 1;
+    FillRect(292,14,15,15,0xFF40);
+    }
   
- 
+  FillRect(172+vidaP2,14,(100-vidaP2),6,0xFFFF);
+  FillRect(48,14,(100-vidaP1),6,0xFFFF);
   
-  //LCD_Sprite(100, 100, 49,84,kazuya,6,0,0,0 );
-  //V_line(x-1,100,84,0x665F);
-  //V_line( x+49, 100, 84, 0x665F);
-  //LCD_Sprite(100, 99,68,85,kazuyaizq,3,0,0,0 );
-  //V_line(x-1,99,85,0x665F); 
-  //LCD_Sprite(100,99,73,84,kazuyadere,4,0,0,0 );
-  //V_line(x-1,99,85,0x665F);
-  //LCD_Sprite(100,102,60,84,kazuyaagachado,4,0,0,0 );
-  
+
 }
 
-/*  for(int x = 0; x <320-49; x++){
-    int anim = (x/35)%6;
-    LCD_Sprite(x, 100, 49,84,jinmov,6,anim,0,0 );
-    V_line(x-1,100,84,0x665F); 
-  }
-  for(int x = 320-49; x >0; x--){
-    int anim = (x/35)%6;
-    LCD_Sprite(x,100,49,84,jinmov,6,anim,1,0);
-    V_line( x+49, 100, 84, 0x665F);
-  }
 
-  for(int x = 200; x <320-49; x++){
-    int anim2 = (x/35)%6;
-    LCD_Sprite(x, 100, 49,84,kazuya,6,anim2,0,0 );
-    V_line(x-1,100,84,0x665F); 
-  }
-  for(int x = 320-49; x >0; x--){
-    int anim2 = (x/35)%6;
-    LCD_Sprite(x,100,49,84,kazuya,6,anim2,1,0);
-    V_line( x+49, 100, 84, 0x665F);
-  }*/
-//Golpes de los jugadores  
-//Kazuya
-//Izquierda
-/*for(int x = 0; x <320-68; x++){
-    int anim3 = (x/35)%3;
-    LCD_Sprite(x, 99,68,85,kazuyaizq,3,anim3,0,0 );
-    V_line(x-1,99,85,0x665F); 
-  }
-  for(int x = 320-68; x >0; x--){
-    int anim3 = (x/35)%3;
-    LCD_Sprite(x,99,68,85,kazuyaizq,3,anim3,1,0);
-    V_line( x+68,99,85, 0x665F);
-  }
-//Derecha
-for(int x = 0; x <320-73; x++){
-    int anim4 = (x/35)%4;
-    LCD_Sprite(x,99,73,84,kazuyadere,4,anim4,0,0 );
-    V_line(x-1,99,85,0x665F); 
-  }
-  for(int x = 320-73; x >0; x--){
-    int anim4 = (x/35)%4;
-    LCD_Sprite(x,99,73,84,kazuyadere,4,anim4,1,0);
-    V_line( x+73,99,84, 0x665F);
-  }*/
-//Jin
-//Izquierda
-/*for(int x = 0; x <320-66; x++){
-    int anim5 = (x/35)%3;
-    LCD_Sprite(x, 102,66,82,jinizq,3,anim5,0,0 );
-    V_line(x-1,102,82,0x665F); 
-  }
-  for(int x = 320-66; x >0; x--){
-    int anim5 = (x/35)%3;
-    LCD_Sprite(x,102,66,82,jinizq,3,anim5,1,0);
-    V_line( x+66,102,82, 0x665F);
-  }
-//Derecha
-for(int x = 0; x <320-70; x++){
-    int anim6 = (x/35)%3;
-    LCD_Sprite(x,102,70,82,jindere,4,anim6,0,0 );
-    V_line(x-1,102,82,0x665F); 
-  }
-  for(int x = 320-70; x >0; x--){
-    int anim6 = (x/35)%3;
-    LCD_Sprite(x,102,70,82,jindere,4,anim6,1,0);
-    V_line( x+70,102,82, 0x665F);
-  }
-  */
-//Patadas de los jugadores 
-//Kazuya
-//Patada
-/*
-  for(int x = 0; x <320-72; x++){
-    int anim7 = (x/35)%5;
-    LCD_Sprite(x, 90,72,92,kazuyapatada,5,anim7,0,0 );
-    V_line(x-1,90,92,0x665F); 
-  }
-  for(int x = 320-72; x >0; x--){
-    int anim7 = (x/35)%5;
-    LCD_Sprite(x,90,72,92,kazuyapatada,5,anim7,1,0);
-    V_line( x+72,90,92, 0x665F);
-  }
-//Agahcado
-  for(int x = 0; x <320-60; x++){
-    int anim8 = (x/35)%4;
-    LCD_Sprite(x,102,60,84,kazuyaagachado,4,anim8,0,0 );
-    V_line(x-1,102,84,0x665F); 
-  }
-  for(int x = 320-60; x >0; x--){
-    int anim8 = (x/35)%4;
-    LCD_Sprite(x,102,60,84,kazuyaagachado,4,anim8,1,0);
-    V_line( x+60,102,84, 0x665F);
-  }
-//Jin
-//Patada
-  for(int x = 0; x <320-84; x++){
-    int anim9 = (x/35)%5;
-    LCD_Sprite(x, 102,84,84,jinpatada,5,anim9,0,0 );
-    V_line(x-1,102,84,0x665F); 
-  }
-  for(int x = 320-84; x >0; x--){
-    int anim9 = (x/35)%5;
-    LCD_Sprite(x,102,84,84,jinpatada,5,anim9,1,0);
-    V_line( x+84,102,84, 0x665F);
-  }
-//Agahcado
-for(int x = 0; x <320-56; x++){
-    int anim10 = (x/35)%4;
-    LCD_Sprite(x,102,56,81,jinagachado,4,anim10,0,0 );
-    V_line(x-1,102,81,0x665F); 
-  }
-  for(int x = 320-56; x >0; x--){
-    int anim10 = (x/35)%4;
-    LCD_Sprite(x,102,56,81,jinagachado,4,anim10,1,0);
-    V_line( x+56,102,81, 0x665F);
-  }
-}
-*/
-// muertes 
-// jin
-/*
-for(int x = 0; x <320-90; x++){
-    int anim11 = (x/35)%3;
-    LCD_Sprite(x,108,90,75,jinmuerto,3,anim11,0,0 );
-    V_line(x-1,108,76,0x665F); 
-  }
-  for(int x = 320-90; x >0; x--){
-    int anim11 = (x/35)%3;
-    LCD_Sprite(x,108,90,75,jinmuerto,3,anim11,1,0);
-    V_line( x+90,108,76, 0x665F);
-  }
-
-// kasuya
-for(int x = 0; x <320-90; x++){
-    int anim12 = (x/35)%3;
-    LCD_Sprite(x,104,90,81,kazuyamuerto,3,anim12,0,0 );
-    V_line(x-1,103,81,0x665F); 
-  }
-  for(int x = 320-90; x >0; x--){
-    int anim12 = (x/35)%3;
-    LCD_Sprite(x,104,90,81,kazuyamuerto,3,anim12,1,0);
-    V_line( x+90,103,81, 0x665F);
-  }
-}
-*/
 
 //***************************************************************************************************************************************
 // Función para inicializar LCD
