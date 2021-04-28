@@ -1,5 +1,16 @@
 // Variables A1-A5 are reserved on Arduino, So I renamed my Ax notes to AAx.
 // Rights to the song obviously don't belong to me. blah blah, legal words, blah blah.
+
+#include <stdint.h>
+#include <stdbool.h>
+#include <Wire.h>
+
+#include "wiring_private.h"
+#include "inc/hw_ints.h"
+#include "driverlib/interrupt.h"
+#include "driverlib/rom.h"
+#include "driverlib/timer.h"
+#include "driverlib/sysctl.h"
  
 const int C2 = 65;
 const int Db2 = 69;
@@ -63,27 +74,67 @@ const int Bb6 = 1865;
 const int B6 = 1976;
 
  
-const int buzzerPin = PF_2;
+const byte buzzerPin = PF_2;
 const int ledPin1 = PF_3;
 const int ledPin2 = PB_3;
+
+const int note_cc = 261;
+#define note_dd 294
+#define note_ee 329
+#define note_ff 349
+const int note_g = 391;
+#define note_gS 415
+#define note_a 440
+#define note_aS 455
+#define note_b 493
+#define note_cH 523
+#define note_cSH 554
+#define note_dH 587
+#define note_dSH 622
+#define note_eH 659
+#define note_fH 698
+#define note_fSH 740
+#define note_gH 784
+#define note_gSH 830
+#define note_aH 880
+
+#define note_bH 988
+#define note_cHH 1047
+#define note_dHH 1175
+#define note_eHH 1318
  
 int counter = 0;
+
+const byte pushcambio = PA_5;
+int cambio = 0;
+int counter2 = 1;
+const int ledsalida = PA_7;
  
 void setup()
 {
+  Serial.begin(9600);
   //Setup pin modes
   pinMode(buzzerPin, OUTPUT);
   pinMode(ledPin1, OUTPUT);
   pinMode(ledPin2, OUTPUT);
+  pinMode(pushcambio, INPUT_PULLUP);
+  pinMode(ledsalida, OUTPUT);
+//  configureTimer1A();
+  //attachInterrupt(digitalPinToInterrupt(interruptPin), blink, FALLING);
 }
  
 void loop()
 {
+if (cambio == 0) {
+    tekken();
+    cambio ++;
+}
   firstSection();
   firstSection();
   secondSection();
   thirdSection();
   thirdSection();
+   
 }
  
 void beep(int note, int duration)
@@ -108,7 +159,7 @@ void beep(int note, int duration)
   //Stop tone on buzzerPin
   noTone(buzzerPin);
  
-  delay(50);
+  delay(60);
  
   //Increment counter
   counter++;
@@ -223,3 +274,161 @@ void thirdSection()
   beep(AA3, 200);
   beep(AA3, 450);
 }
+
+void tekken() {
+  beep(note_g, 85);
+  beep(note_b, 85);
+  beep(note_eH, 85);
+  beep(note_fH, 85);
+  beep(note_gH, 85);
+  beep(note_eHH, 85);
+
+  beep(note_g, 85);
+  beep(note_b, 85);
+  beep(note_eH, 85);
+  beep(note_fH, 85);
+  beep(note_gH, 85);
+  beep(note_eHH, 85);
+
+  beep(note_g, 85);
+  beep(note_b, 85);
+  beep(note_eH, 85);
+  beep(note_fH, 85);
+  beep(note_gH, 85);
+  beep(note_eHH, 85);
+
+  beep(note_g, 85);
+  beep(note_b, 85);
+  beep(note_eH, 85);
+  beep(note_fH, 85);
+  beep(note_gH, 85);
+  beep(note_eHH, 85);
+//////////////////////////
+  beep(note_g, 85);
+  beep(note_b, 85);
+  beep(note_eH, 85);
+  beep(note_fH, 85);
+  beep(note_gH, 85);
+  beep(note_dHH, 85);
+
+  beep(note_g, 85);
+  beep(note_b, 85);
+  beep(note_eH, 85);
+  beep(note_fH, 85);
+  beep(note_gH, 85);
+  beep(note_dHH, 85);
+
+  beep(note_g, 85);
+  beep(note_b, 85);
+  beep(note_eH, 85);
+  beep(note_fH, 85);
+  beep(note_gH, 85);
+  beep(note_dHH, 85);
+
+  beep(note_g, 85);
+  beep(note_b, 85);
+  beep(note_eH, 85);
+  beep(note_fH, 85);
+  beep(note_gH, 85);
+  beep(note_dHH, 85);
+/////////////////
+  beep(note_g, 85);
+  beep(note_b, 85);
+  beep(note_eH, 85);
+  beep(note_fH, 85);
+  beep(note_gH, 85);
+  beep(note_bH, 85);
+  beep(note_g, 85);
+  beep(note_b, 85);
+  beep(note_eH, 85);
+  beep(note_fH, 85);
+  beep(note_gH, 85);
+  beep(note_bH, 85);
+  beep(note_g, 85);
+  beep(note_b, 85);
+  beep(note_eH, 85);
+  beep(note_fH, 85);
+  beep(note_gH, 85);
+  beep(note_bH, 85);
+  beep(note_g, 85);
+  beep(note_b, 85);
+  beep(note_eH, 85);
+  beep(note_fH, 85);
+  beep(note_gH, 85);
+  beep(note_bH, 85);
+  //////////
+  beep(note_g, 85);
+  beep(note_b, 85);
+  beep(note_eH, 85);
+  beep(note_fH, 85);
+  beep(note_gH, 85);
+  beep(note_cHH, 85);
+  beep(note_g, 85);
+  beep(note_b, 85);
+  beep(note_eH, 85);
+  beep(note_fH, 85);
+  beep(note_gH, 85);
+  beep(note_cHH, 85);
+  beep(note_g, 85);
+  beep(note_b, 85);
+  beep(note_eH, 85);
+  beep(note_fH, 85);
+  beep(note_gH, 85);
+  beep(note_cHH, 85);
+  
+  ////////
+  beep(note_g, 85);
+  beep(note_b, 85);
+  beep(note_eH, 85);
+  beep(note_fH, 85);
+  beep(note_gH, 85);
+  beep(note_eHH, 85);
+
+  beep(note_g, 85);
+  beep(note_b, 85);
+  beep(note_eH, 85);
+  beep(note_fH, 85);
+  beep(note_gH, 85);
+  beep(note_eHH, 85);
+
+  beep(note_g, 85);
+  beep(note_b, 85);
+  beep(note_eH, 85);
+  beep(note_fH, 85);
+  beep(note_gH, 85);
+  beep(note_eHH, 85);
+
+  beep(note_g, 85);
+  beep(note_b, 85);
+  beep(note_eH, 85);
+  beep(note_fH, 85);
+  beep(note_gH, 85);
+  beep(note_eHH, 85);
+  ////////////////////
+  beep(note_g, 85);
+  beep(note_b, 85);
+  beep(note_eH, 85);
+  beep(note_fH, 85);
+  beep(note_gH, 85);
+  beep(note_dHH, 85);
+
+  beep(note_g, 85);
+  beep(note_b, 85);
+  beep(note_eH, 85);
+  beep(note_fH, 85);
+  beep(note_gH, 85);
+  beep(note_dHH, 85);
+  ///////////////////
+  beep(note_g, 85);
+  beep(note_b, 85);
+  beep(note_eH, 85);
+  beep(note_fH, 85);
+  beep(note_gH, 85);
+  beep(note_bH, 85);
+  beep(note_g, 85);
+  beep(note_b, 85);
+  beep(note_eH, 85);
+  beep(note_fH, 85);
+  beep(note_gH, 85);
+  beep(note_bH, 85);
+  }

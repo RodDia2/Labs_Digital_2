@@ -45,7 +45,7 @@ void beep(int note, int duration)
   tone(buzzerPin, note, duration/2);
   delay(duration/2);
   noTone(buzzerPin);
-  delay(duration/2 + 20);  
+  delay(60);  
 }
 void setup() 
 {
