@@ -54,7 +54,7 @@ const int P2agachado = PC_4;
 int x1 = 0;
 int x2 = 0;
 
-int posP1 = 0;
+int posP1 = 30;
 int P1_d = 0;
 int P1_i = 0;
 int P1_a = 0;
@@ -62,7 +62,7 @@ int P1_pa = 0;
 int P1_pu = 0;
 int P1_pu_c = 0;
 
-int posP2 = 271;
+int posP2 = 241;
 int P2_d = 0;
 int P2_i = 0;
 int P2_pu = 0;
@@ -179,11 +179,11 @@ void setup() {
  }
  //234x15
  LCD_Bitmap(43,10,234,15,barravida);
- LCD_Sprite(0, 100, 49,84,jinmov,3,0,0,0 );
- LCD_Sprite(271,100,49,84,kazuya,3,0,1,0);
+ LCD_Sprite(30, 100, 49,84,jinmov,3,0,0,0 );
+ LCD_Sprite(241,100,49,84,kazuya,3,0,1,0);
 
- x1 = 0;
- x2 = 271;
+ x1 = 30;
+ x2 = 241;
 
  vidaP1 = 100;
  vidaP2 = 100;
@@ -346,8 +346,8 @@ void loop() {
 // jin mov izquierda
   if (P1_i == LOW) {
     for (int x = x1; x > x1-30; x--) {
-      if (x<=0) {
-        posP1 = 0;
+      if (x<=30) {
+        posP1 = 30;
         } else {
           posP1--;
           }
@@ -361,8 +361,8 @@ void loop() {
   // kasuya mov derecha
   if (P2_d == LOW) {
     for (int x = x2; x < x2+30; x++) {
-      if (x>=270) {
-        posP2 = 270;
+      if (x>=241) {
+        posP2 = 241;
         } else {
           posP2++;
           }
