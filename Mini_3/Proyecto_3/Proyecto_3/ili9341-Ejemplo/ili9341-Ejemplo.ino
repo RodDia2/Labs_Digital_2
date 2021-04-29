@@ -287,11 +287,13 @@ void loop() {
         LCD_Bitmap(194, 62, 16, 16, winpuno);
         delay(2000);
         FillRect(100, 45, 110, 33, 0x665F);
+        Victory_SD(1);
         }
       if (P2rounds == 3) {
         LCD_Bitmap(100, 45, 110, 33, winpdos);
         delay(2000);
         FillRect(100, 45, 110, 33, 0x665F);
+        Victory_SD(2);
         }
       //FillRect(100, 45, 110, 33, 0x665F);
       win = 0;
@@ -1015,4 +1017,35 @@ int ACII_to_HEX(char *puntero) {
     puntero++;
   }
   return i;
+}
+//**********************************************************
+// Funcion para escribir en la SD
+//**********************************************************
+void Victory_SD(int jugador) {
+  if (jugador == 1) { 
+    File dataFile = SD.open("test.txt", FILE_WRITE);
+    if (dataFile) {
+      Serial.println("Writing...");
+      dataFile.println("P1 WINS");
+      dataFile.close();
+      Serial.println("Done");
+    }
+    else {
+      Serial.println("error opening WINNER.txt");
+    }
+
+  }
+  if (jugador == 2) { 
+    File dataFile = SD.open("test.txt", FILE_WRITE);
+    if (dataFile) {
+      Serial.println("Writing...");
+      dataFile.println("P2 WINS");
+      dataFile.close();
+      Serial.println("Done");
+    }
+    else {
+      Serial.println("error opening WINNER.txt");
+    }
+
+  }
 }
