@@ -20,12 +20,6 @@
 #include "driverlib/sysctl.h"
 #include "driverlib/timer.h"
 
-#include <SPI.h>
-#include <SD.h>
-// crear los files
-File root;
-File myFile;
-
 //#include "bitmaps.h"
 #include "font.h"
 #include "lcd_registers.h"
@@ -116,7 +110,6 @@ extern uint8_t kazuyapatada[];
 extern uint8_t portada[];
 extern uint8_t portada2[];
 extern uint8_t suelo[];
-unsigned char suelo2[15201]={0};
 // muerte 
 extern uint8_t jinmuerto[];
 extern uint8_t kazuyamuerto[];
@@ -141,23 +134,6 @@ void setup() {
   pinMode(P2patada, INPUT_PULLUP);
   pinMode(P2agachado, INPUT_PULLUP);
   Serial.println("Inicio");
-
-  SPI.setModule(0);
-  Serial.print("Initializing SD card...");
-//  // On the Ethernet Shield, CS is pin 4. It's set as an output by default.
-//  // Note that even if it's not used as the CS pin, the hardware SS pin
-//  // (10 on most Arduino boards, 53 on the Mega) must be left as an output
-//  // or the SD library functions will not work.
-  pinMode(PA_3, OUTPUT); // chip select
-//  // se revisa el chip select para ver si se realizo la conexion
-  if (!SD.begin(PA_3)) {
-    Serial.println("initialization failed!");
-    return;
-  }
-  Serial.println("initialization done.");
-//  // se abre con la funcion open y se utiliza la funcion de print Directory para saber que archivos hay y su tamano
-
-  
   LCD_Init();
   LCD_Clear(0x00);
   FillRect(0, 0, 340, 220, 0x665F);
@@ -172,7 +148,7 @@ void setup() {
     x += 94;
  }
  //234x15
-// LCD_Bitmap(43,10,234,15,barravida);
+ LCD_Bitmap(43,10,234,15,barravida);
  LCD_Sprite(0, 100, 49,84,jinmov,3,0,0,0 );
  LCD_Sprite(271,100,49,84,kazuya,3,0,1,0);
 
@@ -194,8 +170,6 @@ void setup() {
  FillRect(180,24,10,10,0xFFFF);
  FillRect(200,24,10,10,0xFFFF);
 */
- open_SD_bitmap(suelo2,15201,"suelo.txt");
- LCD_Bitmap(100, 100, 95, 40, suelo2);
 }
 //***************************************************************************************************************************************
 // Loop Infinito
@@ -254,7 +228,7 @@ void loop() {
         x += 94;
       }
  //234x15
- //     LCD_Bitmap(43,10,234,15,barravida);
+      LCD_Bitmap(43,10,234,15,barravida);
       LCD_Sprite(0, 100, 49,84,jinmov,3,0,0,0 );
       LCD_Sprite(271,100,49,84,kazuya,3,0,1,0);
 
@@ -928,45 +902,4 @@ void LCD_Sprite(int x, int y, int width, int height, unsigned char bitmap[],int 
     
     }
   digitalWrite(LCD_CS, HIGH);
-}
-//*********************************************
-// FUNCION PARA LEER VALORES ASCII DE LA SD
-//*********************************************
-void open_SD_bitmap(unsigned char Bitmap_SD[], unsigned long Size_bitmap, char* filename) {
-  File myFile = SD.open(filename);     // ABRIR EL ARCHIVO 
-  unsigned long i = 0;            
-  char Bitmap_SD_HEX[] = {0, 0};          //SE HACE ARREGLO DE DOS NUM, PARA CADA UNA DE LAS POSICIONES
-  int Pos_1, Pos_2;                     //VARIABLES DE LAS POSICIONES
-  if (myFile) {                 
-    do {
-      Bitmap_SD_HEX[0] = myFile.read(); //LEE
-      Pos_1 = ACII_to_HEX(Bitmap_SD_HEX);       //TRANSOFRMA
-      Bitmap_SD_HEX[0] = myFile.read(); //LEE
-      Pos_2 = ACII_to_HEX(Bitmap_SD_HEX);       //TRANSFORMA
-      Bitmap_SD[i] = (Pos_1 << 4) | (Pos_2 & 0xF);  //SE CONCATENA CONCATENA
-      i++;                        
-    } while (i < (Size_bitmap + 1));
-  }
-  myFile.close();                       
-}
-
-//*********************************************
-// FUNCION PARA PASAR INFO DE SD A VALORES HEXADECIMALES
-//*********************************************
-int ACII_to_HEX(char *puntero) {
-  int i = 0;
-  for (;;) {
-    char num = *puntero;
-    if (num >= '0' && num <= '9') {
-      i *= 16;
-      i += num - '0';
-    }
-    else if (num >= 'a' && num <= 'f') {
-      i *= 16;
-      i += (num - 'a') + 10;
-    }
-    else break;
-    puntero++;
-  }
-  return i;
 }
