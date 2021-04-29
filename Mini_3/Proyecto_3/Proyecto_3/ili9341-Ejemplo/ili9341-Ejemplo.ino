@@ -82,6 +82,8 @@ int win = 0;
 int nomov = 0;
 int P1rounds = 0;
 int P2rounds = 0;
+int P1matchpoint = 0;
+int P2matchpoint = 0;
 //***************************************************************************************************************************************
 // Functions Prototypes
 //***************************************************************************************************************************************
@@ -117,6 +119,10 @@ extern uint8_t portada[];
 extern uint8_t portada2[];
 extern uint8_t suelo[];
 unsigned char suelo2[15201]={0};
+unsigned char fight[1681]={0};
+unsigned char fight2[4929]={0};
+unsigned char winpdos[14521]={0};
+unsigned char winpuno[1025]={0};
 // muerte 
 extern uint8_t jinmuerto[];
 extern uint8_t kazuyamuerto[];
@@ -167,12 +173,12 @@ void setup() {
   
 
   for(int x = 0; x <319; x++){ 
-    LCD_Bitmap(x, 185, 95, 40, suelo);
-    LCD_Bitmap(x, 225, 95, 40, suelo);
-    x += 94;
+    LCD_Bitmap(x, 185, 20, 40, suelo);
+    LCD_Bitmap(x, 225, 20, 40, suelo);
+    x += 19;
  }
  //234x15
-// LCD_Bitmap(43,10,234,15,barravida);
+ LCD_Bitmap(43,10,234,15,barravida);
  LCD_Sprite(0, 100, 49,84,jinmov,3,0,0,0 );
  LCD_Sprite(271,100,49,84,kazuya,3,0,1,0);
 
@@ -194,8 +200,21 @@ void setup() {
  FillRect(180,24,10,10,0xFFFF);
  FillRect(200,24,10,10,0xFFFF);
 */
- open_SD_bitmap(suelo2,15201,"suelo.txt");
- LCD_Bitmap(100, 100, 95, 40, suelo2);
+ //open_SD_bitmap(suelo2,15201,"suelo.txt");
+ //LCD_Bitmap(80, 100, 95, 40, suelo2);
+ //open_SD_bitmap(fight,1681,"fight.txt");
+ //LCD_Bitmap(200, 100, 35, 12, fight);
+//********************************************************** 
+ open_SD_bitmap(fight2,4929,"fight2.txt");
+ LCD_Bitmap(120, 50, 77, 16, fight2);
+ delay(1500);
+ FillRect(120, 50, 77, 16, 0x665F);
+ 
+ open_SD_bitmap(winpdos,14521,"winpdos.txt");
+ //LCD_Bitmap(100, 45, 110, 33, winpdos);
+ open_SD_bitmap(winpuno,1025,"winpuno.txt");
+ //LCD_Bitmap(100, 45, 110, 33, winpdos);
+ //LCD_Bitmap(154, 62, 16, 16, winpuno);
 }
 //***************************************************************************************************************************************
 // Loop Infinito
@@ -244,19 +263,18 @@ void loop() {
     P1_d = digitalRead(P1derecha);
     P2_i = digitalRead(P2izquierda);
     nomov = 1;
+ //   FillRect(100, 45, 110, 33, 0x665F);
+//    if (P1rounds == 2 and P2rounds<2) {
+//      LCD_Bitmap(100, 45, 110, 33, winpdos);
+//      LCD_Bitmap(194, 62, 16, 16, winpuno);
+//      delay(100);
+//    }
+//    if (P2rounds == 2 and P1rounds<2) {
+//      LCD_Bitmap(100, 45, 110, 33, winpdos);
+//      delay(100);
+//    }
+    //*********************************************************
     if (P2_i == LOW and P1_d == LOW) {
-      win = 0;
-      nomov = 0;
-      FillRect(0, 0, 340, 220, 0x665F);
-      for(int x = 0; x <319; x++){ 
-        LCD_Bitmap(x, 185, 95, 40, suelo);
-        LCD_Bitmap(x, 225, 95, 40, suelo);
-        x += 94;
-      }
- //234x15
- //     LCD_Bitmap(43,10,234,15,barravida);
-      LCD_Sprite(0, 100, 49,84,jinmov,3,0,0,0 );
-      LCD_Sprite(271,100,49,84,kazuya,3,0,1,0);
 
       if (vidaP1 == 0) {
         P2rounds++;
@@ -264,6 +282,30 @@ void loop() {
       if (vidaP2 == 0) {
         P1rounds++;
         }
+      if (P1rounds == 3) {
+        LCD_Bitmap(100, 45, 110, 33, winpdos);
+        LCD_Bitmap(194, 62, 16, 16, winpuno);
+        delay(2000);
+        FillRect(100, 45, 110, 33, 0x665F);
+        }
+      if (P2rounds == 3) {
+        LCD_Bitmap(100, 45, 110, 33, winpdos);
+        delay(2000);
+        FillRect(100, 45, 110, 33, 0x665F);
+        }
+      //FillRect(100, 45, 110, 33, 0x665F);
+      win = 0;
+      nomov = 0;
+      FillRect(0, 0, 340, 220, 0x665F);
+      for(int x = 0; x <319; x++){ 
+        LCD_Bitmap(x, 185, 20, 40, suelo);
+        LCD_Bitmap(x, 225, 20, 40, suelo);
+        x += 19;
+      }
+ //234x15
+      LCD_Bitmap(43,10,234,15,barravida);
+      LCD_Sprite(0, 100, 49,84,jinmov,3,0,0,0 );
+      LCD_Sprite(271,100,49,84,kazuya,3,0,1,0);
 
       x1 = 0;
       x2 = 260;
@@ -276,6 +318,10 @@ void loop() {
 
       vidaP1 = 100;
       vidaP2 = 100;
+
+      LCD_Bitmap(120, 50, 77, 16, fight2);
+      delay(1500);
+      FillRect(120, 50, 77, 16, 0x665F);
       }
     }
 // jin mov derecha
