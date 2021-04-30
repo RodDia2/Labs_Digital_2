@@ -124,6 +124,7 @@ void setup()
 }
  
 void loop()
+// al encender suena tekken y despues se loopea en mortal kombat porque suena mejor
 {
 if (cambio == 0) {
     tekken();

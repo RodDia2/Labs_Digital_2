@@ -4,8 +4,11 @@
  * Adaptación, migración y creación de nuevas funciones: Pablo Mazariegos y José Morales
  * Con ayuda de: José Guerra
  * IE3027: Electrónica Digital 2 - 2019
+ * Rodrigo Díaz 18265
+ * Helder Ovalle 18349
  */
 //***************************************************************************************************************************************
+// se incluyen librerias para la sd y lcd
 #include <stdint.h>
 #include <stdbool.h>
 #include <TM4C123GH6PM.h>
@@ -36,7 +39,7 @@ File myFile;
 #define LCD_WR PD_3
 #define LCD_RD PE_1
 int DPINS[] = {PB_0, PB_1, PB_2, PB_3, PB_4, PB_5, PB_6, PB_7};  
-
+// se definen los botones a utilizar
 const int P1derecha = PA_7;
 const int P1izquierda  = PF_4;
 //const int P1agachado = PD_6;
@@ -50,10 +53,10 @@ const int P2izquierda  = PD_6;
 const int P2puno = PE_3;
 const int P2patada = PC_6;
 const int P2agachado = PC_4;
-
+// variables para posicion
 int x1 = 0;
 int x2 = 0;
-
+// variables para leer digitalread para cda jugador
 int posP1 = 30;
 int P1_d = 0;
 int P1_i = 0;
@@ -69,7 +72,7 @@ int P2_pu = 0;
 int P2_pu_c = 0;
 int P2_pa = 0;
 int P2_a = 0;
-
+// variables para la vida, cobmos, defensa, evitar movimiento, rounds
 int vidaP1 = 0;
 int vidaP2 = 0;
 int vidaP1_index = 0;
@@ -171,17 +174,18 @@ void setup() {
     
   //LCD_Bitmap(unsigned int x, unsigned int y, unsigned int width, unsigned int height, unsigned char bitmap[]);
   
-
+// se imprime el suelo
   for(int x = 0; x <319; x++){ 
     LCD_Bitmap(x, 185, 20, 40, suelo);
     LCD_Bitmap(x, 225, 20, 40, suelo);
     x += 19;
  }
  //234x15
+ // se imprime la barra de vida y las posiciones iniciales
  LCD_Bitmap(43,10,234,15,barravida);
  LCD_Sprite(30, 100, 49,84,jinmov,3,0,0,0 );
  LCD_Sprite(241,100,49,84,kazuya,3,0,1,0);
-
+// se definen los valores iniciales de variables
  x1 = 30;
  x2 = 241;
 
@@ -205,6 +209,7 @@ void setup() {
  //open_SD_bitmap(fight,1681,"fight.txt");
  //LCD_Bitmap(200, 100, 35, 12, fight);
 //********************************************************** 
+// se cargan los bitmaps de la sd  a la RAM
  open_SD_bitmap(fight2,4929,"fight2.txt");
  LCD_Bitmap(120, 50, 77, 16, fight2);
  delay(1500);
@@ -223,7 +228,7 @@ void loop() {
   // variable para que no se muevan durante el reinicio de round
   nomov = 0;
  // LCD_Bitmap(100,100,194,81,logo);
-//botones*************************************************************************************************
+//se leen los botones y se guardan en variables*************************************************************************************************
   P1_d = digitalRead(P1derecha);
   P1_i = digitalRead(P1izquierda);
   P1_a = digitalRead(P1agachado);
@@ -250,6 +255,7 @@ void loop() {
     }
 // Se revisa si se gano el juego **********************************************************************************
   if (win == 1) {
+    // se deshabilitan todos los movimientos
     P1_d = HIGH;
     P1_i = HIGH;
     P1_a = HIGH;
@@ -274,14 +280,17 @@ void loop() {
 //      delay(100);
 //    }
     //*********************************************************
+    // solamente si ambos jugadores presionan el boton correspondiente se reinicia
     if (P2_i == LOW and P1_d == LOW) {
-
+      // se incrementa el conteo de rounds
       if (vidaP1 == 0) {
         P2rounds++;
         }
       if (vidaP2 == 0) {
         P1rounds++;
         }
+        // si un jugador llega a los 3 rounds, se imprime el texto de ganador
+        // adicionalmente, se imprime en la SD quien fue el ganador para llevar el conteo de victorias
       if (P1rounds == 3) {
         LCD_Bitmap(100, 45, 110, 33, winpdos);
         LCD_Bitmap(194, 62, 16, 16, winpuno);
@@ -296,8 +305,10 @@ void loop() {
         Victory_SD(2);
         }
       //FillRect(100, 45, 110, 33, 0x665F);
+      // win es 0 porque se reinicia
       win = 0;
       nomov = 0;
+      // se repiten los prints del setup............
       FillRect(0, 0, 340, 220, 0x665F);
       for(int x = 0; x <319; x++){ 
         LCD_Bitmap(x, 185, 20, 40, suelo);
@@ -327,6 +338,7 @@ void loop() {
       }
     }
 // jin mov derecha
+// se revisa que no borre al otro jugador
   if (P1_d == LOW) {
     if (nomov == 0) {
     for (int x = x1; x < x1+30; x++) {
@@ -344,6 +356,7 @@ void loop() {
   }
   }
 // jin mov izquierda
+// se revisa qeu no se salga de la pantalla
   if (P1_i == LOW) {
     for (int x = x1; x > x1-30; x--) {
       if (x<=30) {
@@ -359,6 +372,7 @@ void loop() {
     x1 = posP1;
   }
   // kasuya mov derecha
+  // se revisa que no se salga de la pantalla
   if (P2_d == LOW) {
     for (int x = x2; x < x2+30; x++) {
       if (x>=241) {
@@ -374,6 +388,7 @@ void loop() {
     x2 = posP2;
   }
 // kasuya mov izquierda
+// se revisa que no choque con el jugador 
   if (P2_i == LOW) {
     if (nomov == 0) {
     for (int x = x2; x > x2-30; x--) {
@@ -391,7 +406,7 @@ void loop() {
   }
   }
   // jin agachado***************************************************************************************************
-  
+  // para los agachados solamente se ejecuta el for de animacion
   if (P1_a == LOW) {
     for(int x = 0; x <=19; x++){
       int anim2 = (x/10)%2;
@@ -412,7 +427,10 @@ void loop() {
   }
     
   // jin punos*************************************************************************************************************
-  
+  // se alterna entre derecha e izquierda
+  // si golpea primero derehca y despues izquieda, se efectua un combo
+  // se revisa que esten suficientemente cerca
+  // si esta agachado no toma dano
   if (P1_pu == LOW) {
     switch (P1_pu_c) {
       case 0:
@@ -465,6 +483,7 @@ void loop() {
         }
   }
   // kasuya punos
+  // lo mismo que para jin
   if (P2_pu == LOW) {
     switch (P2_pu_c) {
       case 0:
@@ -517,7 +536,9 @@ void loop() {
         }
   }
   // jin patada *******************************************************************************************************************************
-  
+  // se revisa si se tiene combo para terminar el combo perfect, de lo contrario es normal
+  // se revia que esten suficientemente cerca 
+  // si esta agachado, toma menos dano
   if (P1_pa == LOW) {
     for(int x = 0; x <=21; x++){
       int anim5 = (x/10)%2;
@@ -541,6 +562,7 @@ void loop() {
     P1combo = 0;
   }
   // kazuya patada
+  // lo mismo que para jin
   if (P2_pa == LOW) {
     for(int x = 0; x <=21; x++){
       int anim5 = (x/10)%2;
@@ -563,6 +585,7 @@ void loop() {
     P2combo = 0;
   }
   //******************************************************************************************
+  // se revisa que alguno de los jugadores haya muerto, y se indica que ya alguien gano un round
   if (vidaP2 <= 0) {
     vidaP2 = 0;
     win = 1;
@@ -575,11 +598,13 @@ void loop() {
     FillRect(292,14,15,15,0xFF40);
     //P2rounds++;
     }
-  
+  // se pinta de blanco la barra de vida dependiendo de cuanta vida tiene cada jugador
   FillRect(172+vidaP2,14,(100-vidaP2),6,0xFFFF);
   FillRect(48,14,(100-vidaP1),6,0xFFFF);
 
 // conteo de rondas*****************************************************************
+// se imprimen cuadrados amarillos dependiendo de las rounds que ganaron 
+// al superar las 3 rounds ganadas, se reinicia el conteo. 
   switch(P1rounds) {
     case 0:
     FillRect(130,24,10,10,0x665F);
@@ -601,6 +626,7 @@ void loop() {
     P2rounds = 0;
     break;
     }
+    // se repite para P2
   switch(P2rounds) {
     case 0:
     FillRect(180,24,10,10,0x665F);
