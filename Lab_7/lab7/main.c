@@ -124,10 +124,14 @@ int main(void)
 
 //*******TMR0 HANDLER******************************
 void Timer0IntHandler(void){
+    // se realiza un clear de la bandera interrupcion
     TimerIntClear(TIMER0_BASE, TIMER_TIMA_TIMEOUT);
+    // se va a realizar un titileo con una variable alternante entre true y false.
     if (cambio){
+        // cuando cambio es true, apaga el rgb
         GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3, 0x0);
     } else {
+        // si es false, despliega el valor que se le mando por uart y guarda el valor previo
         switch(color) {
             case 'r':
                 GPIOPinWrite(GPIO_PORTF_BASE,GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3,0x02);
@@ -163,7 +167,7 @@ void UARTIntHandler(void){
     while(UARTCharsAvail(UART0_BASE)){
         color = UARTCharGet(UART0_BASE);
         UARTCharPutNonBlocking(UART0_BASE,color);
-        // si se repite el colo, parar de titilar
+        // si se repite el color, parar de titilar
         if(color==colorpre){
             color='n';
         }
