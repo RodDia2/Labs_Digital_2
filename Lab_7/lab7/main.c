@@ -101,14 +101,14 @@ int main(void)
     // se habilita la interrupcion uart0
     IntEnable (INT_UART0);
     // se habilitan las interrupciones del uart0 solamente cuando se reciben datos
-    UARTIntEnable (UART0_BASE, UART_INT_RX);
+    UARTIntEnable (UART0_BASE, UART_INT_RX | UART_INT_RT);
     UARTEnable (UART0_BASE);
 
     // se setea la prioridad de las interrupciones al uart, prueba
-    IntPrioritySet(INT_UART0, 0x0);
-    IntRegister(INT_UART0, UARTIntHandler);
-    UARTFIFOEnable(UART0_BASE);
-    UARTFIFOLevelSet(UART0_BASE,UART_FIFO_TX1_8,UART_FIFO_RX1_8);
+    //IntPrioritySet(INT_UART0, 0x0);
+    //IntRegister(INT_UART0, UARTIntHandler);
+    //UARTFIFOEnable(UART0_BASE);
+    //UARTFIFOLevelSet(UART0_BASE,UART_FIFO_TX1_8,UART_FIFO_RX1_8);
 
     while (1) {
        // if ((TimerValueGet(TIMER0_BASE, TIMER_A)& 0x16)==0) {
@@ -141,9 +141,9 @@ void Timer0IntHandler(void){
                 GPIOPinWrite(GPIO_PORTF_BASE,GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3,0x04);
                 colorpre='b';
                 break;
-            case 'o':
+            case 'n':
                 GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3, 0x0);
-                colorpre='o';
+                colorpre='n';
                 break;
          }
 
