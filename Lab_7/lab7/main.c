@@ -36,6 +36,11 @@ char colorpre='z';
 #define led_v GPIO_PIN_3
 #define led_a GPIO_PIN_2
 
+//*******************PROTOTIPOS**************************
+
+void Timer0IntHandler(void);
+
+//*********************CODIGO PRINCIPAL******************************************
 int main(void)
 {
     //configuracion del reloj: frecuencia de reloj de 40 MHz porque se uso el PLL
@@ -62,6 +67,15 @@ int main(void)
     TimerLoadSet(TIMER0_BASE, TIMER_A, ui32Period - 1);
     // Se habilita el Timer
     TimerEnable(TIMER0_BASE, TIMER_A|TIMER_B);
+    // interrupcion TMR0
+    // interrupcion por timeout
+    TimerIntEnable(TIMER0_BASE, TIMER_TIMA_TIMEOUT);
+    // establecer ISR
+    TimerIntRegister(TIMER0_BASE, TIMER_A, Timer0IntHandler);
+    // habilitar int en el timer tmr0A
+    IntEnable(INT_TIMER0A);
+    // volver a habilitar el tmrA
+    TimerEnable(TIMER0_BASE, TIMER_A);
 
     while (1) {
        // if ((TimerValueGet(TIMER0_BASE, TIMER_A)& 0x16)==0) {
@@ -72,5 +86,10 @@ int main(void)
       // }
 
     }
+}
+// ***************** FUNCIONES **************************
+
+//*******TMR0 HANDLER******************************
+void Timer0IntHandler(void){
 
 }
