@@ -39,6 +39,7 @@ char colorpre='z';
 //*******************PROTOTIPOS**************************
 
 void Timer0IntHandler(void);
+void UARTIntHandler(void);
 
 //*********************CODIGO PRINCIPAL******************************************
 int main(void)
@@ -68,6 +69,7 @@ int main(void)
     // Se habilita el Timer
     TimerEnable(TIMER0_BASE, TIMER_A|TIMER_B);
     // interrupcion TMR0
+    IntMasterEnable();
     // interrupcion por timeout
     TimerIntEnable(TIMER0_BASE, TIMER_TIMA_TIMEOUT);
     // establecer ISR
@@ -76,6 +78,36 @@ int main(void)
     IntEnable(INT_TIMER0A);
     // volver a habilitar el tmrA
     TimerEnable(TIMER0_BASE, TIMER_A);
+
+    // CONFIG UART
+    // se habilita el uart0
+    SysCtlPeripheralEnable (SYSCTL_PERIPH_UART0);
+    while(!SysCtlPeripheralReady(SYSCTL_PERIPH_UART0)){}
+    // se habilita el puerto a
+    SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOA);
+    while(!SysCtlPeripheralReady(SYSCTL_PERIPH_UART0)){}
+    // se configuran los bits rx y tx
+    GPIOPinConfigure(GPIO_PA0_U0RX);
+    GPIOPinConfigure(GPIO_PA1_U0TX);
+    // se habilitan todas las interrupciones
+    //IntMasterEnable();
+    // los pines del uart se controlan por perifericos
+    GPIOPinTypeUART(GPIO_PORTA_BASE, GPIO_PIN_0 | GPIO_PIN_1);
+    // se siguen los pasos de la guia
+    UARTDisable(UART0_BASE);
+    // se setea el uart0 a 115200 baudios, 8 data bits, 1 stop bit y sin paridad
+    UARTConfigSetExpClk(UART0_BASE, SysCtlClockGet(), 115200,(UART_CONFIG_WLEN_8 | UART_CONFIG_STOP_ONE | UART_CONFIG_PAR_NONE));
+    // se habilita la interrupcion uart0
+    IntEnable (INT_UART0);
+    // se habilitan las interrupciones del uart0 solamente cuando se reciben datos
+    UARTIntEnable (UART0_BASE, UART_INT_RX);
+    UARTEnable (UART0_BASE);
+
+    // se setea la prioridad de las interrupciones al uart, prueba
+    IntPrioritySet(INT_UART0, 0x0);
+    IntRegister(INT_UART0, UARTIntHandler);
+    UARTFIFOEnable(UART0_BASE);
+    UARTFIFOLevelSet(UART0_BASE,UART_FIFO_TX1_8,UART_FIFO_RX1_8);
 
     while (1) {
        // if ((TimerValueGet(TIMER0_BASE, TIMER_A)& 0x16)==0) {
@@ -91,5 +123,16 @@ int main(void)
 
 //*******TMR0 HANDLER******************************
 void Timer0IntHandler(void){
+    TimerIntClear(TIMER0_BASE, TIMER_TIMA_TIMEOUT);
+
+}
+
+
+//*******UART HANDLER***************************
+void UARTIntHandler(void){
+    // obtener el status
+    ui32Status = UARTIntStatus(UART0_BASE, true);
+    // hacerle clear el interrupt
+    UARTIntClear(UART0_BASE, ui32Status);
 
 }
