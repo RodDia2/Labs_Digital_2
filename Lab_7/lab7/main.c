@@ -31,6 +31,7 @@ uint8_t flag_v = 0;
 uint8_t flag_a = 0;
 char color='z';
 char colorpre='z';
+int cambio = true;
 
 #define led_r GPIO_PIN_1
 #define led_v GPIO_PIN_3
@@ -111,10 +112,10 @@ int main(void)
 
     while (1) {
        // if ((TimerValueGet(TIMER0_BASE, TIMER_A)& 0x16)==0) {
-            GPIOPinWrite(GPIO_PORTF_BASE,GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3,0x08);
-            SysCtlDelay (5000000);
-            GPIOPinWrite(GPIO_PORTF_BASE,GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3,0x00);
-            SysCtlDelay (5000000);
+          //  GPIOPinWrite(GPIO_PORTF_BASE,GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3,0x08);
+          //  SysCtlDelay (5000000);
+          //  GPIOPinWrite(GPIO_PORTF_BASE,GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3,0x00);
+          // SysCtlDelay (5000000);
       // }
 
     }
@@ -124,6 +125,30 @@ int main(void)
 //*******TMR0 HANDLER******************************
 void Timer0IntHandler(void){
     TimerIntClear(TIMER0_BASE, TIMER_TIMA_TIMEOUT);
+    if (cambio){
+        GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3, 0x0);
+    } else {
+        switch(color) {
+            case 'r':
+                GPIOPinWrite(GPIO_PORTF_BASE,GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3,0x02);
+                colorpre='r';
+                break;
+            case 'g':
+                GPIOPinWrite(GPIO_PORTF_BASE,GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3,0x08);
+                colorpre='g';
+                break;
+            case 'b':
+                GPIOPinWrite(GPIO_PORTF_BASE,GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3,0x04);
+                colorpre='b';
+                break;
+            case 'o':
+                GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3, 0x0);
+                colorpre='o';
+                break;
+         }
+
+       }
+    cambio = !cambio;
 
 }
 
@@ -134,5 +159,14 @@ void UARTIntHandler(void){
     ui32Status = UARTIntStatus(UART0_BASE, true);
     // hacerle clear el interrupt
     UARTIntClear(UART0_BASE, ui32Status);
+    // leer un dato del UART
+    while(UARTCharsAvail(UART0_BASE)){
+        color = UARTCharGet(UART0_BASE);
+        UARTCharPutNonBlocking(UART0_BASE,color);
+        // si se repite el colo, parar de titilar
+        if(color==colorpre){
+            color='n';
+        }
+    }
 
 }
