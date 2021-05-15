@@ -20,6 +20,13 @@ main.obj: C:/ti/TivaWare_C_Series-2.1.4.178/driverlib/sysctl.h
 main.obj: C:/ti/TivaWare_C_Series-2.1.4.178/driverlib/interrupt.h
 main.obj: C:/ti/TivaWare_C_Series-2.1.4.178/driverlib/gpio.h
 main.obj: C:/ti/TivaWare_C_Series-2.1.4.178/driverlib/timer.h
+main.obj: C:/ti/TivaWare_C_Series-2.1.4.178/driverlib/systick.h
+main.obj: C:/ti/TivaWare_C_Series-2.1.4.178/driverlib/uart.h
+main.obj: C:/ti/TivaWare_C_Series-2.1.4.178/driverlib/rom.h
+main.obj: C:/ti/ccs1031/ccs/tools/compiler/ti-cgt-arm_20.2.5.LTS/include/string.h
+main.obj: C:/ti/ccs1031/ccs/tools/compiler/ti-cgt-arm_20.2.5.LTS/include/xlocale/_string.h
+main.obj: C:/ti/TivaWare_C_Series-2.1.4.178/grlib/grlib.h
+main.obj: C:/ti/TivaWare_C_Series-2.1.4.178/driverlib/pin_map.h
 
 ../main.c:
 
@@ -60,4 +67,18 @@ C:/ti/TivaWare_C_Series-2.1.4.178/driverlib/interrupt.h:
 C:/ti/TivaWare_C_Series-2.1.4.178/driverlib/gpio.h:
 
 C:/ti/TivaWare_C_Series-2.1.4.178/driverlib/timer.h:
+
+C:/ti/TivaWare_C_Series-2.1.4.178/driverlib/systick.h:
+
+C:/ti/TivaWare_C_Series-2.1.4.178/driverlib/uart.h:
+
+C:/ti/TivaWare_C_Series-2.1.4.178/driverlib/rom.h:
+
+C:/ti/ccs1031/ccs/tools/compiler/ti-cgt-arm_20.2.5.LTS/include/string.h:
+
+C:/ti/ccs1031/ccs/tools/compiler/ti-cgt-arm_20.2.5.LTS/include/xlocale/_string.h:
+
+C:/ti/TivaWare_C_Series-2.1.4.178/grlib/grlib.h:
+
+C:/ti/TivaWare_C_Series-2.1.4.178/driverlib/pin_map.h:
 
