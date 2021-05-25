@@ -23,6 +23,12 @@ WebServer server(80);  // Object of WebServer(HTTP port, 80 is defult)
 uint8_t LED1pin = 2;
 bool LED1status = LOW;
 
+uint8_t parqueo1 = 0;
+uint8_t parqueo2 = 0;
+uint8_t parqueo3 = 0;
+uint8_t parqueo4 = 0;
+uint8_t disponibles = 0;
+
 //************************************************************************************************
 // Configuración
 //************************************************************************************************
@@ -69,14 +75,20 @@ void loop() {
   {
     digitalWrite(LED1pin, LOW);
   }
+  
 }
 //************************************************************************************************
 // Handler de Inicio página
 //************************************************************************************************
 void handle_OnConnect() {
-  LED1status = LOW;
+  //LED1status = LOW;
   Serial.println("GPIO2 Status: OFF");
-  server.send(200, "text/html", SendHTML2());
+  parqueo1 = 0;
+  parqueo2 = 0;
+  parqueo3 = 0;
+  parqueo4 = 1;
+  disponibles = 4 - (parqueo1 + parqueo2 + parqueo3 + parqueo4);
+  server.send(200, "text/html", SendHTML2(parqueo1, parqueo2, parqueo3, parqueo4, disponibles));
 }
 //************************************************************************************************
 // Handler de led1on
@@ -98,7 +110,7 @@ void handle_led1off() {
 // Procesador de HTML
 //************************************************************************************************
 
-String SendHTML2() {
+String SendHTML2(uint8_t p1, uint8_t p2, uint8_t p3, uint8_t p4, uint8_t disponible) {
   String pagina = "<!doctype html>\n";
   pagina += "<html lang=en>\n";
   pagina += "<head>\n";
@@ -108,37 +120,71 @@ String SendHTML2() {
   pagina += "<title>Parqueos</title>\n";
   pagina += "</head>\n";
   pagina += "<body>\n";
-  pagina += "<h1>Parqueo-Matic</h1>\n";
+  pagina += "<h1>Parqueo-Matic &#127915  &#128653  &#128663</h1>\n";
   pagina += "<table class=\"table table-light table-sm text-center table-bordered\">\n";
   pagina += "<caption>Control de parqueos: Primer Nivel</caption>\n";
   pagina += "<thead class=table-dark>\n";
   pagina += "<tr>\n";
-  pagina += "<th scope=col># Parqueo</th>\n";
-  pagina += "<th scope=col>Estado</th>\n";
+  pagina += "<th scope=col># Parqueo &#128664</th>\n";
+  pagina += "<th scope=col>Estado &#128655</th>\n";
   pagina += "</tr>\n";
   pagina += "</thead>\n";
   pagina += "<tbody>\n";
   pagina += "<tr>\n";
-  pagina += "<th scope=row>1</th>\n";
-  pagina += "<td class=table-danger>Ocupado</td>\n";
+
+  // 1 significa ocupado y 0 libre
+  
+  if (p1 == 1) 
+  {pagina += "<th scope=row>1</th>\n";
+  pagina += "<td class=table-danger>Ocupado &#128308</td>\n";
   pagina += "</tr>\n";
-  pagina += "<tr>\n";
-  pagina += "<th scope=row>2</th>\n";
-  pagina += "<td class=table-success>Disponible</td>\n";
+  pagina += "<tr>\n";}
+  else 
+  {pagina += "<th scope=row>1</th>\n";
+  pagina += "<td class=table-success>Disponible &#128309</td>\n";
   pagina += "</tr>\n";
-  pagina += "<tr>\n";
-  pagina += "<th scope=row>3</th>\n";
-  pagina += "<td class=table-success>Disponible</td>\n";
+  pagina += "<tr>\n";}
+  
+  if (p2 == 1) 
+  {pagina += "<th scope=row>2</th>\n";
+  pagina += "<td class=table-danger>Ocupado &#128308</td>\n";
   pagina += "</tr>\n";
-  pagina += "<tr>\n";
-  pagina += "<th scope=row>4</th>\n";
-  pagina += "<td class=table-danger>Ocupado</td>\n";
+  pagina += "<tr>\n";}
+  else 
+  {pagina += "<th scope=row>2</th>\n";
+  pagina += "<td class=table-success>Disponible &#128309</td>\n";
   pagina += "</tr>\n";
+  pagina += "<tr>\n";}
+  
+  if (p3 == 1) 
+  {pagina += "<th scope=row>3</th>\n";
+  pagina += "<td class=table-danger>Ocupado &#128308</td>\n";
+  pagina += "</tr>\n";
+  pagina += "<tr>\n";}
+  else 
+  {pagina += "<th scope=row>3</th>\n";
+  pagina += "<td class=table-success>Disponible &#128309</td>\n";
+  pagina += "</tr>\n";
+  pagina += "<tr>\n";}
+  
+  if (p4 == 1) 
+  {pagina += "<th scope=row>4</th>\n";
+  pagina += "<td class=table-danger>Ocupado &#128308</td>\n";
+  pagina += "</tr>\n";
+  pagina += "<tr>\n";}
+  else 
+  {pagina += "<th scope=row>4</th>\n";
+  pagina += "<td class=table-success>Disponible &#128309</td>\n";
+  pagina += "</tr>\n";
+  pagina += "<tr>\n";}
+  
   pagina += "</tbody>\n";
   pagina += "</tfoot>\n";
   pagina += "<tr>\n";
   pagina += "<th class=table-active scope=row>Total Disponible</th>\n";
-  pagina += "<td class=table-info>2</td>\n";
+  pagina += "<td class=table-info>";
+  pagina += (int)disponible;
+  pagina += "</td>\n";
   pagina += "</tr>\n";
   pagina += "</tfoot>\n";
   pagina += "</table>\n";
