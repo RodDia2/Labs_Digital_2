@@ -71,6 +71,24 @@ int main(void)
     // pines del 0 al 7 se configuran como outputs
     GPIOPinTypeGPIOOutput(GPIO_PORTE_BASE, GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3|GPIO_PIN_4);
 
+    // CONFIGURACION UART
+    SysCtlPeripheralEnable (SYSCTL_PERIPH_UART2);
+    while(!SysCtlPeripheralReady(SYSCTL_PERIPH_UART2)){}
+    // se habilita el puerto D
+    SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOD);
+    while(!SysCtlPeripheralReady(SYSCTL_PERIPH_UART2)){}
+    // se configuran los bits rx y tx
+    GPIOPinConfigure(GPIO_PD6_U2RX);
+    GPIOPinConfigure(GPIO_PD7_U2TX);
+    // los pines del uart se controlan por perifericos
+    GPIOPinTypeUART(GPIO_PORTD_BASE, GPIO_PIN_6 | GPIO_PIN_7);
+    // se siguen los pasos de la guia
+    UARTDisable(UART2_BASE);
+    // se setea el uart0 a 115200 baudios, 8 data bits, 1 stop bit y sin paridad
+    UARTConfigSetExpClk(UART2_BASE, SysCtlClockGet(), 115200,(UART_CONFIG_WLEN_8 | UART_CONFIG_STOP_ONE | UART_CONFIG_PAR_NONE));
+    // se habilita
+    UARTEnable (UART2_BASE);
+
     // loop principal
     while (1) {
 
@@ -165,10 +183,11 @@ int main(void)
         default:
             GPIOPinWrite(GPIO_PORTB_BASE, GPIO_PIN_0|GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3|GPIO_PIN_4|GPIO_PIN_5|GPIO_PIN_6|GPIO_PIN_7, 0x08);
             break;
-
         }
 
+        UARTCharPut(UART2_BASE, send);
 
-        SysCtlDelay (5000000); // DELAY 0.5s
+
+        //SysCtlDelay (5000000); // DELAY 0.5s
     }
 }
