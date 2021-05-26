@@ -36,6 +36,11 @@ uint8_t c1 = 0;
 uint8_t c2 = 0;
 uint8_t c3 = 0;
 uint8_t c4 = 0;
+
+uint8_t b1 = 0;
+uint8_t b2 = 0;
+uint8_t b3 = 0;
+uint8_t b4 = 0;
 //**********prototipos******************
 
 //void 7seg(uint8_t numero);
@@ -47,13 +52,7 @@ int main(void)
     //configuracion del reloj: frecuencia de reloj de 40 MHz porque se uso el PLL
     // se utiliza el oscilador principal
     SysCtlClockSet ( SYSCTL_SYSDIV_5 | SYSCTL_OSC_MAIN | SYSCTL_XTAL_16MHZ );
-/*
-    // como solo se tiene el puerto B completo, se usara para el 7 segmentos por facilidad PINES 0-7
-    SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOB);
-    while(!SysCtlPeripheralReady(SYSCTL_PERIPH_GPIOB)){}
-    // pines del 0 al 7 se configuran como outputs
-    GPIOPinTypeGPIOOutput(GPIO_PORTB_BASE, GPIO_PIN_0|GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3|GPIO_PIN_4|GPIO_PIN_5|GPIO_PIN_6|GPIO_PIN_7);
-*/
+
     // en el puerto A se utilizara para los pushbuttons, PINES 2,3,4,5 con weak pull-up
     SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOA);
     while(!SysCtlPeripheralReady(SYSCTL_PERIPH_GPIOA)){}
@@ -88,11 +87,14 @@ int main(void)
 
     UARTClockSourceSet(UART1_BASE, UART_CLOCK_PIOSC);
     // se siguen los pasos de la guia
-    //UARTDisable(UART1_BASE);
+    UARTDisable(UART1_BASE);
     // se setea el uart0 a 115200 baudios, 8 data bits, 1 stop bit y sin paridad
     UARTConfigSetExpClk(UART1_BASE, 16000000, 115200,(UART_CONFIG_WLEN_8 | UART_CONFIG_STOP_ONE | UART_CONFIG_PAR_NONE));
     // se habilita
     UARTEnable (UART1_BASE);
+
+    // Estados Iniciales
+    GPIOPinWrite(GPIO_PORTD_BASE, GPIO_PIN_0|GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3|GPIO_PIN_6, 0xFF);
 
     //GPIOPinWrite(GPIO_PORTD_BASE, GPIO_PIN_6, 0xFF);
     // loop principal
@@ -100,69 +102,88 @@ int main(void)
 
         // boton 4
         if (!GPIOPinRead(GPIO_PORTA_BASE, GPIO_PIN_5)) {
-            GPIOPinWrite(GPIO_PORTE_BASE, GPIO_PIN_3, 0xFF);
-            GPIOPinWrite(GPIO_PORTD_BASE, GPIO_PIN_6, 0x00);
-            p4 = 0;
-            send = "0000";
-            DatosUart("a");
-            SysCtlDelay (5000000);
-
-        }
-        else {
-            GPIOPinWrite(GPIO_PORTE_BASE, GPIO_PIN_3, 0x00);
-            GPIOPinWrite(GPIO_PORTD_BASE, GPIO_PIN_6, 0xFF);
-            p4 = 1;
-            send = "0001";
-           // DatosUart("b");
-           // SysCtlDelay (5000000);
+            SysCtlDelay (500000); // delay 50 ms
+            if(GPIOPinRead(GPIO_PORTA_BASE, GPIO_PIN_5)) {
+                if (b4 == 0) {
+                    GPIOPinWrite(GPIO_PORTE_BASE, GPIO_PIN_3, 0xFF);
+                    GPIOPinWrite(GPIO_PORTD_BASE, GPIO_PIN_6, 0x00);
+                    p4 = 0;
+                    DatosUart("a");
+                    b4 = 1;
+                }
+                else if (b4 == 1) {
+                    GPIOPinWrite(GPIO_PORTE_BASE, GPIO_PIN_3, 0x00);
+                    GPIOPinWrite(GPIO_PORTD_BASE, GPIO_PIN_6, 0xFF);
+                    p4 = 1;
+                    DatosUart("b");
+                    b4 = 0;
+                }
+            }
         }
 
         // boton 3
         if (!GPIOPinRead(GPIO_PORTA_BASE, GPIO_PIN_4)) {
-            GPIOPinWrite(GPIO_PORTE_BASE, GPIO_PIN_4, 0xFF);
-            GPIOPinWrite(GPIO_PORTD_BASE, GPIO_PIN_1, 0x00);
-            p3 = 0;
-            send = "0010";
-            DatosUart("c");
-            SysCtlDelay (5000000);
-        }
-        else {
-            GPIOPinWrite(GPIO_PORTE_BASE, GPIO_PIN_4, 0x00);
-            GPIOPinWrite(GPIO_PORTD_BASE, GPIO_PIN_1, 0xFF);
-            p3 = 1;
-            send = "0011";
-
+            SysCtlDelay (500000); // delay 50 ms
+            if(GPIOPinRead(GPIO_PORTA_BASE, GPIO_PIN_4)) {
+                if (b3 == 0) {
+                    GPIOPinWrite(GPIO_PORTE_BASE, GPIO_PIN_4, 0xFF);
+                    GPIOPinWrite(GPIO_PORTD_BASE, GPIO_PIN_1, 0x00);
+                    p3 = 0;
+                    DatosUart("c");
+                    b3 = 1;
+                }
+                else if (b3 == 1) {
+                    GPIOPinWrite(GPIO_PORTE_BASE, GPIO_PIN_4, 0x00);
+                    GPIOPinWrite(GPIO_PORTD_BASE, GPIO_PIN_1, 0xFF);
+                    p3 = 1;
+                    DatosUart("d");
+                    b3 = 0;
+                }
+            }
         }
 
         // boton 2
-
         if (!GPIOPinRead(GPIO_PORTA_BASE, GPIO_PIN_3)) {
-            GPIOPinWrite(GPIO_PORTE_BASE, GPIO_PIN_2, 0xFF);
-            GPIOPinWrite(GPIO_PORTD_BASE, GPIO_PIN_2, 0x00);
-            p2 = 0;
-            //send = (send & 0x0B);
+            SysCtlDelay (500000); // delay 50 ms
+            if(GPIOPinRead(GPIO_PORTA_BASE, GPIO_PIN_3)) {
+                if (b2 == 0) {
+                    GPIOPinWrite(GPIO_PORTE_BASE, GPIO_PIN_2, 0xFF);
+                    GPIOPinWrite(GPIO_PORTD_BASE, GPIO_PIN_2, 0x00);
+                    p2 = 0;
+                    DatosUart("e");
+                    b2 = 1;
+                }
+                else if (b2 == 1) {
+                    GPIOPinWrite(GPIO_PORTE_BASE, GPIO_PIN_2, 0x00);
+                    GPIOPinWrite(GPIO_PORTD_BASE, GPIO_PIN_2, 0xFF);
+                    p2 = 1;
+                    DatosUart("f");
+                    b2 = 0;
+                }
+            }
         }
-        else {
-            GPIOPinWrite(GPIO_PORTE_BASE, GPIO_PIN_2, 0x00);
-            GPIOPinWrite(GPIO_PORTD_BASE, GPIO_PIN_2, 0xFF);
-            p2 = 1;
-            //send = (send | 0x04);
-        }
-
 
         // boton 1
         if (!GPIOPinRead(GPIO_PORTA_BASE, GPIO_PIN_2)) {
-            GPIOPinWrite(GPIO_PORTE_BASE, GPIO_PIN_1, 0xFF);
-            GPIOPinWrite(GPIO_PORTD_BASE, GPIO_PIN_3, 0x00);
-            p1 = 0;
-            //send = (send & 0x07);
+            SysCtlDelay (500000); // delay 50 ms
+            if(GPIOPinRead(GPIO_PORTA_BASE, GPIO_PIN_2)) {
+                if (b1 == 0) {
+                    GPIOPinWrite(GPIO_PORTE_BASE, GPIO_PIN_1, 0xFF);
+                    GPIOPinWrite(GPIO_PORTD_BASE, GPIO_PIN_3, 0x00);
+                    p1 = 0;
+                    DatosUart("g");
+                    b1 = 1;
+                }
+                else if (b1 == 1) {
+                    GPIOPinWrite(GPIO_PORTE_BASE, GPIO_PIN_1, 0x00);
+                    GPIOPinWrite(GPIO_PORTD_BASE, GPIO_PIN_3, 0xFF);
+                    p1 = 1;
+                    DatosUart("h");
+                    b1 = 0;
+                }
+            }
         }
-        else {
-            GPIOPinWrite(GPIO_PORTE_BASE, GPIO_PIN_1, 0x00);
-            GPIOPinWrite(GPIO_PORTD_BASE, GPIO_PIN_3, 0xFF);
-            p1 = 1;
-            //send = (send | 0x08);
-        }
+
 
         // se saca el numero de parqueos disponibles
         numero = p1 + p2 + p3 + p4;

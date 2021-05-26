@@ -23,8 +23,6 @@ const char* password = "2PM7H7600913";  //Enter your Password here
 
 WebServer server(80);  // Object of WebServer(HTTP port, 80 is defult)
 
-
-
 char datain[1];
 uint8_t parqueo1 = 0;
 uint8_t parqueo2 = 0;
@@ -47,14 +45,6 @@ void setup() {
  
   Serial.println("Try Connecting to ");
   Serial.println(ssid);
-  //configuramos las salidas para el 7 segmentos
-  pinMode(23, OUTPUT);
-  pinMode(22, OUTPUT);
-  pinMode(21, OUTPUT);
-  pinMode(19, OUTPUT);
-  pinMode(18, OUTPUT);
-  pinMode(5, OUTPUT);
-  pinMode(15, OUTPUT);
 
   // Connect to your wi-fi modem
   WiFi.begin(ssid, password);
@@ -71,105 +61,74 @@ void setup() {
 
   server.on("/", handle_OnConnect); // Directamente desde e.g. 192.168.0.8
 
-  
-  //server.onNotFound(handle_NotFound);
+  server.onNotFound(handle_NotFound);
 
   server.begin();
   Serial.println("HTTP server started");
   delay(100);
-  //colocamos en el 7 segmentos un 4 que equivale a 4 parqueos libres
-  digitalWrite(23, LOW);//a
-  digitalWrite(22, LOW);//b
-  digitalWrite(21, HIGH);//c
-  digitalWrite(19, LOW);//d
-  digitalWrite(18, HIGH);//e
-  digitalWrite(5, HIGH);//f
-  digitalWrite(15, HIGH);//g
-  /* Serial.begin(115200, SERIAL_8N1, RXD0, TXD0);
-    Serial.println("Try Connecting to ");
-    Serial.println(ssid);
 
-
-
-    // Connect to your wi-fi modem
-    WiFi.begin(ssid, password);
-
-    // Check wi-fi is connected to wi-fi network
-    while (WiFi.status() != WL_CONNECTED) {
-     delay(1000);
-     Serial.print(".");
-    }
-    Serial.println("");
-    Serial.println("WiFi connected successfully");
-    Serial.print("Got IP: ");
-    Serial.println(WiFi.localIP());  //Show ESP32 IP on serial
-
-    server.on("/", handle_OnConnect); // Directamente desde e.g. 192.168.0.8
-
-
-    server.onNotFound(handle_NotFound);
-
-    server.begin();
-    Serial.println("HTTP server started");
-    delay(100);*/
+  //pines 7seg
+  pinMode(36, OUTPUT);
+  pinMode(39, OUTPUT);
+  pinMode(34, OUTPUT);
+  pinMode(35, OUTPUT);
+  pinMode(23, OUTPUT);
+  pinMode(22, OUTPUT);
+  pinMode(21, OUTPUT);
+  pinMode(19, OUTPUT);
+  //7seg apagado
+  digitalWrite(36, LOW);//
+  digitalWrite(39, LOW);//
+  digitalWrite(34, LOW);//
+  digitalWrite(35, LOW);//
+  digitalWrite(23, LOW);//
+  digitalWrite(22, LOW);//
+  digitalWrite(21, LOW);//
+  digitalWrite(19, LOW);//
+ 
 }
 //************************************************************************************************
 // loop principal
 //************************************************************************************************
 void loop() {
   server.handleClient();
-  //Serial.println("a");
   if (Serial.available() > 0) {
-    //Serial.println("b");
-    //delay(1000);
     b=Serial.read();
-    //parqueo1 = (datain & 0x01) ? 1 : 0;
-    //parqueo2 = (datain & 0x02) ? 1 : 0;
-    //parqueo3 = (datain & 0x04) ? 1 : 0;
-    //parqueo4 = (datain & 0x08) ? 1 : 0;
-    Serial.print(b);
-    delay(500);
-    //Serial.println(a);
-    //datain2 = datain.toString();
-
-    //Serial.println(parqueo1);
+    Serial.println(b);
+    //delay(500);
     if (b == 'a'){
-      Serial.print("jaja");
       parqueo1 = 1;
-      }
-    else if (b == 'c'){
+    }
+    else if (b == 'b'){
       parqueo1 = 0;
-      }
-    Serial.print(parqueo1);
-    /*  switch (datain) {
-        case "0000":
-          parqueo1 = 1;
-          break;
-        case "0001":
-          parqueo1 = 0;
-          break;
-        case "0010":
-          parqueo2 = 1;
-          break;
-        case "0011":
-          parqueo2 = 0;
-          break;
-      }*/
-    //Serial.println(parqueo1);
-    //Serial.println(parqueo2);
+    }
+    if (b == 'c'){
+      parqueo2 = 1;
+    }
+    else if (b == 'd'){
+      parqueo2 = 0;
+    }
+    if (b == 'e'){
+      parqueo3 = 1;
+    }
+    else if (b == 'f'){
+      parqueo3 = 0;
+    }
+    if (b == 'g'){
+      parqueo4 = 1;
+    }
+    else if (b == 'h'){
+      parqueo4 = 0;
+    }
+    Serial.println(parqueo1);
   }
-  //delay(500);
-  //Serial.print("hola");
-  disponibles = 4 - (parqueo1 + parqueo2 + parqueo3 + parqueo4);
-  //server.send(200, "text/html", SendHTML2(parqueo1, parqueo2, parqueo3, parqueo4, disponibles));
-
 }
 //************************************************************************************************
 // Handler de Inicio página
 //************************************************************************************************
 void handle_OnConnect() {
   //LED1status = LOW;
-  Serial.println("GPIO2 Status: OFF");
+  Serial.println("Updating Data...");
   //  parqueo1 = 0;
   //  parqueo2 = 1;
   //  parqueo3 = 1;
@@ -268,7 +227,7 @@ String SendHTML2(uint8_t p1, uint8_t p2, uint8_t p3, uint8_t p4, uint8_t disponi
   pagina += "</tr>\n";
   pagina += "</tfoot>\n";
   pagina += "</table>\n";
-  pagina += "<script>function timedRefresh(a){setTimeout(\"location.reload(true);\",a)}window.onload=timedRefresh(5000);</script>\n";
+  pagina += "<script>function timedRefresh(a){setTimeout(\"location.reload(true);\",a)}window.onload=timedRefresh(1000);</script>\n";
   pagina += "<script src=https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js integrity=sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4 crossorigin=anonymous></script>\n";
   pagina += "<script src=https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js integrity=sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p crossorigin=anonymous></script>\n";
   pagina += "<script src=https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js integrity=sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT crossorigin=anonymous></script>\n";
