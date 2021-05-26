@@ -30,7 +30,7 @@ uint8_t p2 = 0;
 uint8_t p3 = 0;
 uint8_t p4 = 0;
 
-int send = 0;
+char send;
 
 uint8_t c1 = 0;
 uint8_t c2 = 0;
@@ -39,31 +39,32 @@ uint8_t c4 = 0;
 //**********prototipos******************
 
 //void 7seg(uint8_t numero);
+void DatosUart(char *Dat);
 
 //**********codigo principal************
 int main(void)
 {
     //configuracion del reloj: frecuencia de reloj de 40 MHz porque se uso el PLL
     // se utiliza el oscilador principal
-    SysCtlClockSet ( SYSCTL_SYSDIV_5 | SYSCTL_USE_PLL | SYSCTL_OSC_MAIN | SYSCTL_XTAL_16MHZ );
-
+    SysCtlClockSet ( SYSCTL_SYSDIV_5 | SYSCTL_OSC_MAIN | SYSCTL_XTAL_16MHZ );
+/*
     // como solo se tiene el puerto B completo, se usara para el 7 segmentos por facilidad PINES 0-7
     SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOB);
     while(!SysCtlPeripheralReady(SYSCTL_PERIPH_GPIOB)){}
     // pines del 0 al 7 se configuran como outputs
     GPIOPinTypeGPIOOutput(GPIO_PORTB_BASE, GPIO_PIN_0|GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3|GPIO_PIN_4|GPIO_PIN_5|GPIO_PIN_6|GPIO_PIN_7);
-
+*/
     // en el puerto A se utilizara para los pushbuttons, PINES 2,3,4,5 con weak pull-up
     SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOA);
     while(!SysCtlPeripheralReady(SYSCTL_PERIPH_GPIOA)){}
     GPIOPinTypeGPIOInput(GPIO_PORTA_BASE, GPIO_PIN_2|GPIO_PIN_3|GPIO_PIN_4|GPIO_PIN_5);
-    GPIOPadConfigSet(GPIO_PORTA_BASE, GPIO_PIN_2|GPIO_PIN_3|GPIO_PIN_4|GPIO_PIN_5, GPIO_STRENGTH_4MA, GPIO_PIN_TYPE_STD_WPU);
+    GPIOPadConfigSet(GPIO_PORTA_BASE, GPIO_PIN_2|GPIO_PIN_3|GPIO_PIN_4|GPIO_PIN_5, GPIO_STRENGTH_2MA, GPIO_PIN_TYPE_STD_WPU);
 
-    // se utilizara el puerto C para las leds azules PINES 4,5,6,7
-    SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOC);
-    while(!SysCtlPeripheralReady(SYSCTL_PERIPH_GPIOC)){}
+    // se utilizara el puerto D para las leds azules PINES 0,1,2,3, 6
+    SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOD);
+    while(!SysCtlPeripheralReady(SYSCTL_PERIPH_GPIOD)){}
     // pines del 0 al 7 se configuran como outputs
-    GPIOPinTypeGPIOOutput(GPIO_PORTC_BASE, GPIO_PIN_4|GPIO_PIN_5|GPIO_PIN_6|GPIO_PIN_7);
+    GPIOPinTypeGPIOOutput(GPIO_PORTD_BASE, GPIO_PIN_0|GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3|GPIO_PIN_6);
 
     // se utilizara el puerto E para los leds rojos PINES 1,2,3,4
     SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOE);
@@ -72,87 +73,100 @@ int main(void)
     GPIOPinTypeGPIOOutput(GPIO_PORTE_BASE, GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3|GPIO_PIN_4);
 
     // CONFIGURACION UART
-    SysCtlPeripheralEnable (SYSCTL_PERIPH_UART2);
-    while(!SysCtlPeripheralReady(SYSCTL_PERIPH_UART2)){}
+    SysCtlPeripheralEnable (SYSCTL_PERIPH_UART1);
+    //while(!SysCtlPeripheralReady(SYSCTL_PERIPH_UART1)){}
     // se habilita el puerto D
-    SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOD);
-    while(!SysCtlPeripheralReady(SYSCTL_PERIPH_UART2)){}
-    // se configuran los bits rx y tx
-    GPIOPinConfigure(GPIO_PD6_U2RX);
-    GPIOPinConfigure(GPIO_PD7_U2TX);
-    // los pines del uart se controlan por perifericos
-    GPIOPinTypeUART(GPIO_PORTD_BASE, GPIO_PIN_6 | GPIO_PIN_7);
-    // se siguen los pasos de la guia
-    UARTDisable(UART2_BASE);
-    // se setea el uart0 a 115200 baudios, 8 data bits, 1 stop bit y sin paridad
-    UARTConfigSetExpClk(UART2_BASE, SysCtlClockGet(), 115200,(UART_CONFIG_WLEN_8 | UART_CONFIG_STOP_ONE | UART_CONFIG_PAR_NONE));
-    // se habilita
-    UARTEnable (UART2_BASE);
+    SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOB);
+    //while(!SysCtlPeripheralReady(SYSCTL_PERIPH_UART4)){}
 
+    // se configuran los bits rx y tx
+    GPIOPinConfigure(GPIO_PB0_U1RX);
+    GPIOPinConfigure(GPIO_PB1_U1TX);
+
+    // los pines del uart se controlan por perifericos
+    GPIOPinTypeUART(GPIO_PORTB_BASE, GPIO_PIN_0 | GPIO_PIN_1);
+
+    UARTClockSourceSet(UART1_BASE, UART_CLOCK_PIOSC);
+    // se siguen los pasos de la guia
+    //UARTDisable(UART1_BASE);
+    // se setea el uart0 a 115200 baudios, 8 data bits, 1 stop bit y sin paridad
+    UARTConfigSetExpClk(UART1_BASE, 16000000, 115200,(UART_CONFIG_WLEN_8 | UART_CONFIG_STOP_ONE | UART_CONFIG_PAR_NONE));
+    // se habilita
+    UARTEnable (UART1_BASE);
+
+    //GPIOPinWrite(GPIO_PORTD_BASE, GPIO_PIN_6, 0xFF);
     // loop principal
     while (1) {
 
         // boton 4
-        if ((GPIOPinRead (GPIO_PORTA_BASE,GPIO_PIN_5) & 0x20)==0) {
-            GPIOPinWrite(GPIO_PORTE_BASE, GPIO_PIN_3, 0x08);
-            GPIOPinWrite(GPIO_PORTC_BASE, GPIO_PIN_4, 0x00);
+        if (!GPIOPinRead(GPIO_PORTA_BASE, GPIO_PIN_5)) {
+            GPIOPinWrite(GPIO_PORTE_BASE, GPIO_PIN_3, 0xFF);
+            GPIOPinWrite(GPIO_PORTD_BASE, GPIO_PIN_6, 0x00);
             p4 = 0;
-            send = (send & 0x0E);
+            send = "0000";
+            DatosUart("a");
+            SysCtlDelay (5000000);
+
         }
         else {
             GPIOPinWrite(GPIO_PORTE_BASE, GPIO_PIN_3, 0x00);
-            GPIOPinWrite(GPIO_PORTC_BASE, GPIO_PIN_4, 0x10);
+            GPIOPinWrite(GPIO_PORTD_BASE, GPIO_PIN_6, 0xFF);
             p4 = 1;
-            send = (send | 0x01);
+            send = "0001";
+           // DatosUart("b");
+           // SysCtlDelay (5000000);
         }
 
         // boton 3
-        if ((GPIOPinRead (GPIO_PORTA_BASE,GPIO_PIN_4) & 0x10)==0) {
-            GPIOPinWrite(GPIO_PORTE_BASE, GPIO_PIN_4, 0x10);
-            GPIOPinWrite(GPIO_PORTC_BASE, GPIO_PIN_5, 0x00);
+        if (!GPIOPinRead(GPIO_PORTA_BASE, GPIO_PIN_4)) {
+            GPIOPinWrite(GPIO_PORTE_BASE, GPIO_PIN_4, 0xFF);
+            GPIOPinWrite(GPIO_PORTD_BASE, GPIO_PIN_1, 0x00);
             p3 = 0;
-            send = (send & 0x0D);
+            send = "0010";
+            DatosUart("c");
+            SysCtlDelay (5000000);
         }
         else {
             GPIOPinWrite(GPIO_PORTE_BASE, GPIO_PIN_4, 0x00);
-            GPIOPinWrite(GPIO_PORTC_BASE, GPIO_PIN_5, 0x20);
+            GPIOPinWrite(GPIO_PORTD_BASE, GPIO_PIN_1, 0xFF);
             p3 = 1;
-            send = (send | 0x02);
+            send = "0011";
+
         }
 
         // boton 2
 
-        if ((GPIOPinRead (GPIO_PORTA_BASE,GPIO_PIN_3) & 0x08)==0) {
-            GPIOPinWrite(GPIO_PORTE_BASE, GPIO_PIN_2, 0x04);
-            GPIOPinWrite(GPIO_PORTC_BASE, GPIO_PIN_6, 0x00);
+        if (!GPIOPinRead(GPIO_PORTA_BASE, GPIO_PIN_3)) {
+            GPIOPinWrite(GPIO_PORTE_BASE, GPIO_PIN_2, 0xFF);
+            GPIOPinWrite(GPIO_PORTD_BASE, GPIO_PIN_2, 0x00);
             p2 = 0;
-            send = (send & 0x0B);
+            //send = (send & 0x0B);
         }
         else {
             GPIOPinWrite(GPIO_PORTE_BASE, GPIO_PIN_2, 0x00);
-            GPIOPinWrite(GPIO_PORTC_BASE, GPIO_PIN_6, 0x40);
+            GPIOPinWrite(GPIO_PORTD_BASE, GPIO_PIN_2, 0xFF);
             p2 = 1;
-            send = (send | 0x04);
+            //send = (send | 0x04);
         }
 
 
         // boton 1
-        if ((GPIOPinRead (GPIO_PORTA_BASE,GPIO_PIN_2) & 0x04)==0) {
-            GPIOPinWrite(GPIO_PORTE_BASE, GPIO_PIN_1, 0x02);
-            GPIOPinWrite(GPIO_PORTC_BASE, GPIO_PIN_7, 0x0);
+        if (!GPIOPinRead(GPIO_PORTA_BASE, GPIO_PIN_2)) {
+            GPIOPinWrite(GPIO_PORTE_BASE, GPIO_PIN_1, 0xFF);
+            GPIOPinWrite(GPIO_PORTD_BASE, GPIO_PIN_3, 0x00);
             p1 = 0;
-            send = (send & 0x07);
+            //send = (send & 0x07);
         }
         else {
             GPIOPinWrite(GPIO_PORTE_BASE, GPIO_PIN_1, 0x00);
-            GPIOPinWrite(GPIO_PORTC_BASE, GPIO_PIN_7, 0x80);
+            GPIOPinWrite(GPIO_PORTD_BASE, GPIO_PIN_3, 0xFF);
             p1 = 1;
-            send = (send | 0x08);
+            //send = (send | 0x08);
         }
 
         // se saca el numero de parqueos disponibles
         numero = p1 + p2 + p3 + p4;
-
+/*
         if (send & 0x01) {c1 = 1;}
         else {c1 = 0;}
         if (send & 0x02) {c2 = 1;}
@@ -161,9 +175,9 @@ int main(void)
         else {c3 = 0;}
         if (send & 0x08) {c4 = 1;}
         else {c4 = 0;}
-
+*/
         numero2 = c1 + c2 + c3 + c4;
-
+/*
         switch(numero2) {
         case 0:
             GPIOPinWrite(GPIO_PORTB_BASE, GPIO_PIN_0|GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3|GPIO_PIN_4|GPIO_PIN_5|GPIO_PIN_6|GPIO_PIN_7, 0x77);
@@ -184,10 +198,20 @@ int main(void)
             GPIOPinWrite(GPIO_PORTB_BASE, GPIO_PIN_0|GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3|GPIO_PIN_4|GPIO_PIN_5|GPIO_PIN_6|GPIO_PIN_7, 0x08);
             break;
         }
+*/
 
-        UARTCharPut(UART2_BASE, send);
 
 
-        //SysCtlDelay (5000000); // DELAY 0.5s
+
+
+       // SysCtlDelay (5000000); // DELAY 0.5s
+    }
+}
+
+void DatosUart(char *Dat){
+    while(UARTBusy(UART1_BASE));
+    while(*Dat != '\0')
+    {
+        UARTCharPut(UART1_BASE, *Dat++);
     }
 }

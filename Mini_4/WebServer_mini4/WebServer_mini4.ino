@@ -1,7 +1,7 @@
 /*************************************************************************************************
   ESP32 Web Server
-  Ejemplo de creación de Web server 
-  Basándose en los ejemplos de: 
+  Ejemplo de creación de Web server
+  Basándose en los ejemplos de:
   https://lastminuteengineers.com/creating-esp32-web-server-arduino-ide/
   https://electropeak.com/learn
 **************************************************************************************************/
@@ -9,7 +9,11 @@
 // Librerías
 //************************************************************************************************
 #include <WiFi.h>
+#include <SPIFFS.h>
 #include <WebServer.h>
+//definimos los pines de UART 2
+#define RXD0 3
+#define TXD0 1
 //************************************************************************************************
 // Variables globales
 //************************************************************************************************
@@ -20,24 +24,37 @@ const char* password = "2PM7H7600913";  //Enter your Password here
 WebServer server(80);  // Object of WebServer(HTTP port, 80 is defult)
 
 
-uint8_t LED1pin = 2;
-bool LED1status = LOW;
 
+char datain[1];
 uint8_t parqueo1 = 0;
 uint8_t parqueo2 = 0;
 uint8_t parqueo3 = 0;
 uint8_t parqueo4 = 0;
 uint8_t disponibles = 0;
+String datain2 = "";
+
+int a = 0;
+char b;
+
+
 
 //************************************************************************************************
 // Configuración
 //************************************************************************************************
 void setup() {
-  Serial.begin(115200);
+  Serial.begin(115200, SERIAL_8N1, RXD0, TXD0);
+  //Serial2.begin(115200, SERIAL_8N1, RXD0, TXD0);
+ 
   Serial.println("Try Connecting to ");
   Serial.println(ssid);
-
-  pinMode(LED1pin, OUTPUT);
+  //configuramos las salidas para el 7 segmentos
+  pinMode(23, OUTPUT);
+  pinMode(22, OUTPUT);
+  pinMode(21, OUTPUT);
+  pinMode(19, OUTPUT);
+  pinMode(18, OUTPUT);
+  pinMode(5, OUTPUT);
+  pinMode(15, OUTPUT);
 
   // Connect to your wi-fi modem
   WiFi.begin(ssid, password);
@@ -53,29 +70,99 @@ void setup() {
   Serial.println(WiFi.localIP());  //Show ESP32 IP on serial
 
   server.on("/", handle_OnConnect); // Directamente desde e.g. 192.168.0.8
-  server.on("/led1on", handle_led1on);
-  server.on("/led1off", handle_led1off);
+
   
-  server.onNotFound(handle_NotFound);
+  //server.onNotFound(handle_NotFound);
 
   server.begin();
   Serial.println("HTTP server started");
   delay(100);
+  //colocamos en el 7 segmentos un 4 que equivale a 4 parqueos libres
+  digitalWrite(23, LOW);//a
+  digitalWrite(22, LOW);//b
+  digitalWrite(21, HIGH);//c
+  digitalWrite(19, LOW);//d
+  digitalWrite(18, HIGH);//e
+  digitalWrite(5, HIGH);//f
+  digitalWrite(15, HIGH);//g
+  /* Serial.begin(115200, SERIAL_8N1, RXD0, TXD0);
+    Serial.println("Try Connecting to ");
+    Serial.println(ssid);
+
+
+
+    // Connect to your wi-fi modem
+    WiFi.begin(ssid, password);
+
+    // Check wi-fi is connected to wi-fi network
+    while (WiFi.status() != WL_CONNECTED) {
+     delay(1000);
+     Serial.print(".");
+    }
+    Serial.println("");
+    Serial.println("WiFi connected successfully");
+    Serial.print("Got IP: ");
+    Serial.println(WiFi.localIP());  //Show ESP32 IP on serial
+
+    server.on("/", handle_OnConnect); // Directamente desde e.g. 192.168.0.8
+
+
+    server.onNotFound(handle_NotFound);
+
+    server.begin();
+    Serial.println("HTTP server started");
+    delay(100);*/
 }
 //************************************************************************************************
 // loop principal
 //************************************************************************************************
 void loop() {
   server.handleClient();
-  if (LED1status)
-  {
-    digitalWrite(LED1pin, HIGH);
+  //Serial.println("a");
+  if (Serial.available() > 0) {
+    //Serial.println("b");
+    //delay(1000);
+    b=Serial.read();
+    //parqueo1 = (datain & 0x01) ? 1 : 0;
+    //parqueo2 = (datain & 0x02) ? 1 : 0;
+    //parqueo3 = (datain & 0x04) ? 1 : 0;
+    //parqueo4 = (datain & 0x08) ? 1 : 0;
+    Serial.print(b);
+    delay(500);
+    //Serial.println(a);
+    //datain2 = datain.toString();
+
+    //Serial.println(parqueo1);
+    if (b == 'a'){
+      Serial.print("jaja");
+      parqueo1 = 1;
+      }
+    else if (b == 'c'){
+      parqueo1 = 0;
+      }
+    Serial.print(parqueo1);
+    /*  switch (datain) {
+        case "0000":
+          parqueo1 = 1;
+          break;
+        case "0001":
+          parqueo1 = 0;
+          break;
+        case "0010":
+          parqueo2 = 1;
+          break;
+        case "0011":
+          parqueo2 = 0;
+          break;
+      }*/
+    //Serial.println(parqueo1);
+    //Serial.println(parqueo2);
   }
-  else
-  {
-    digitalWrite(LED1pin, LOW);
-  }
-  
+  //delay(500);
+  //Serial.print("hola");
+  disponibles = 4 - (parqueo1 + parqueo2 + parqueo3 + parqueo4);
+  //server.send(200, "text/html", SendHTML2(parqueo1, parqueo2, parqueo3, parqueo4, disponibles));
+
 }
 //************************************************************************************************
 // Handler de Inicio página
@@ -83,29 +170,14 @@ void loop() {
 void handle_OnConnect() {
   //LED1status = LOW;
   Serial.println("GPIO2 Status: OFF");
-  parqueo1 = 0;
-  parqueo2 = 0;
-  parqueo3 = 0;
-  parqueo4 = 1;
+  //  parqueo1 = 0;
+  //  parqueo2 = 1;
+  //  parqueo3 = 1;
+  //  parqueo4 = 1;
   disponibles = 4 - (parqueo1 + parqueo2 + parqueo3 + parqueo4);
   server.send(200, "text/html", SendHTML2(parqueo1, parqueo2, parqueo3, parqueo4, disponibles));
 }
-//************************************************************************************************
-// Handler de led1on
-//************************************************************************************************
-void handle_led1on() {
-  LED1status = HIGH;
-  Serial.println("GPIO2 Status: ON");
-  server.send(200, "text/html", SendHTML(LED1status));
-}
-//************************************************************************************************
-// Handler de led1off
-//************************************************************************************************
-void handle_led1off() {
-  LED1status = LOW;
-  Serial.println("GPIO2 Status: OFF");
-  server.send(200, "text/html", SendHTML(LED1status));
-}
+
 //************************************************************************************************
 // Procesador de HTML
 //************************************************************************************************
@@ -133,51 +205,59 @@ String SendHTML2(uint8_t p1, uint8_t p2, uint8_t p3, uint8_t p4, uint8_t disponi
   pagina += "<tr>\n";
 
   // 1 significa ocupado y 0 libre
-  
-  if (p1 == 1) 
-  {pagina += "<th scope=row>1</th>\n";
-  pagina += "<td class=table-danger>Ocupado &#128308</td>\n";
-  pagina += "</tr>\n";
-  pagina += "<tr>\n";}
-  else 
-  {pagina += "<th scope=row>1</th>\n";
-  pagina += "<td class=table-success>Disponible &#128309</td>\n";
-  pagina += "</tr>\n";
-  pagina += "<tr>\n";}
-  
-  if (p2 == 1) 
-  {pagina += "<th scope=row>2</th>\n";
-  pagina += "<td class=table-danger>Ocupado &#128308</td>\n";
-  pagina += "</tr>\n";
-  pagina += "<tr>\n";}
-  else 
-  {pagina += "<th scope=row>2</th>\n";
-  pagina += "<td class=table-success>Disponible &#128309</td>\n";
-  pagina += "</tr>\n";
-  pagina += "<tr>\n";}
-  
-  if (p3 == 1) 
-  {pagina += "<th scope=row>3</th>\n";
-  pagina += "<td class=table-danger>Ocupado &#128308</td>\n";
-  pagina += "</tr>\n";
-  pagina += "<tr>\n";}
-  else 
-  {pagina += "<th scope=row>3</th>\n";
-  pagina += "<td class=table-success>Disponible &#128309</td>\n";
-  pagina += "</tr>\n";
-  pagina += "<tr>\n";}
-  
-  if (p4 == 1) 
-  {pagina += "<th scope=row>4</th>\n";
-  pagina += "<td class=table-danger>Ocupado &#128308</td>\n";
-  pagina += "</tr>\n";
-  pagina += "<tr>\n";}
-  else 
-  {pagina += "<th scope=row>4</th>\n";
-  pagina += "<td class=table-success>Disponible &#128309</td>\n";
-  pagina += "</tr>\n";
-  pagina += "<tr>\n";}
-  
+
+  if (p1 == 1)
+  { pagina += "<th scope=row>1</th>\n";
+    pagina += "<td class=table-danger>Ocupado &#128308</td>\n";
+    pagina += "</tr>\n";
+    pagina += "<tr>\n";
+  }
+  else
+  { pagina += "<th scope=row>1</th>\n";
+    pagina += "<td class=table-success>Disponible &#128309</td>\n";
+    pagina += "</tr>\n";
+    pagina += "<tr>\n";
+  }
+
+  if (p2 == 1)
+  { pagina += "<th scope=row>2</th>\n";
+    pagina += "<td class=table-danger>Ocupado &#128308</td>\n";
+    pagina += "</tr>\n";
+    pagina += "<tr>\n";
+  }
+  else
+  { pagina += "<th scope=row>2</th>\n";
+    pagina += "<td class=table-success>Disponible &#128309</td>\n";
+    pagina += "</tr>\n";
+    pagina += "<tr>\n";
+  }
+
+  if (p3 == 1)
+  { pagina += "<th scope=row>3</th>\n";
+    pagina += "<td class=table-danger>Ocupado &#128308</td>\n";
+    pagina += "</tr>\n";
+    pagina += "<tr>\n";
+  }
+  else
+  { pagina += "<th scope=row>3</th>\n";
+    pagina += "<td class=table-success>Disponible &#128309</td>\n";
+    pagina += "</tr>\n";
+    pagina += "<tr>\n";
+  }
+
+  if (p4 == 1)
+  { pagina += "<th scope=row>4</th>\n";
+    pagina += "<td class=table-danger>Ocupado &#128308</td>\n";
+    pagina += "</tr>\n";
+    pagina += "<tr>\n";
+  }
+  else
+  { pagina += "<th scope=row>4</th>\n";
+    pagina += "<td class=table-success>Disponible &#128309</td>\n";
+    pagina += "</tr>\n";
+    pagina += "<tr>\n";
+  }
+
   pagina += "</tbody>\n";
   pagina += "</tfoot>\n";
   pagina += "<tr>\n";
@@ -195,7 +275,7 @@ String SendHTML2(uint8_t p1, uint8_t p2, uint8_t p3, uint8_t p4, uint8_t disponi
   pagina += "</body>\n";
   pagina += "</html>";
   return pagina;
-  }
+}
 String SendHTML(uint8_t led1stat) {
   String ptr = "<!DOCTYPE html> <html>\n";
   ptr += "<head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, user-scalable=no\">\n";
