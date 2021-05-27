@@ -3,7 +3,7 @@
 /**
  * main.c
  *  Rodrigo Díaz, 18265
- * Digital II, mini3
+ * Digital II, mini4
  */
 #include <stdint.h>
 #include <stdbool.h>
@@ -74,7 +74,7 @@ int main(void)
     // CONFIGURACION UART
     SysCtlPeripheralEnable (SYSCTL_PERIPH_UART1);
     //while(!SysCtlPeripheralReady(SYSCTL_PERIPH_UART1)){}
-    // se habilita el puerto D
+    // se habilita el puerto B
     SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOB);
     //while(!SysCtlPeripheralReady(SYSCTL_PERIPH_UART4)){}
 
