@@ -55,6 +55,7 @@ int main(void)
     GPIOPinTypeGPIOOutput (GPIO_PORTF_BASE,GPIO_PIN_1);
     GPIOPinTypeGPIOOutput (GPIO_PORTF_BASE, GPIO_PIN_2);
     GPIOPinTypeGPIOOutput (GPIO_PORTF_BASE, GPIO_PIN_3);
+
     // CONFIG TIMER
     // Se habilita el reloj para el temporizador
     SysCtlPeripheralEnable(SYSCTL_PERIPH_TIMER0);

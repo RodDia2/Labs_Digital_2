@@ -68,23 +68,35 @@ void setup() {
   delay(100);
 
   //pines 7seg
-  pinMode(36, OUTPUT);
-  pinMode(39, OUTPUT);
-  pinMode(34, OUTPUT);
-  pinMode(35, OUTPUT);
   pinMode(23, OUTPUT);
   pinMode(22, OUTPUT);
   pinMode(21, OUTPUT);
   pinMode(19, OUTPUT);
+
+  pinMode(32, OUTPUT);
+  pinMode(33, OUTPUT);
+  pinMode(25, OUTPUT);
+  pinMode(26, OUTPUT);
   //7seg apagado
-  digitalWrite(36, LOW);//
-  digitalWrite(39, LOW);//
-  digitalWrite(34, LOW);//
-  digitalWrite(35, LOW);//
+  digitalWrite(32, LOW);//
+  digitalWrite(33, LOW);//
+  digitalWrite(25, LOW);//
+  digitalWrite(26, LOW);//
+  
   digitalWrite(23, LOW);//
   digitalWrite(22, LOW);//
   digitalWrite(21, LOW);//
   digitalWrite(19, LOW);//
+
+//  digitalWrite(23, HIGH);//
+//  digitalWrite(22, HIGH);//
+//  digitalWrite(21, HIGH);//
+//  digitalWrite(19, HIGH);//
+//
+//  digitalWrite(32, HIGH);//
+//  digitalWrite(33, HIGH);//
+//  digitalWrite(25, HIGH);//
+//  digitalWrite(26, HIGH);//
  
 }
 //************************************************************************************************
@@ -122,6 +134,74 @@ void loop() {
     }
     Serial.println(parqueo1);
   }
+  disponibles = 4 - (parqueo1 + parqueo2 + parqueo3 + parqueo4);
+  switch (disponibles){
+    case 0:
+      digitalWrite(32, HIGH);//
+      digitalWrite(33, HIGH);//
+      digitalWrite(25, HIGH);//
+      digitalWrite(26, LOW);//
+      
+      digitalWrite(23, LOW);//
+      digitalWrite(22, HIGH);//
+      digitalWrite(21, HIGH);//
+      digitalWrite(19, HIGH);//
+      break;
+    case 1:
+      digitalWrite(32, HIGH);//
+      digitalWrite(33, LOW);//
+      digitalWrite(25, LOW);//
+      digitalWrite(26, LOW);//
+      
+      digitalWrite(23, LOW);//
+      digitalWrite(22, HIGH);//
+      digitalWrite(21, LOW);//
+      digitalWrite(19, LOW);//
+      break;
+    case 2:
+      digitalWrite(32, HIGH);//
+      digitalWrite(33, HIGH);//
+      digitalWrite(25, LOW);//
+      digitalWrite(26, HIGH);//
+      
+      digitalWrite(23, LOW);//
+      digitalWrite(22, LOW);//
+      digitalWrite(21, HIGH);//
+      digitalWrite(19, HIGH);//
+      break;
+    case 3:
+      digitalWrite(32, HIGH);//
+      digitalWrite(33, HIGH);//
+      digitalWrite(25, LOW);//
+      digitalWrite(26, HIGH);//
+      
+      digitalWrite(23, LOW);//
+      digitalWrite(22, HIGH);//
+      digitalWrite(21, HIGH);//
+      digitalWrite(19, LOW);//
+      break;
+    case 4:
+      digitalWrite(32, HIGH);//
+      digitalWrite(33, LOW);//
+      digitalWrite(25, HIGH);//
+      digitalWrite(26, HIGH);//
+      
+      digitalWrite(23, LOW);//
+      digitalWrite(22, HIGH);//
+      digitalWrite(21, LOW);//
+      digitalWrite(19, LOW);//
+      break;
+    default:
+      digitalWrite(32, LOW);//
+      digitalWrite(33, LOW);//
+      digitalWrite(25, LOW);//
+      digitalWrite(26, LOW);//
+      
+      digitalWrite(23, HIGH);//
+      digitalWrite(22, LOW);//
+      digitalWrite(21, LOW);//
+      digitalWrite(19, LOW);//
+    }
 }
 //************************************************************************************************
 // Handler de Inicio página
